@@ -18,6 +18,7 @@ SOURCES += main.cpp\
 HEADERS  += gamewindow.h \
     saveload.h \
     character.h \
-    Player.h
+    Player.h \
+    Enemy.h
 
 FORMS    += gamewindow.ui
