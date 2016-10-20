@@ -15,6 +15,9 @@ TEMPLATE = app
 SOURCES += main.cpp\
         gamewindow.cpp
 
-HEADERS  += gamewindow.h
+HEADERS  += gamewindow.h \
+    saveload.h \
+    character.h \
+    Player.h
 
 FORMS    += gamewindow.ui

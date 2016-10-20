@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
             unitTests();
         }
     }
+
     QApplication a(argc, argv);
     GameWindow w;
     w.show();
@@ -25,5 +26,5 @@ int main(int argc, char *argv[])
 
 void unitTests()
 {
-    std::cout << "Entering Unit Tests";
+    std::cout << "Entering Unit Tests" << std::endl;
 }
