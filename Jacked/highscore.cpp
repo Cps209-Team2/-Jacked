@@ -1,5 +1,6 @@
 #include "highscore.h"
 
+<<<<<<< HEAD
 Highscore::Highscore()
 {
     ifstream *file;
@@ -12,5 +13,21 @@ Highscore::Highscore()
     showBestTime();
     string scoreList();
     //returns list of highscores
+=======
+highscorce() {
+
+}
+
+addTime(){time++;}
+writeFile() {
+
+}
+
+showBestTime() {
+
+}
+
+string scoreList() {
+>>>>>>> 5417389448d987ce5a0aa8a2f56bbec4577a6088
 
 }
