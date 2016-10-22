@@ -1,4 +1,5 @@
 #include "gamewindow.h"
+#include "map.h"
 #include <QApplication>
 #include <iostream>
 #include <vector>

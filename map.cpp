@@ -26,9 +26,10 @@ void Map::reset() {
 }
 
 //initializes new lvl
-void Map::create() {
-    Map.reset();
-    Map.loadFile();
+    void Map::create()
+{
+    reset();
+    //void Map::loadFile(filename);
 }
 
 //loads saved map //features
@@ -51,8 +52,8 @@ void Map::eSpawn() {
 
 //advances map to next lvl;
 void Map::advance() {
-    Map.lvl++;
-    Map.create();
+    lvl++;
+    create();
 }
 
 
