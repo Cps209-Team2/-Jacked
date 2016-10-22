@@ -12,16 +12,20 @@ class Character
 
 public:
 
-public:
-virtual move(keystroke*);
+    Character(double initX, double initY, Weapon *initWeapon)
+    {
+
+    }
+
+//virtual move(keystroke*);
 //moves entity
-virtual useWeapon();
+virtual void useWeapon();
 //triggers Weapon object execute()
-virtual setWeapon(Weapon*);
+virtual void setWeapon(Weapon*);
 //equip weapon object to character
-virtual takeDmg(int);
+virtual int takeDmg(int);
 //lowers character hp
-virtual die();
+virtual void die();
 //removes entity from map
 
 virtual ~Character();

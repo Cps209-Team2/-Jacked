@@ -27,4 +27,6 @@ int main(int argc, char *argv[])
 void unitTests()
 {
     std::cout << "Entering Unit Tests" << std::endl;
+    Map testMap;
+
 }

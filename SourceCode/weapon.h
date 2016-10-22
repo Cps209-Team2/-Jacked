@@ -5,6 +5,8 @@ class Weapon
 {
 public:
     Weapon();
+
+    void execute();
 };
 
 #endif // WEAPON_H

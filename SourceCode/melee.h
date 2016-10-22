@@ -4,7 +4,7 @@
 class Melee
 {
 public:
-    execute();//close range hitbox
+    void execute();//close range hitbox
 
     Melee();
 

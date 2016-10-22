@@ -1,25 +1,33 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-//#include "character.h"
+#include "character.h"
+#include "weapon.h"
 
 class Player: public Character
 {
 
+    double xPos;
+    double yPos;
+    Weapon *tool;
 public:
-    move(keystroke);
+
+    Player(double initX, double initY, Weapon *initWeapon):Character(initX, initY, initWeapon)
+    {}
+
+    //move(keystroke);
     //moves left or right
-    useWeapon();
+    void useWeapon();
     //uses equipped weapon
-    setWeapon(Weapon);
+    void setWeapon(Weapon);
     //new weapon at each lvl
-    takeDmg(int);
-    die();
+    int takeDmg(int);
+    void die();
     //either restarts game or lvl
 
-    jump();
+    void jump();
     //jumps player straight up
-    crouch();
+    void crouch();
     //lowers entity below //projectile level
 };
 

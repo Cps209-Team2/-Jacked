@@ -1,6 +1,7 @@
 #ifndef HIGHSCORE_H
 #define HIGHSCORE_H
-#include <istream>
+#include <fstream>
+#include <string>
 using namespace std;
 
 class highscore {
@@ -8,10 +9,11 @@ class highscore {
     istream *file;
     int points, time;
 
-    highscorce();
-    addTime(){time++;}
-    writeFile();
-    showBestTime();
+public:
+    highscore();
+    void addTime(){time++;}
+    void writeFile(string filename);
+    void showBestTime();
     string scoreList();
 };
 

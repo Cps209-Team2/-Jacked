@@ -1,30 +1,13 @@
 #include "highscore.h"
+#include <string>
 
-Highscore::Highscore()
-{
-    ifstream *file;
-    int points points,time;
+void writeFile() {
+}
 
-    public:
-    Highscore();//sets file to //saved txt file
-   int addTime(){return time++;}
-    writeFile();//records new //highscore
-    showBestTime();
-    string scoreList();
-    //returns list of highscores
-   
-highscore() {
+void showBestTime() {
 
 }
 
-writeFile() {
-
-}
-
-showBestTime() {
-
-}
-
-string scoreList() {
+std::string scoreList() {
 
 }
