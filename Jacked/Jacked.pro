@@ -13,12 +13,26 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        gamewindow.cpp
+        gamewindow.cpp \
+    map.cpp \
+    highscore.cpp \
+    weapon.cpp \
+    melee.cpp \
+    ranged.cpp \
+    projectile.cpp \
+    hitbox.cpp
 
 HEADERS  += gamewindow.h \
     saveload.h \
     character.h \
     Player.h \
-    Enemy.h
+    Enemy.h \
+    map.h \
+    highscore.h \
+    weapon.h \
+    melee.h \
+    ranged.h \
+    projectile.h \
+    hitbox.h
 
 FORMS    += gamewindow.ui

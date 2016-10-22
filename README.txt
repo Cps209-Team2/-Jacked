@@ -1,3 +1,0 @@
-'Jacked is a 2D level-based, platform style, objective driven game against AI opponents. The player will traverse a series of 2D maps that each represent a level, with the final level being the "boss" level. The levels are completed when the player defeats the AI’s that are spawned when the level starts. The player's objective is to defeat these enemies with various weapons that “upgrade” as the level progress. The only directions the character can travel are left, right, and up (by jumping) due to the game's nature of non-scrolling platform levels.
-
-The storyline of the game has the player starting in the cargo bay of an airplane that has been hijacked.

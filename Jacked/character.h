@@ -8,20 +8,23 @@ class Character
     int HP;
     double xPos;
     double yPos;
-    Weapon tool;
+    Weapon *tool;
 
 public:
 
-    virtual void move(double, double) = 0;
-    virtual void useWeapon() = 0;
-    virtual void equipWeapon() = 0;
-    virtual explicit void takeDamage(int) = 0;
-    virtual void die() = 0;
+public:
+virtual move(keystroke*);
+//moves entity
+virtual useWeapon();
+//triggers Weapon object execute()
+virtual setWeapon(Weapon*);
+//equip weapon object to character
+virtual takeDmg(int);
+//lowers character hp
+virtual die();
+//removes entity from map
 
-    virtual ~Character()
-    {
-
-    }
+virtual ~Character();
 };
 
 #endif // CHARACTER_H
