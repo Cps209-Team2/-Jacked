@@ -1,7 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "weapon"
+#include "weapon.h"
 
 class Character
 {
