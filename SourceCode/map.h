@@ -1,20 +1,26 @@
 #ifndef MAP_H
 #define MAP_H
 
+#include <vector>
+#include <string>
+#include "Player.h"
+#include "Enemy.h"
+#include "obstacle.h"
+
 class Map
 {
     int lvl;
     Player *player;
-    vector<Obstacles*> obstacles;
-    vector<Enemy*> enemies;
+    std::vector<Obstacle*> obstacles;
+    std::vector<Enemy*> enemies;
 
 
 public:
-    create();//initializes new lvl
-    loadFile(ifstream&);//loads saved map //features
-    spawn(); //spawns player
-    eSpawn();//spawns enemies
-    advance();//advances map to next lvl;
+    void create();//initializes new lvl
+    void loadFile(std::string filename);//loads saved map //features
+    void spawn(); //spawns player
+    void eSpawn();//spawns enemies
+    void advance();//advances map to next lvl;
     Map();
 };
 

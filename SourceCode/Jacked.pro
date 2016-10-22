@@ -33,7 +33,8 @@ HEADERS  += gamewindow.h \
     melee.h \
     ranged.h \
     projectile.h \
-    hitbox.h
+    hitbox.h \
+    obstacle.h
 
 FORMS    += gamewindow.ui
 

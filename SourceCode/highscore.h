@@ -11,9 +11,9 @@ class highscore {
 
 public:
     highscore();
-    addTime(){time++;}
-    writeFile(string filename);
-    showBestTime();
+    void addTime(){time++;}
+    void writeFile(string filename);
+    void showBestTime();
     string scoreList();
 };
 

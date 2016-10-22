@@ -1,25 +1,27 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-class Enemy
+#include "character.h"
+
+class Enemy:Character
 {
     int type;
 
 public:
 
-    Enemy(double initX, initY, Weapon *initWeapon, int initType):Character(initX, initY, initWeapon)
+    Enemy(double initX, double initY, Weapon *initWeapon, int initType):Character(initX, initY, initWeapon)
     {
         type = initType;
     }
 
-move(keystroke*);
+//move(keystroke*);
 //moves based on player
-useWeapon();
+void useWeapon();
 //fires toward player
-setWeapon(Weapon);
+void setWeapon(Weapon);
 //equips at lvl start
-takeDmg(int);
-die();
+int takeDmg(int);
+void die();
 //removes object "tangibility"
 
 

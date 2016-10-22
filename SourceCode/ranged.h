@@ -1,10 +1,11 @@
 #ifndef RANGED_H
 #define RANGED_H
+#include "weapon.h"
 
-class Ranged: public Weapon
+class Ranged: Weapon
 {
 public:
-    execute();//creates projectile
+    void execute();//creates projectile
 
     Ranged();//equippable on
 
