@@ -32,7 +32,7 @@ void Map::create() {
 }
 
 //loads saved map //features
-void Map::loadFile(string filename) {
+void Map::loadFile(std::string filename) {
 
 }
 
