@@ -36,3 +36,5 @@ HEADERS  += gamewindow.h \
     hitbox.h
 
 FORMS    += gamewindow.ui
+
+QMAKE_CXXFLAGS += -std=c++14

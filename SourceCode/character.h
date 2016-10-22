@@ -12,7 +12,11 @@ class Character
 
 public:
 
-public:
+    Character(double initX, double initY, Weapon *initWeapon)
+    {
+
+    }
+
 virtual move(keystroke*);
 //moves entity
 virtual useWeapon();

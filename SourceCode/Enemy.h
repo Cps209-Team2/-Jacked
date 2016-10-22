@@ -3,7 +3,14 @@
 
 class Enemy
 {
+    int type;
+
 public:
+
+    Enemy(double initX, initY, Weapon *initWeapon, int initType):Character(initX, initY, initWeapon)
+    {
+        type = initType;
+    }
 
 move(keystroke*);
 //moves based on player
