@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/Images">
+        <file>Images/airplaneSide.jpg</file>
+        <file>Images/cargobay.jpg</file>
+        <file>Images/GameOver.png</file>
+        <file>Images/HighScore.png</file>
+        <file>Images/Jacked.png</file>
+        <file>Images/load.png</file>
+        <file>Images/NewGame.png</file>
+        <file>Images/Play.png</file>
+        <file>Images/save.png</file>
+        <file>Images/tempEnemy.png</file>
+        <file>Images/tempPlayer.png</file>
+        <file>Images/tsa.jpeg</file>
+    </qresource>
+</RCC>
