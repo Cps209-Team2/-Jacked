@@ -32,7 +32,7 @@ virtual void die();
     double getX() {return xPos;}
     double getY() {return yPos;}
     double getHp() {return HP;}
-    double getWeapon() {return *tool;}
+    Weapon getWeapon() {return *tool;}
 //Setter methods
     void setX(double newX) {xPos =  newX;}
     void setY(double newY) {yPos =  newY;}

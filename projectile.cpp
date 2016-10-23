@@ -1,11 +1,11 @@
 #include "projectile.h"
 
-void hit()
+void Projectile::hit()
 {
     //The player got hit! take damage
 }
 
-void execute()
+void Projectile::execute()
 {
     //No idea what this does...
 }
