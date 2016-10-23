@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <iostream>
 #include <vector>
+#include <cassert>
 
 void unitTests();
 
@@ -12,7 +13,7 @@ int main(int argc, char *argv[])
 
     if (args.size() > 1)
     {
-        if (args.at(1) == "-r" || args.at(1) == "-R")
+        if (args.at(1) == "-test")
         {
             unitTests();
         }
@@ -29,5 +30,6 @@ void unitTests()
 {
     std::cout << "Entering Unit Tests" << std::endl;
     Map testMap;
+    testMap.create();
 
 }

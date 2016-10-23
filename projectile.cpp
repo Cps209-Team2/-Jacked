@@ -5,7 +5,7 @@ void Projectile::hit()
     //The player got hit! take damage
 }
 
-void Projectile::execute()
+void fly()
 {
     //No idea what this does...
 }

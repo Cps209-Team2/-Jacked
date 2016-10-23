@@ -7,7 +7,7 @@ class Projectile
     double y;
 
     public:
-    void execute();//ranged movable //hitbox
+    void fly();//ranged movable //hitbox
     void hit();//damages character
     Projectile();
 };
