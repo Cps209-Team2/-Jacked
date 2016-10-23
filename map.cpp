@@ -26,8 +26,30 @@ void Map::reset() {
 }
 
 //initializes new lvl
-    void Map::create()
+    void Map::create(int level)
 {
+        if (level == 1)
+        {
+            //create level 1
+        }
+        else if (level == 2)
+        {
+            //create level 2
+        }
+        else if (level == 3)
+        {
+            //create level 3
+        }
+        /*
+        else if (level == 4)
+        {
+            //create level 4
+        }
+        */
+        else
+        {
+            //throw std::InvalidArgumentException
+        }
     reset();
     //void Map::loadFile(filename);
 }

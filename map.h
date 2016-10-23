@@ -19,7 +19,7 @@ class Map
 
 public:
     Map();
-    void create();//initializes new lvl
+    void create(int level);//initializes new lvl
     void loadFile(std::string filename);//loads saved map //features
     void spawn(); //spawns player
     void eSpawn();//spawns enemies
