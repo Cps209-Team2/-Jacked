@@ -7,11 +7,12 @@ using namespace std;
 class highscore {
 
     istream *file;
-    int points, time;
+    int points, time, distance;
 
 public:
     highscore();
     void addTime(){time++;}
+    void addDistance(int initDistance){distance = initDistance;}
     void writeFile(string filename);
     void showBestTime();
     string scoreList();
