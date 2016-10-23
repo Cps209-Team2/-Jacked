@@ -1,6 +1,6 @@
 #include "projectile.h"
 
-void hit()
+void Projectile::hit()
 {
     //The player got hit! take damage
 }
