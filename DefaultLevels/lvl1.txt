@@ -1,7 +1,8 @@
 #Jacked
+level 1
 // Introductory line used for testing input
 // default level 1 configuration
-*
+
 #Player
 // Set player position and weapon
 position:0,0;
@@ -9,6 +10,7 @@ weapon:fist;
 
 //#Obstacles
 // Record Obstacle positions
+// Used for default configuration
 
 #Enemies
 $enemy1

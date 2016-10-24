@@ -36,7 +36,7 @@ void unitTests()
     std::cout << "Entering Unit Tests" << std::endl;
     //Map::loadFile(":/Levels/DefaultLevels/lvl1.txt");
     Map testMap;
-    testMap.loadFile("../DefaultLevels/lvl1.txt");
+    testMap.loadFile(":/DefaultLevels/lvl1.txt");
     //Map testMap;
     //testMap.create();
 
