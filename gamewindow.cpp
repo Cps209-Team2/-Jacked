@@ -8,6 +8,22 @@ GameWindow::GameWindow(QWidget *parent) :
     ui->setupUi(this);
 }
 
+void GameWindow::keyPressEvent(QEvent *event)
+{
+    if(event->type() == Qt::LeftArrow)
+    {
+
+    }
+    else if (event->type() == Qt::RightArrow)
+    {
+
+    }
+    else if(event->type() == Qt::UpArrow)
+    {
+
+    }
+}
+
 GameWindow::~GameWindow()
 {
     delete ui;

@@ -2,6 +2,7 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 
 namespace Ui {
 class GameWindow;
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::GameWindow *ui;
+
+private slots:
+    void keyPressEvent(QEvent * event);
 };
 
 #endif // GAMEWINDOW_H

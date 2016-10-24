@@ -16,6 +16,7 @@ class Map
     Player *player;
     std::vector<Obstacle*> obstacles;
     std::vector<Enemy*> enemies;
+    int currentScore;
 
 
 public:
@@ -26,6 +27,7 @@ public:
     void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;
     void reset(); //removes all enemy and obstacle objects and allows for a new level
+    void addScore(int plus) { currentScore += plus; }
 
 
 
