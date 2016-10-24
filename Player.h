@@ -15,7 +15,7 @@ public:
     Player(double initX, double initY, Weapon *initWeapon):Character(initX, initY, initWeapon)
     {}
 
-    //move(keystroke);
+    void move();
     //moves left or right
     void useWeapon();
     //uses equipped weapon

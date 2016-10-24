@@ -14,7 +14,7 @@ public:
         type = initType;
     }
 
-//move(keystroke*);
+void move();
 //moves based on player
 void useWeapon();
 //fires toward player
