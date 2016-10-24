@@ -26,6 +26,7 @@ void StartWindow::on_cheatBtn_clicked()
     // Start cheat mode!
     // Player gets invincibility (intangibility)
     // and gives greater damage
+    this->cheatMode = !(this->cheatMode);
 }
 
 void StartWindow::on_btnPlayer_clicked()
