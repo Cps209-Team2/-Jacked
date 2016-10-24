@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QKeyEvent>
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
 
@@ -7,9 +8,21 @@ GameWindow::GameWindow(QWidget *parent) :
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
+    //connect(this, SIGNAL(keyPressEvent(QEvent*)),this,SLOT(key_pressed(QEvent*)));
+}
+
+void GameWindow::keyPressEvent()
+{
+    qDebug() << "test" << endl;
 }
 
 void GameWindow::keyPressEvent(QEvent *event)
+{
+    qDebug() << "test" << endl;
+}
+
+/*
+void GameWindow::key_pressed(QEvent *event)
 {
     qDebug() << "test" << endl;
     if(event->type() == Qt::LeftArrow)
@@ -25,7 +38,7 @@ void GameWindow::keyPressEvent(QEvent *event)
 
     }
 }
-
+*/
 GameWindow::~GameWindow()
 {
     delete ui;

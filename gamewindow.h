@@ -14,13 +14,18 @@ class GameWindow : public QMainWindow
 
 public:
     explicit GameWindow(QWidget *parent = 0);
+    void keyPressEvent(QEvent *event);
+    void keyPressEvent();
     ~GameWindow();
+
+signals:
+    void key_PressEvent(QEvent *event);
 
 private:
     Ui::GameWindow *ui;
 
 private slots:
-    void keyPressEvent(QEvent * event);
+    void key_pressed(QEvent * event);
 };
 
 #endif // GAMEWINDOW_H
