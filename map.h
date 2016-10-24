@@ -21,12 +21,12 @@ class Map
 
 public:
     Map();
-    void reset();
     void create();//initializes new lvl
     void loadFile(std::string filename);//loads saved map //features
     void spawn(); //spawns player
     void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;
+    void reset(); //removes all enemy and obstacle objects and allows for a new level
 
 
 

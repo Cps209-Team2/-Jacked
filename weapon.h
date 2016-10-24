@@ -1,10 +1,15 @@
 #ifndef WEAPON_H
 #define WEAPON_H
+#include <string>
 
 class Weapon
 {
+    std::string type;//melee or ranged
 public:
-    Weapon();
+    Weapon()
+    {
+
+    }
 
     void execute();
 };

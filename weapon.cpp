@@ -1,10 +1,9 @@
 #include "weapon.h"
 #include <string>
 
-Weapon::Weapon()
+void Weapon::execute() //creates either melee or //ranged hitbox
 {
-    std::string type;//melee or ranged
 
-    execute();
-    //creates either melee or //ranged hitbox
 }
+
+

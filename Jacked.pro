@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     melee.cpp \
     ranged.cpp \
     projectile.cpp \
-    hitbox.cpp
+    hitbox.cpp \
+    startwindow.cpp
 
 HEADERS  += gamewindow.h \
     saveload.h \
@@ -34,9 +35,11 @@ HEADERS  += gamewindow.h \
     ranged.h \
     projectile.h \
     hitbox.h \
-    obstacle.h
+    obstacle.h \
+    startwindow.h
 
-FORMS    += gamewindow.ui
+FORMS    += gamewindow.ui \
+    startwindow.ui
 
 QMAKE_CXXFLAGS += -std=c++14
 

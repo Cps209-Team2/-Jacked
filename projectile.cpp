@@ -1,14 +1,11 @@
 #include "projectile.h"
 
-Projectile::Projectile()
+void Projectile::hit()
 {
-    double x;
-    double y;
+    //The player got hit! take damage
+}
 
-    public:
-    execute();//ranged movable //hitbox
-    hit();//damages character
-    Projectile();
-
-
+void fly()
+{
+    //No idea what this does...
 }

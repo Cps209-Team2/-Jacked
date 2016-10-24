@@ -3,7 +3,12 @@
 
 class Projectile
 {
-public:
+    double x;
+    double y;
+
+    public:
+    void fly();//ranged movable //hitbox
+    void hit();//damages character
     Projectile();
 };
 

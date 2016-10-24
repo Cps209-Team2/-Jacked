@@ -27,6 +27,7 @@ void Map::reset() {
 }
 
 //initializes new lvl
+
 void Map::create() {
     this->reset();
     this->loadFile();
@@ -39,7 +40,6 @@ void Map::create() {
         //loop through enemies
     //}
 }
-
 //loads saved map //features
 void Map::loadFile(string filename) {
        file = new ifstream(filename);
@@ -60,8 +60,8 @@ void Map::eSpawn() {
 
 //advances map to next lvl;
 void Map::advance() {
-    Map.lvl++;
-    Map.create();
+    lvl++;
+    create();
 }
 
 
