@@ -75,7 +75,7 @@ void Map::eSpawn() {
 //advances map to next lvl;
 void Map::advance() {
     lvl++;
-    create();
+    //create();
 }
 
 

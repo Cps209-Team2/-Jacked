@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     GameWindow window;
-    window.show();
+    //window.show();
     StartWindow w;
     w.show();
 
@@ -33,6 +33,6 @@ void unitTests()
 {
     std::cout << "Entering Unit Tests" << std::endl;
     Map testMap;
-    testMap.create();
+    //testMap.create();
 
 }

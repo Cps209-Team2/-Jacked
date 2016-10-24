@@ -16,6 +16,12 @@ StartWindow::~StartWindow()
 
 void StartWindow::on_startBtn_clicked()
 {
-    GameWindow window;
-    window.show();
+
+}
+
+void StartWindow::on_cheatBtn_clicked()
+{
+    // Start cheat mode!
+    // Player gets invincibility (intangibility)
+    // and gives greater damage
 }

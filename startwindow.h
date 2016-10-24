@@ -16,9 +16,10 @@ public:
     ~StartWindow();
 
 private slots:
-    void on_pushButton_clicked();
 
     void on_startBtn_clicked();
+
+    void on_cheatBtn_clicked();
 
 private:
     Ui::StartWindow *ui;
