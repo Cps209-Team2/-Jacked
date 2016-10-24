@@ -12,5 +12,6 @@
         <file>Images/tempEnemy.png</file>
         <file>Images/tempPlayer.png</file>
         <file>Images/tsa.jpeg</file>
+        <file>Images/cheat.png</file>
     </qresource>
 </RCC>
