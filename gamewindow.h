@@ -19,12 +19,8 @@ public:
 private:
     Ui::GameWindow *ui;
 
-<<<<<<< HEAD
 private slots:
     void keyPressEvent(QEvent * event);
-=======
-
->>>>>>> 180a53dd2c833c260ded58229cdbcfca22447b5e
 };
 
 #endif // GAMEWINDOW_H

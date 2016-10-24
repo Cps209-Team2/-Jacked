@@ -1,3 +1,4 @@
+#include <QDebug>
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
 
@@ -10,6 +11,7 @@ GameWindow::GameWindow(QWidget *parent) :
 
 void GameWindow::keyPressEvent(QEvent *event)
 {
+    qDebug() << "test" << endl;
     if(event->type() == Qt::LeftArrow)
     {
 
