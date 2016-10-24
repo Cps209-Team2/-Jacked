@@ -16,7 +16,7 @@ class Map
     Player *player;
     std::vector<Obstacle*> obstacles;
     std::vector<Enemy*> enemies;
-    std::ifstream file;
+    std::string file;
 
 
 public:

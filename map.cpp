@@ -30,9 +30,9 @@ void Map::reset() {
 
 void Map::create() {
     this->reset();
-    this->loadFile();
+    this->loadFile("string");
     int num = 1;
-    string line = file.getline();
+    //string line = file.getline();
     //if (line != NULL) {Player one = new Player() }
     //if (file) {
         //read player pos
@@ -42,7 +42,7 @@ void Map::create() {
 }
 //loads saved map //features
 void Map::loadFile(string filename) {
-       file = new ifstream(filename);
+       //file = new ifstream(filename);
 }
 
 //spawns player

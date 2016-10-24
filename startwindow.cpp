@@ -1,3 +1,4 @@
+#include <QApplication>
 #include "startwindow.h"
 #include "ui_startwindow.h"
 #include "gamewindow.h"
@@ -24,4 +25,11 @@ void StartWindow::on_cheatBtn_clicked()
     // Start cheat mode!
     // Player gets invincibility (intangibility)
     // and gives greater damage
+}
+
+void StartWindow::on_btnPlayer_clicked()
+{
+    //start the game!!!
+    GameWindow newGame;
+
 }

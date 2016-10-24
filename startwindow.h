@@ -21,6 +21,8 @@ private slots:
 
     void on_cheatBtn_clicked();
 
+    void on_btnPlayer_clicked();
+
 private:
     Ui::StartWindow *ui;
 };
