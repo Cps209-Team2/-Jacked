@@ -2,17 +2,17 @@
 #define HIGHSCORE_H
 #include <fstream>
 #include <string>
+#include <vector>
 using namespace std;
 
 class highscore {
 
     istream *file;
-    int points, time, distance;
-
+    vector<int> scores;
 public:
     highscore();
-    void addTime(){time++;}
-    void addDistance(int initDistance){distance = initDistance;}
+    void addTime(){}
+    //void addDistance(int initDistance){distance = initDistance;}
     void writeFile(string filename);
     void showBestTime();
     string scoreList();

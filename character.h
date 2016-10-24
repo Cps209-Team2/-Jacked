@@ -14,10 +14,12 @@ public:
 
     Character(double initX, double initY, Weapon *initWeapon)
     {
-
+        this->xPos = initX;
+        this->yPos = initY;
+        this->tool = initWeapon;
     }
 
-//virtual move(keystroke*);
+virtual void move();
 //moves entity
 virtual void useWeapon();
 //triggers Weapon object execute()
