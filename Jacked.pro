@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     ranged.cpp \
     projectile.cpp \
     hitbox.cpp \
-    startwindow.cpp
+    startwindow.cpp \
+    movablelabel.cpp
 
 HEADERS  += gamewindow.h \
     saveload.h \
@@ -36,7 +37,8 @@ HEADERS  += gamewindow.h \
     projectile.h \
     hitbox.h \
     obstacle.h \
-    startwindow.h
+    startwindow.h \
+    movablelabel.h
 
 FORMS    += gamewindow.ui \
     startwindow.ui
