@@ -118,7 +118,7 @@
    </widget>
    <widget class="QPushButton" name="btnCheat">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -140,6 +140,12 @@
       <width>85</width>
       <height>85</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
     </property>
    </widget>
    <zorder>lblBackground</zorder>

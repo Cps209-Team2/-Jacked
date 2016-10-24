@@ -17,6 +17,7 @@ public:
     ~StartWindow();
 
     GameWindow newGame;
+    bool cheatMode = false;
 
 private slots:
 
