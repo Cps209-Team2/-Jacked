@@ -2,6 +2,8 @@
 #define STARTWINDOW_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
+#include <QKeySequence>
 #include "gamewindow.h"
 
 namespace Ui {
