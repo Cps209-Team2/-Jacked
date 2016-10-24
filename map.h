@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <string>
+#include <istream>
 #include "Player.h"
 #include "Enemy.h"
 #include "obstacle.h"
@@ -15,10 +16,12 @@ class Map
     Player *player;
     std::vector<Obstacle*> obstacles;
     std::vector<Enemy*> enemies;
+    std::ifstream file;
 
 
 public:
     Map();
+    void reset();
     void create();//initializes new lvl
     void loadFile(std::string filename);//loads saved map //features
     void spawn(); //spawns player

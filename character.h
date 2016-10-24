@@ -37,7 +37,7 @@ virtual void die();
     void setX(double newX) {xPos =  newX;}
     void setY(double newY) {yPos =  newY;}
     void setHp(int newHP) {HP =  newHP;}
-    void setX(Weapon newKit) {*tool =  newKit;}
+    //void setWeapon(Weapon newKit) {*tool =  newKit;}
 
 virtual ~Character();
 };

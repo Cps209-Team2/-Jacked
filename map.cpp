@@ -1,5 +1,6 @@
 #include "map.h"
-
+#include <fstream>
+using namespace std;
 
 Map::Map()
 {
@@ -27,25 +28,33 @@ void Map::reset() {
 
 //initializes new lvl
 void Map::create() {
-    Map.reset();
-    Map.loadFile();
+    this->reset();
+    this->loadFile();
+    int num = 1;
+    string line = file.getline();
+    //if (line != NULL) {Player one = new Player() }
+    //if (file) {
+        //read player pos
+        //read player weapon
+        //loop through enemies
+    //}
 }
 
 //loads saved map //features
-void Map::loadFile(std::string filename) {
-
+void Map::loadFile(string filename) {
+       file = new ifstream(filename);
 }
 
 //spawns player
 void Map::spawn() {
-
+        //spawn player
 }
 
 //spawns enemies
 void Map::eSpawn() {
     for (int i = 0; i < this->enemies.size(); ++i)
     {
-
+        //spawn enemy
     }
 }
 
