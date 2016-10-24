@@ -20,13 +20,15 @@ int main(int argc, char *argv[])
         }
     }
 
-    //QApplication a(argc, argv);
-   // GameWindow window;
-    //window.show();
-    //StartWindow w;
-    //w.show();
+    QApplication a(argc, argv);
+    StartWindow w;
 
-    //return a.exec();
+    w.show();
+
+
+    //window.show();
+
+    return a.exec();
 }
 
 void unitTests()
@@ -34,7 +36,7 @@ void unitTests()
     std::cout << "Entering Unit Tests" << std::endl;
     //Map::loadFile(":/Levels/DefaultLevels/lvl1.txt");
     Map testMap;
-    testMap.loadFile("../DefaultLevels/lvl1.txt");
+    testMap.loadFile(":/DefaultLevels/lvl1.txt");
     //Map testMap;
     //testMap.create();
 
