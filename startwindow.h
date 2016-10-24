@@ -2,6 +2,7 @@
 #define STARTWINDOW_H
 
 #include <QMainWindow>
+#include "gamewindow.h"
 
 namespace Ui {
 class StartWindow;
@@ -15,6 +16,8 @@ public:
     explicit StartWindow(QWidget *parent = 0);
     ~StartWindow();
 
+    GameWindow newGame;
+
 private slots:
 
     void on_startBtn_clicked();
@@ -25,6 +28,8 @@ private slots:
 
 private:
     Ui::StartWindow *ui;
+
+
 };
 
 #endif // STARTWINDOW_H
