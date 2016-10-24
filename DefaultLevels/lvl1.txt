@@ -1,0 +1,33 @@
+#Jacked
+// Introductory line used for testing input
+// default level 1 configuration
+*
+#Player
+// Set player position and weapon
+position:0,0;
+weapon:fist;
+
+//#Obstacles
+// Record Obstacle positions
+
+#Enemies
+$enemy1
+position:10,10
+weapon:fist
+
+$enemy2
+position:20,20
+weapon:fist
+
+$enemy3
+position:30,30
+weapon:fist
+
+$enemy4
+position:40,40
+weapon:fist
+
+$enemy5
+position:50,50
+weapon:pistol
+*

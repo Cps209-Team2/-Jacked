@@ -14,4 +14,7 @@
         <file>Images/tsa.jpeg</file>
         <file>Images/cheat.png</file>
     </qresource>
+    <qresource prefix="/Levels">
+        <file>DefaultLevels/lvl1.txt</file>
+    </qresource>
 </RCC>

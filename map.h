@@ -16,13 +16,13 @@ class Map
     Player *player;
     std::vector<Obstacle*> obstacles;
     std::vector<Enemy*> enemies;
-    std::ifstream file;
+    //ifstream file;
 
 
 public:
     Map();
     void create();//initializes new lvl
-    void loadFile(std::string filename);//loads saved map //features
+    void loadFile(std::string filename);//loads saved map
     void spawn(); //spawns player
     void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;
