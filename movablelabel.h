@@ -18,7 +18,8 @@ public:
 
     void keyPressEvent(QEvent *event){ qDebug() << "test" << endl; }
 
-
+signals:
+    void keyPressed();
 
 };
 

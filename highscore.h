@@ -9,6 +9,7 @@ class highscore {
 
     istream *file;
     vector<int> scores;
+    int currentScore;
 public:
     highscore();
     void addTime(){}
