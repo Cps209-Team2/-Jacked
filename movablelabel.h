@@ -14,8 +14,9 @@ class MovableLabel:public QLabel
     QPoint offset;
 
 public:
-    explicit MovableLabel(QMainWindow *parent): QLabel(parent){ /* enable mouse move events */ }
+    explicit MovableLabel(QMainWindow *parent): QLabel(parent){ connect(this, SIGNAL(keyPressed()), this, SLOT(keyPressEvent())); }
 
+private slots:
     void keyPressEvent(QEvent *event){ qDebug() << "test" << endl; }
 
 signals:
