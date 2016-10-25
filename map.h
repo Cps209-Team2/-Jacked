@@ -8,6 +8,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "obstacle.h"
+#include <sstream>
+#include <iostream>
 
 class Map
 {
@@ -22,16 +24,12 @@ class Map
 public:
     Map();
     void create();//initializes new lvl
-    void loadFile(std::string filename);//loads saved map
+    void loadFile(int level);//loads saved map
     void spawn(); //spawns player
     void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;
     void reset(); //removes all enemy and obstacle objects and allows for a new level
     void addScore(int plus) { currentScore += plus; }
-
-
-
-
 };
 
 #endif // MAP_H

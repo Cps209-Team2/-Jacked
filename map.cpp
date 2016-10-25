@@ -2,6 +2,7 @@
 #include <fstream>
 #include <QMessageBox>
 #include <iostream>
+
 using namespace std;
 
 Map::Map()
@@ -32,7 +33,7 @@ void Map::reset() {
 
 void Map::create() {
     //this->reset();
-    Map::loadFile(":/Levels/DefaultLevels/lvl1.txt");
+    //Map::loadFile(1);
     int num = 1;
     //string line = file.getline();
     //if (line != NULL) {Player one = new Player() }
@@ -42,46 +43,35 @@ void Map::create() {
         //loop through enemies
     //}
 }
-//loads saved map //features
-void Map::loadFile(string filename) {
+
+
+
+//loads saved or default map
+void Map::loadFile(int level) {
+
+       std::string filename;
+       if (level == 1)
+       {
+           filename = "\:Levels/lvl1.txt";
+       }
        ifstream file(filename);
        string line;
-       //QString objectType;
-       cout << "Loading File" << endl;
-       //getline(file, line);
 
-       /*
-       cout << "File Opened" << endl;
-       for (int i = 0; i <= 10; i++)
+       cout << "Loading File" << endl;
+
+       getline(file, line);
+       cout << line << endl;
+
+       if (!file)
        {
-           cout << getline(file, line) <<endl;
+           cout << "Could not read file!" << endl;
+           //QMessageBox::warning(this, QString::toLocal8Bit("I/O Error"), QString::toLocal8Bit("Could not read file!"));
        }
-       */
+
        while (file)
        {
            getline(file, line);
-           /*
-           if (line.substr(0) == "#")
-           {
-               //objectType = QString::fromLocal8Bit(line.substr(1,line.size()));
-               //QMessageBox::information(this, QString::fromLocal8Bit("Object Type"), objectType);
-               cout << line.substr(1, line.size()) << endl;
 
-           }
-           else if (line.substr(0) == "$")
-           {
-               // This means this is currently an enemy
-               // TODO Process enemy
-           }
-           else if (line.substr(0) == "*")
-           {
-               break;
-           }
-           else
-           {
-               getline(file, line);
-           }
-           */
            cout << line << endl;
        }
        file.close();

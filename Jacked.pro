@@ -45,6 +45,4 @@ FORMS    += gamewindow.ui \
 
 QMAKE_CXXFLAGS += -std=c++14
 
-RESOURCES += \
-    resources.qrc \
-    resources.qrc
+RESOURCES = resources.qrc

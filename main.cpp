@@ -20,23 +20,21 @@ int main(int argc, char *argv[])
         }
     }
 
+    /*
     QApplication a(argc, argv);
     StartWindow w;
 
     w.show();
 
-
-    //window.show();
-
     return a.exec();
+    //*/
 }
 
 void unitTests()
 {
     std::cout << "Entering Unit Tests" << std::endl;
-    //Map::loadFile(":/Levels/DefaultLevels/lvl1.txt");
     Map testMap;
-    testMap.loadFile(":/DefaultLevels/lvl1.txt");
+    testMap.loadFile(1);
     //Map testMap;
     //testMap.create();
 

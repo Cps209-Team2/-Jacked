@@ -27,10 +27,10 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="resources.qrc">:/Images/Images/Jacked.png</pixmap>
+     <pixmap resource="resources.qrc">:/Images/Jacked.png</pixmap>
     </property>
    </widget>
-   <widget class="QLabel" name="lblPlayer">
+   <widget class="QLabel" name="lblEnemyTemp">
     <property name="geometry">
      <rect>
       <x>700</x>
@@ -43,13 +43,13 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="resources.qrc">:/Images/Images/tempEnemy.png</pixmap>
+     <pixmap resource="resources.qrc">:/Images/tempEnemy.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="lblEnemy">
+   <widget class="QLabel" name="lblPlayerTemp">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -62,7 +62,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="resources.qrc">:/Images/Images/tempPlayer.png</pixmap>
+     <pixmap resource="resources.qrc">:/Images/tempPlayer.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -82,7 +82,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/Images/Images/Play.png</normaloff>:/Images/Images/Play.png</iconset>
+      <normaloff>:/Images/Play.png</normaloff>:/Images/Play.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -110,7 +110,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="resources.qrc">:/Images/Images/cargobay.jpg</pixmap>
+     <pixmap resource="resources.qrc">:/Images/cargobay.jpg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -133,7 +133,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/Images/Images/cheat.png</normaloff>:/Images/Images/cheat.png</iconset>
+      <normaloff>:/Images/cheat.png</normaloff>:/Images/cheat.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -150,8 +150,8 @@
    </widget>
    <zorder>lblBackground</zorder>
    <zorder>lblTitle</zorder>
-   <zorder>lblPlayer</zorder>
-   <zorder>lblEnemy</zorder>
+   <zorder>lblEnemyTemp</zorder>
+   <zorder>lblPlayerTemp</zorder>
    <zorder>btnPlayer</zorder>
    <zorder>btnCheat</zorder>
   </widget>
@@ -161,7 +161,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

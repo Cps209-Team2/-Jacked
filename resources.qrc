@@ -1,20 +1,20 @@
 <RCC>
     <qresource prefix="/Images">
-        <file>Images/airplaneSide.jpg</file>
-        <file>Images/cargobay.jpg</file>
-        <file>Images/GameOver.png</file>
-        <file>Images/HighScore.png</file>
-        <file>Images/Jacked.png</file>
-        <file>Images/load.png</file>
-        <file>Images/NewGame.png</file>
-        <file>Images/Play.png</file>
-        <file>Images/save.png</file>
-        <file>Images/tempEnemy.png</file>
-        <file>Images/tempPlayer.png</file>
-        <file>Images/tsa.jpeg</file>
-        <file>Images/cheat.png</file>
+        <file alias="airplaneSide.jpg">Images/airplaneSide.jpg</file>
+        <file alias="cargobay.jpg">Images/cargobay.jpg</file>
+        <file alias="GameOver.png">Images/GameOver.png</file>
+        <file alias="HighScore.png">Images/HighScore.png</file>
+        <file alias="Jacked.png">Images/Jacked.png</file>
+        <file alias="load.png">Images/load.png</file>
+        <file alias="NewGame.png">Images/NewGame.png</file>
+        <file alias="Play.png">Images/Play.png</file>
+        <file alias="save.png">Images/save.png</file>
+        <file alias="tempEnemy.png">Images/tempEnemy.png</file>
+        <file alias="tempPlayer.png">Images/tempPlayer.png</file>
+        <file alias="tsa.jpeg">Images/tsa.jpeg</file>
+        <file alias="cheat.png">Images/cheat.png</file>
     </qresource>
     <qresource prefix="/Levels">
-        <file>DefaultLevels/lvl1.txt</file>
+        <file alias="lvl1">DefaultLevels/lvl1.txt</file>
     </qresource>
 </RCC>
