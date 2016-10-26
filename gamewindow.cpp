@@ -1,7 +1,6 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include "gamewindow.h"
-#include "ui_gamewindow.h"
 #include "Player.h"
 
 GameWindow::GameWindow(QWidget *parent) :

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>-JACKED</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="lblTitle">
@@ -68,7 +68,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnPlayer">
+   <widget class="QPushButton" name="btnPlay">
     <property name="geometry">
      <rect>
       <x>412</x>
@@ -152,7 +152,7 @@
    <zorder>lblTitle</zorder>
    <zorder>lblEnemyTemp</zorder>
    <zorder>lblPlayerTemp</zorder>
-   <zorder>btnPlayer</zorder>
+   <zorder>btnPlay</zorder>
    <zorder>btnCheat</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -161,7 +161,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>

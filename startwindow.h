@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QKeySequence>
-#include "gamewindow.h"
+#include "gamewidget.h"
 
 namespace Ui {
 class StartWindow;
@@ -18,18 +18,16 @@ public:
     explicit StartWindow(QWidget *parent = 0);
     ~StartWindow();
 
-    GameWindow newGame;
     bool cheatMode = false;
 
 private slots:
 
-    void on_startBtn_clicked();
-
     void on_cheatBtn_clicked();
 
-    void on_btnPlayer_clicked();
+    void on_btnPlay_clicked();
 
 private:
+    gameWidget *game;
     Ui::StartWindow *ui;
 
 

@@ -14,7 +14,6 @@ INCLUDEPATH += .
 
 
 SOURCES += main.cpp\
-        gamewindow.cpp \
     map.cpp \
     highscore.cpp \
     weapon.cpp \
@@ -23,9 +22,10 @@ SOURCES += main.cpp\
     projectile.cpp \
     hitbox.cpp \
     startwindow.cpp \
-    movablelabel.cpp
+    movablelabel.cpp \
+    gamewidget.cpp
 
-HEADERS  += gamewindow.h \
+HEADERS  += \
     saveload.h \
     character.h \
     Player.h \
@@ -39,10 +39,12 @@ HEADERS  += gamewindow.h \
     hitbox.h \
     obstacle.h \
     startwindow.h \
-    movablelabel.h
+    movablelabel.h \
+    gamewidget.h
 
-FORMS    += gamewindow.ui \
-    startwindow.ui
+FORMS    += \
+    startwindow.ui \
+    gamewidget.ui
 
 QMAKE_CXXFLAGS += -std=c++14
 
