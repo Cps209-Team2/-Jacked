@@ -4,16 +4,23 @@
 #include "character.h"
 #include "weapon.h"
 
-class Player: public Character
+class Player:public Character
 {
 
     double xPos;
     double yPos;
     Weapon *tool;
+    double score;
 public:
 
     Player(double initX, double initY, Weapon *initWeapon):Character(initX, initY, initWeapon)
-    {}
+    {
+        score = 0;
+    }
+
+    ~Player() {
+
+    }
 
     void move();
     //moves left or right

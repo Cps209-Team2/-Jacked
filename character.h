@@ -19,6 +19,8 @@ public:
         this->tool = initWeapon;
     }
 
+virtual ~Character() { }
+
 virtual void move();
 //moves entity
 virtual void useWeapon();
@@ -41,7 +43,8 @@ virtual void die();
     void setHp(int newHP) {HP =  newHP;}
     //void setWeapon(Weapon newKit) {*tool =  newKit;}
 
-virtual ~Character();
+
+
 };
 
 #endif // CHARACTER_H
