@@ -6,21 +6,13 @@
 
 class Player:public Character
 {
-
-    double xPos;
-    double yPos;
     Weapon *tool;
     double score;
 public:
 
-    Player(double initX, double initY, Weapon *initWeapon):Character(initX, initY, initWeapon)
-    {
-        score = 0;
-    }
 
-    ~Player() {
-
-    }
+    Player(int initX, int initY, Weapon *initWeapon):Character(initX, initY, initWeapon)
+    {}
 
     void move();
     //moves left or right

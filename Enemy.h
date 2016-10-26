@@ -9,7 +9,7 @@ class Enemy:Character
 
 public:
 
-    Enemy(double initX, double initY, Weapon *initWeapon, int initType):Character(initX, initY, initWeapon)
+    Enemy(int initX, int initY, Weapon *initWeapon, int initType):Character(initX, initY, initWeapon)
     {
         type = initType;
     }

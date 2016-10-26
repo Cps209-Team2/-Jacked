@@ -1,12 +1,12 @@
 #ifndef WEAPON_H
 #define WEAPON_H
-#include <string>
+#include <QString>
 
 class Weapon
 {
-    std::string type;//melee or ranged
+    QString type;//melee or ranged
 public:
-    Weapon(std::string name)
+    Weapon(QString name)
     {
     type = name;
     }
