@@ -138,7 +138,7 @@ void Map::processLevel(QString levels)
                     yPos = line.at(i + 1).digitValue();
                 }
             }
-            player = new Player (xPos, yPos, weapon);
+            player = new Player (xPos, yPos, Weapon(weapon));
         }
         else if (line == "#Enemies")
         {
