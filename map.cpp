@@ -138,7 +138,7 @@ void Map::processLevel(QString levels)
                     yPos = line.at(i + 1).digitValue();
                 }
             }
-            player = new Player (xPos, yPos, new Weapon(weapon));
+            //player = new Player (xPos, yPos, new Weapon(weapon));
         }
         else if (line == "#Enemies")
         {
@@ -178,7 +178,7 @@ void Map::processLevel(QString levels)
                     type = line.at(1).digitValue();
                 }
             }
-            enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon), type));
+            //enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon), type));
         }
     }
 }
