@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QKeyEvent>
 #include <QDebug>
+#include <entity.h>
 
 class MovableLabel:public QLabel
 {
@@ -12,9 +13,15 @@ class MovableLabel:public QLabel
     Q_OBJECT
 
     QPoint offset;
+    Entity *object;
 
 public:
-    explicit MovableLabel(QMainWindow *parent): QLabel(parent){ connect(this, SIGNAL(keyPressed()), this, SLOT(keyPressEvent())); }
+    explicit MovableLabel(QWidget *parent, Entity *obj): QLabel(parent)
+    {
+        connect(this, SIGNAL(keyPressed()), this, SLOT(keyPressEvent()));
+        object = obj;
+    }
+    void updatePos() { this->move(object->getPos()); }
 
 private slots:
     void keyPressEvent(QEvent *event){ qDebug() << "test" << endl; }

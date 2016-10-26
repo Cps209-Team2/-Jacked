@@ -9,7 +9,7 @@ Map::Map()
     height = 500;
     width = 1000;
 }
-
+/*
 void Map::reset() {
     //removes enemy objects
     for (int i = 0; i < this->enemies.size(); i++) {
@@ -27,7 +27,7 @@ void Map::reset() {
     //reset player
     //need to decide what to do
 }
-
+*/
 //initializes new lvl
 
 void Map::create() {
@@ -136,11 +136,7 @@ void Map::processLevel(QString levels)
     }
 }
 
-//spawns player
-void Map::spawn() {
-        //spawn player
-}
-
+/*
 //spawns enemies
 void Map::eSpawn() {
     for (int i = 0; i < this->enemies.size(); ++i)
@@ -148,6 +144,7 @@ void Map::eSpawn() {
         //spawn enemy
     }
 }
+*/
 
 //advances map to next lvl;
 void Map::advance() {
