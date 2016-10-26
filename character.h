@@ -6,13 +6,13 @@
 class Character
 {
     int HP;
-    double xPos;
-    double yPos;
+    int xPos;
+    int yPos;
     Weapon *tool;
 
 public:
 
-    Character(double initX, double initY, Weapon *initWeapon)
+    Character(int initX, int initY, Weapon *initWeapon)
     {
         this->xPos = initX;
         this->yPos = initY;
@@ -31,13 +31,13 @@ virtual void die();
 //removes entity from map
 
 //Getter methods
-    double getX() {return xPos;}
-    double getY() {return yPos;}
-    double getHp() {return HP;}
+    int getX() {return xPos;}
+    int getY() {return yPos;}
+    int getHp() {return HP;}
     Weapon getWeapon() {return *tool;}
 //Setter methods
-    void setX(double newX) {xPos =  newX;}
-    void setY(double newY) {yPos =  newY;}
+    void setX(int newX) {xPos =  newX;}
+    void setY(int newY) {yPos =  newY;}
     void setHp(int newHP) {HP =  newHP;}
     //void setWeapon(Weapon newKit) {*tool =  newKit;}
 

@@ -6,13 +6,10 @@
 
 class Player: public Character
 {
-
-    double xPos;
-    double yPos;
     Weapon *tool;
 public:
 
-    Player(double initX, double initY, Weapon *initWeapon):Character(initX, initY, initWeapon)
+    Player(int initX, int initY, Weapon *initWeapon):Character(initX, initY, initWeapon)
     {}
 
     void move();
