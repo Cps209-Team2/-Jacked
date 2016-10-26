@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPixmap>
 #include <QMainWindow>
+#include <QTimer>
 
 namespace Ui {
 class gameWidget;
@@ -19,6 +20,10 @@ public:
 
 private:
     Ui::gameWidget *ui;
+    QTimer *timer;
+    int test;
+private slots:
+    void frame();
 };
 
 #endif // GAMEWIDGET_H

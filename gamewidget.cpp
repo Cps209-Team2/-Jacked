@@ -2,6 +2,8 @@
 #include "ui_gamewidget.h"
 #include <QPixmap>
 #include <QMainWindow>
+#include <QTimer>
+#include <QDebug>
 
 gameWidget::gameWidget(QMainWindow *parent) :
     QWidget(parent),
@@ -9,6 +11,16 @@ gameWidget::gameWidget(QMainWindow *parent) :
 {
     this->setParent(parent);
     ui->setupUi(this);
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
+    timer->setInterval(40);
+    timer->start();
+}
+
+void gameWidget::frame()
+{
+    test++;
+    qDebug() << test << endl;
 }
 
 gameWidget::~gameWidget()
