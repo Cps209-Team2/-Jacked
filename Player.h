@@ -28,6 +28,11 @@ public:
     //jumps player straight up
     void crouch();
     //lowers entity below //projectile level
+
+    ~Player()
+    {
+
+    }
 };
 
 #endif // PLAYER_H

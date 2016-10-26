@@ -5,6 +5,9 @@
 #include <QPixmap>
 #include <QMainWindow>
 #include <QTimer>
+#include <QKeyEvent>
+#include <entity.h>
+#include <movablelabel.h>
 
 namespace Ui {
 class gameWidget;
@@ -21,9 +24,13 @@ public:
 private:
     Ui::gameWidget *ui;
     QTimer *timer;
-    int test;
+    int timerTest;
+    Entity *player;
+    MovableLabel *lbl;
+
 private slots:
     void frame();
+    void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // GAMEWIDGET_H

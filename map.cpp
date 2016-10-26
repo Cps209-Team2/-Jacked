@@ -9,7 +9,7 @@ Map::Map()
     height = 500;
     width = 1000;
 }
-
+/*
 void Map::reset() {
     //removes enemy objects
     for (int i = 0; i < this->enemies.size(); i++) {
@@ -27,7 +27,7 @@ void Map::reset() {
     //reset player
     //need to decide what to do
 }
-
+*/
 //initializes new lvl
 
 void Map::create() {
@@ -138,7 +138,7 @@ void Map::processLevel(QString levels)
                     yPos = line.at(i + 1).digitValue();
                 }
             }
-            player = new Player (xPos, yPos, (Weapon)weapon);
+            player = new Player (xPos, yPos, new Weapon(weapon));
         }
         else if (line == "#Enemies")
         {
@@ -178,16 +178,12 @@ void Map::processLevel(QString levels)
                     type = line.at(1).digitValue();
                 }
             }
-            enemies.push_back(new Enemy(xPos, yPos, weapon, type));
+            enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon), type));
         }
     }
 }
 
-//spawns player
-void Map::spawn() {
-        //spawn player
-}
-
+/*
 //spawns enemies
 void Map::eSpawn() {
     for (int i = 0; i < this->enemies.size(); ++i)
@@ -195,6 +191,7 @@ void Map::eSpawn() {
         //spawn enemy
     }
 }
+*/
 
 //advances map to next lvl;
 void Map::advance() {

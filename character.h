@@ -44,7 +44,6 @@ virtual void die();
     //void setWeapon(Weapon newKit) {*tool =  newKit;}
 
 
-
 };
 
 #endif // CHARACTER_H

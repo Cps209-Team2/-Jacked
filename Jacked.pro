@@ -23,13 +23,11 @@ SOURCES += main.cpp\
     hitbox.cpp \
     startwindow.cpp \
     movablelabel.cpp \
-    gamewidget.cpp
+    gamewidget.cpp \
+    entity.cpp
 
 HEADERS  += \
     saveload.h \
-    character.h \
-    Player.h \
-    Enemy.h \
     map.h \
     highscore.h \
     weapon.h \
@@ -40,7 +38,8 @@ HEADERS  += \
     obstacle.h \
     startwindow.h \
     movablelabel.h \
-    gamewidget.h
+    gamewidget.h \
+    entity.h
 
 FORMS    += \
     startwindow.ui \
