@@ -9,6 +9,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     QWidget(parent),
     ui(new Ui::gameWidget)
 {
+    test = 0;
     this->setParent(parent);
     ui->setupUi(this);
     timer = new QTimer(this);
@@ -25,5 +26,6 @@ void gameWidget::frame()
 
 gameWidget::~gameWidget()
 {
+    timer->stop();
     delete ui;
 }
