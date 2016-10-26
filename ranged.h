@@ -1,7 +1,7 @@
 #ifndef RANGED_H
 #define RANGED_H
 #include "weapon.h"
-
+/*
 class Ranged: Weapon
 {
 public:
@@ -13,5 +13,6 @@ public:
 
     ~Ranged();
 };
-
+*/
 #endif // RANGED_H
+

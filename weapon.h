@@ -6,9 +6,9 @@ class Weapon
 {
     std::string type;//melee or ranged
 public:
-    Weapon()
+    Weapon(std::string name)
     {
-
+    type = name;
     }
 
     void execute();
