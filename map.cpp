@@ -70,14 +70,69 @@ void Map::loadFile(QString filename) {
 void Map::processLevel(QString levels)
 {
     QTextStream level(&levels);
-    //QFile outFile(QString::fromLocal8Bit("out.txt"));
-    //outFile.open(QIODevice::WriteOnly | QIODevice::Text);
-    //QTextStream out(&outFile);
+    QFile outFile(QString::fromLocal8Bit("out.txt"));
+    outFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&outFile);
     QString line;
     while (line != "*")
     {
         line = level.readLine();
-        qDebug() << line;
+        //out << line;
+
+        if (line == "#Jacked")
+        {
+            //skip for now, unless we need to know the level number
+        }
+        else if (line == "#Obstacles")
+        {
+            line = level.readLine();
+            out << line;
+
+            if (line.at(0) == '$')
+            {
+                //create an object with the name following the $ sign with the coordinates as defined in the position field
+            }
+        }
+        else if (line == "#Player")
+        {
+            //Set the player's coordinates and weapon
+            QChar c;
+            line = level.readLine();
+            //In here, get the object name that is supposed to be created
+            line = level.readLine();
+            out << line;
+            for (int i = 0; i < line.length(); ++i)
+            {
+                if (c == ':')
+                {
+                    //the next thing is the x coordinate
+                }
+                else if (c == ',')
+                {
+                    //the next thing is the y coordinate
+                }
+            }
+        }
+        else if (line == "#Enemies")
+        {
+            //set up the world's enemies
+            QChar c;
+            line = level.readLine();
+            //In here, get the object name that is supposed to be created - maybe we can have $type in the file?
+            line = level.readLine();
+            out << line;
+            for (int i = 0; i < line.length(); ++i)
+            {
+                if (c == ':')
+                {
+                    //the next thing is the x coordinate
+                }
+                else if (c == ',')
+                {
+                    //the next thing is the y coordinate
+                }
+            }
+        }
     }
 }
 

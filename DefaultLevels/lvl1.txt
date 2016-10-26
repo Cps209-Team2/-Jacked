@@ -7,7 +7,7 @@ level 1
 // Set player position and weapon
 position:0,0;
 weapon:fist;
-*
+
 //#Obstacles
 // Record Obstacle positions
 // Used for default configuration
