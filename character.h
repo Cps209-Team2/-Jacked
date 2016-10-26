@@ -41,7 +41,10 @@ virtual void die();
     void setHp(int newHP) {HP =  newHP;}
     //void setWeapon(Weapon newKit) {*tool =  newKit;}
 
-virtual ~Character();
+virtual ~Character()
+    {
+
+    }
 };
 
 #endif // CHARACTER_H
