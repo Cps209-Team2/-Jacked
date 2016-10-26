@@ -1,10 +1,6 @@
 #include "map.h"
 #include <fstream>
 #include <QMessageBox>
-#include <iostream>
-#include <QFile>
-#include <QTextStream>
-#include <QDebug>
 
 using namespace std;
 
@@ -52,36 +48,37 @@ void Map::create() {
 //loads saved or default map
 void Map::loadFile(QString filename) {
 
-       QFile file(filename);
-       QFile output ("out.txt");
+       QFile inFile(filename);
 
-       //string line;
-
-       cout << "Loading File" << endl;
-
-       if (!file.exists())
+       if (!inFile.exists())
        {
-           cout << "Could not read file!" << endl;
-           //QMessageBox::warning(this, QString::toLocal8Bit("I/O Error"), QString::toLocal8Bit("Could not read file!"));
-       }
-
-       if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-       {
-               return;
-       }
-       if (!output.open(QIODevice::WriteOnly | QIODevice::Text))
+           qDebug() << QString::fromLocal8Bit("File does not exist");
            return;
-
-       QTextStream in(&file);
-       QTextStream out(&output);
-
-       while (!in.atEnd())
-       {
-           QString line = file.readLine();
-           out << line;
        }
-       file.close();
-       output.close();
+
+       if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text))
+               return;
+
+       QTextStream in(&inFile);
+       QString level = in.readAll();
+
+       processLevel(level);
+       inFile.close();
+}
+
+// Puts all the game variables into the correct vector
+void Map::processLevel(QString levels)
+{
+    QTextStream level(&levels);
+    //QFile outFile(QString::fromLocal8Bit("out.txt"));
+    //outFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    //QTextStream out(&outFile);
+    QString line;
+    while (line != "*")
+    {
+        line = level.readLine();
+        qDebug() << line;
+    }
 }
 
 //spawns player

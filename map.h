@@ -10,7 +10,10 @@
 #include "obstacle.h"
 #include <sstream>
 #include <iostream>
+#include <QDebug>
 #include <QString>
+#include <QTextStream>
+#include <QFile>
 
 class Map
 {
@@ -26,6 +29,7 @@ public:
     Map();
     void create();//initializes new lvl
     void loadFile(QString filename);//loads saved map
+    void processLevel(QString level); // adds all game variables to the vectors
     void spawn(); //spawns player
     void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;
