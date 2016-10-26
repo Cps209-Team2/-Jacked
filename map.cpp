@@ -2,6 +2,9 @@
 #include <fstream>
 #include <QMessageBox>
 #include <iostream>
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
 
 using namespace std;
 
@@ -47,34 +50,38 @@ void Map::create() {
 
 
 //loads saved or default map
-void Map::loadFile(int level) {
+void Map::loadFile(QString filename) {
 
-       std::string filename;
-       if (level == 1)
-       {
-           filename = "\:Levels/lvl1.txt";
-       }
-       ifstream file(filename);
-       string line;
+       QFile file(filename);
+       QFile output ("out.txt");
+
+       //string line;
 
        cout << "Loading File" << endl;
 
-       getline(file, line);
-       cout << line << endl;
-
-       if (!file)
+       if (!file.exists())
        {
            cout << "Could not read file!" << endl;
            //QMessageBox::warning(this, QString::toLocal8Bit("I/O Error"), QString::toLocal8Bit("Could not read file!"));
        }
 
-       while (file)
+       if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
        {
-           getline(file, line);
+               return;
+       }
+       if (!output.open(QIODevice::WriteOnly | QIODevice::Text))
+           return;
 
-           cout << line << endl;
+       QTextStream in(&file);
+       QTextStream out(&output);
+
+       while (!in.atEnd())
+       {
+           QString line = file.readLine();
+           out << line;
        }
        file.close();
+       output.close();
 }
 
 //spawns player

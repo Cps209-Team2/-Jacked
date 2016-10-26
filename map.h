@@ -10,6 +10,7 @@
 #include "obstacle.h"
 #include <sstream>
 #include <iostream>
+#include <QString>
 
 class Map
 {
@@ -24,7 +25,7 @@ class Map
 public:
     Map();
     void create();//initializes new lvl
-    void loadFile(int level);//loads saved map
+    void loadFile(QString filename);//loads saved map
     void spawn(); //spawns player
     void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;

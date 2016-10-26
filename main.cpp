@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    /*
+    //*
     QApplication a(argc, argv);
     StartWindow w;
 
@@ -34,7 +34,8 @@ void unitTests()
 {
     std::cout << "Entering Unit Tests" << std::endl;
     Map testMap;
-    testMap.loadFile(1);
+
+    testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
     //Map testMap;
     //testMap.create();
 
