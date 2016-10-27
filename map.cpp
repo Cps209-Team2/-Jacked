@@ -4,6 +4,7 @@
 #include "entity.h"
 #include "enemy.h"
 #include <QDebug>
+#include "player.h"
 
 using namespace std;
 
@@ -137,7 +138,7 @@ void Map::processLevel(QString levels)
                     qDebug() << yPos;
                 }
             }
-            //Player *player = new Player(xPos, yPos, new Weapon(weapon));
+            Player *player = new Player(xPos, yPos, new Weapon(weapon));
         }
         else if (line == "#Enemies")
         {
