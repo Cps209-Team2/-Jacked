@@ -79,11 +79,16 @@ void Map::processLevel(QString levels)
     while (line != "*")
     {
         line = level.readLine();
-        qDebug() << line;
+        if (line == "*")
+        {
+            break;
+        }
+        //qDebug() << line;
         //out << line;
 
         if (line == "#Jacked")
         {
+            qDebug() << "line = #Jacked";
             //skip for now, unless we need to know the level number
         }
         /*
@@ -108,8 +113,9 @@ void Map::processLevel(QString levels)
             obstacles.push_back(new Obstacle(xPos, yPos));
         }
         //*/
-        else if (line == "#Player" || line == "#Enemies")
+        else if (line == "#Player")// || line == "#Enemies")
         {
+            qDebug() << "line = #Player";
             //Set the player's coordinates and weapon
             int xPos;
             int yPos;
@@ -124,11 +130,11 @@ void Map::processLevel(QString levels)
                 if (c == ':' && line.at(0) == 'p')
                 {
                     //the next thing is the x coordinate
-                    xPos = line.at(i + 1).digitValue();
+                    xPos = line.at(i).digitValue();
                 }
                 else if (c == ':' && line.at(0) == 'w')
                 {
-                    for (int ind = i + 1; ind < line.length(); ind++)
+                    for (int ind = i; ind < line.length(); ind++)
                     {
                         weapon += line.at(ind);
                     }
@@ -137,7 +143,7 @@ void Map::processLevel(QString levels)
                 {
                     //the next thing is the y coordinate
                     qDebug() << "C is " << c << " and c + 1 is " << line.at(i + 1);
-                    yPos = line.at(i + 1).digitValue();
+                    yPos = line.at(i).digitValue();
                     qDebug() << yPos;
                 }
             }
@@ -148,6 +154,7 @@ void Map::processLevel(QString levels)
         }
         else if (line == "#Enemies")
         {
+            qDebug() << "line = #Enemies";
             //set up the world's enemies
             int xPos;
             int yPos;
@@ -162,12 +169,12 @@ void Map::processLevel(QString levels)
                 if (c == ':' && line.at(0) == 'p')
                 {
                     //the next thing is the x coordinate
-                    xPos = line.at(i + 1).digitValue();
+                    xPos = line.at(i).digitValue();
                 }
 
                 else if (c == ':' && line.at(0) == 'w')
                 {
-                    for (int ind = i + 1; ind < line.length(); ind++)
+                    for (int ind = i; ind < line.length(); ind++)
                     {
                         weapon += line.at(ind);
                     }
@@ -175,7 +182,7 @@ void Map::processLevel(QString levels)
                 else if (c == ',')
                 {
                     //the next thing is the y coordinate
-                    yPos = line.at(i + 1).digitValue();
+                    yPos = line.at(i).digitValue();
                 }
                 /*
                 else if (line.at(0) == '$')
@@ -186,8 +193,8 @@ void Map::processLevel(QString levels)
             }
             qDebug() << "x coordinate" << xPos;
             qDebug() << "y coordinate" << yPos;
-            qDebug() << type;
-            qDebug() << weapon;
+            qDebug() << "enemy type = " << type;
+            qDebug() << "weapon type = " << weapon;
             enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
         }
     }
