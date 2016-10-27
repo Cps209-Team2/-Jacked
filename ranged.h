@@ -1,17 +1,22 @@
 #ifndef RANGED_H
 #define RANGED_H
 #include "weapon.h"
+#include <QString>
 
-class Ranged: Weapon
+class Ranged: public Weapon
 {
 public:
     void execute();//creates projectile
 
-    Ranged();//equippable on
+    Ranged(QString _type):Weapon(type)//equippable on
+
+    {
+
+    }
 
     //all characters
 
-    ~Ranged();
+    ~Ranged() {}
 };
 
 #endif // RANGED_H

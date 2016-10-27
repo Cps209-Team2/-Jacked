@@ -24,7 +24,9 @@ SOURCES += main.cpp\
     startwindow.cpp \
     movablelabel.cpp \
     gamewidget.cpp \
-    entity.cpp
+    entity.cpp \
+    enemy.cpp \
+    player.cpp
 
 HEADERS  += \
     saveload.h \
@@ -39,7 +41,9 @@ HEADERS  += \
     startwindow.h \
     movablelabel.h \
     gamewidget.h \
-    entity.h
+    entity.h \
+    enemy.h \
+    player.h
 
 FORMS    += \
     startwindow.ui \

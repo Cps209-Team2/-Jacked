@@ -4,15 +4,18 @@
 
 class Weapon
 {
+protected:
     QString type;//melee or ranged
 public:
-    Weapon()
-
+    Weapon(QString name) : type(name)
     {
 
     }
 
     void execute();
+    QString getType() { return type; }
+
+    ~Weapon() { }
 };
 
 #endif // WEAPON_H
