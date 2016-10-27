@@ -72,7 +72,7 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key() == Qt::Key_Space)
     {
-        qDebug() << "pow pow" << endl;
+        player->getWeapon()->execute();
     }
 }
 
