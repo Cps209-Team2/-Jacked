@@ -65,6 +65,7 @@ void Map::loadFile(QString filename) {
 
        QTextStream in(&inFile);
        QString level = in.readAll();
+       //qDebug() << level;
 
        processLevel(level);
        inFile.close();
@@ -78,12 +79,14 @@ void Map::processLevel(QString levels)
     while (line != "*")
     {
         line = level.readLine();
+        qDebug() << line;
         //out << line;
 
         if (line == "#Jacked")
         {
             //skip for now, unless we need to know the level number
         }
+        /*
         else if (line == "#Obstacles")
         {
             int xPos;
@@ -104,7 +107,8 @@ void Map::processLevel(QString levels)
             }
             obstacles.push_back(new Obstacle(xPos, yPos));
         }
-        else if (line == "#Player")
+        //*/
+        else if (line == "#Player" || line == "#Enemies")
         {
             //Set the player's coordinates and weapon
             int xPos;
@@ -121,9 +125,7 @@ void Map::processLevel(QString levels)
                 {
                     //the next thing is the x coordinate
                     xPos = line.at(i + 1).digitValue();
-                    qDebug() << xPos;
                 }
-
                 else if (c == ':' && line.at(0) == 'w')
                 {
                     for (int ind = i + 1; ind < line.length(); ind++)
@@ -134,10 +136,14 @@ void Map::processLevel(QString levels)
                 else if (c == ',')
                 {
                     //the next thing is the y coordinate
+                    qDebug() << "C is " << c << " and c + 1 is " << line.at(i + 1);
                     yPos = line.at(i + 1).digitValue();
                     qDebug() << yPos;
                 }
             }
+            qDebug() << "x coordinate" << xPos;
+            qDebug() << "y coordinate" << yPos;
+            qDebug() << weapon;
             Player *player = new Player(xPos, yPos, new Weapon(weapon));
         }
         else if (line == "#Enemies")
@@ -171,33 +177,26 @@ void Map::processLevel(QString levels)
                     //the next thing is the y coordinate
                     yPos = line.at(i + 1).digitValue();
                 }
+                /*
                 else if (line.at(0) == '$')
                 {
                     type = line.at(1).digitValue();
                 }
+                */
             }
-            qDebug() << xPos;
-            qDebug() << yPos;
+            qDebug() << "x coordinate" << xPos;
+            qDebug() << "y coordinate" << yPos;
+            qDebug() << type;
+            qDebug() << weapon;
             enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
         }
     }
 }
 
 /*
-//spawns enemies
-void Map::eSpawn() {
-    for (int i = 0; i < this->enemies.size(); ++i)
-    {
-        //spawn enemy
-    }
-}
-*/
-
 //advances map to next lvl;
 void Map::advance() {
     lvl++;
     //create();
 }
-
-
-
+*/
