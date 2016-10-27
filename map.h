@@ -35,6 +35,7 @@ public:
     void advance();//advances map to next lvl;
     void reset(); //removes all enemy and obstacle objects and allows for a new level
     void addScore(int plus) { currentScore += plus; }
+    Entity& getPlayer() { return *player; }
 };
 
 #endif // MAP_H

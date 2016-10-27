@@ -14,6 +14,11 @@ public:
         type = initType;
     }
 
+    ~Enemy()
+    {
+
+    }
+
 void move();
 //moves based on player
 void useWeapon();
