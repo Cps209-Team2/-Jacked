@@ -22,13 +22,13 @@ public:
 
 private slots:
 
-    void on_cheatBtn_clicked();
-
     void on_btnPlay_clicked();
 
     void on_pbHelp_clicked();
 
     void on_pbHighscores_clicked();
+
+    void on_btnCheat_clicked();
 
 private:
     gameWidget *game;

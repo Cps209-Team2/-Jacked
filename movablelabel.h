@@ -18,7 +18,6 @@ class MovableLabel:public QLabel
 public:
     explicit MovableLabel(QWidget *parent, Entity *obj): QLabel(parent)
     {
-        connect(this, SIGNAL(keyPressed()), this, SLOT(keyPressEvent()));
         object = obj;
     }
     void updatePos() { this->move(object->getPos()); }

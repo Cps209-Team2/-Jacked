@@ -20,7 +20,7 @@ StartWindow::~StartWindow()
     delete ui;
 }
 
-void StartWindow::on_cheatBtn_clicked()
+void StartWindow::on_btnCheat_clicked()
 {
     // Start cheat mode!
     // Player gets invincibility (intangibility)

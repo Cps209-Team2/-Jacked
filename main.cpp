@@ -6,6 +6,8 @@
 #include <vector>
 #include <cassert>
 #include <QDebug>
+#include <QString>
+#include "obstacle.h"
 
 void unitTests();
 
@@ -36,9 +38,28 @@ void unitTests()
     std::cout << "Entering Unit Tests" << std::endl;
     Map testMap;
 
-    testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    //testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
-    qDebug() << "X Pos from testMap" << testMap.getPlayer().getPos().x();
+    Weapon *item = new Weapon(QString::fromLocal8Bit("fist"));
+    Player *mydude = new Player(45,45,item);
+    Enemy *whataposer = new Enemy(85,45,item);
+    Obstacle *rock = new Obstacle(65,45);
+
+    assert(item->getType() == QString::fromLocal8Bit("fist"));//weapon type
+
+    assert(mydude->getPos().x() == 45);//player position
+    assert(mydude->getPos().y() == 45);
+
+    assert(whataposer->getPos().x() == 85);//enemy position
+    assert(whataposer->getPos().y() == 45);
+
+    assert(rock->getPos().x() == 65);//obstacle position
+    assert(rock->getPos().y() == 45);
+
+    assert(mydude->getWeapon()->getType() == QString::fromLocal8Bit("fist"));//assert that weapons are properly set on entities
+    assert(whataposer->getWeapon()->getType() == QString::fromLocal8Bit("fist"));
+
+    //qDebug() << "X Pos from testMap" << testMap.getPlayer().getPos().x();
     //assert(testMap.getPlayer().getPos().x() == 0);
     //assert(testMap.getPlayer().getPos().y() == 0);
 }
