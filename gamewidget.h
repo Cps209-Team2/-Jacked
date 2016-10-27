@@ -8,6 +8,7 @@
 #include <QKeyEvent>
 #include <entity.h>
 #include <movablelabel.h>
+#include "player.h"
 
 namespace Ui {
 class gameWidget;
@@ -25,7 +26,7 @@ private:
     Ui::gameWidget *ui;
     QTimer *timer;
     int timerTest;
-    Entity *player;
+    Player *player;
     MovableLabel *lbl;
 
 private slots:

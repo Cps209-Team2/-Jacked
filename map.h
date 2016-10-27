@@ -20,7 +20,7 @@ class Map
     double height, width;
     Entity *player;
     std::vector<Obstacle*> obstacles;
-    //std::vector<Enemy*> enemies;
+    std::vector<Entity*> enemies;
     int currentScore;
 
 
