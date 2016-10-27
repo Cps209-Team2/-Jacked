@@ -7,6 +7,10 @@
 #include "weapon.h"
 #include "entity.h"
 #include "movablelabel.h"
+#include "player.h"
+#include "enemy.h"
+#include "weapon.h"
+#include "QString"
 
 gameWidget::gameWidget(QMainWindow *parent) :
     QWidget(parent),
@@ -20,7 +24,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     timer->setInterval(40);
     timer->start();
 
-    player = new Entity(0,700);
+    player = new Player(0,700,new Weapon(QString::fromLocal8Bit("fist")));
     lbl = new MovableLabel(this,player);
     QPixmap pix(":/Images/tempPlayer.png");
     lbl->setPixmap(pix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
