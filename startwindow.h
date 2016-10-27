@@ -28,6 +28,8 @@ private slots:
 
     void on_pbHelp_clicked();
 
+    void on_pbHighscores_clicked();
+
 private:
     gameWidget *game;
     //helpWidget *help;
