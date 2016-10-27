@@ -1,12 +1,14 @@
 #ifndef MELEE_H
 #define MELEE_H
+#include <QString>
+#include "weapon.h"
 
-class Melee
+class Melee: public Weapon
 {
 public:
     void execute();//close range hitbox
 
-    Melee();
+    Melee(QString name):Weapon(type){}
 
     //equippable on all characters
 

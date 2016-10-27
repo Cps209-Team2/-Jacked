@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QMessageBox>
 #include "startwindow.h"
 #include "ui_startwindow.h"
 #include "gamewidget.h"
@@ -19,7 +20,7 @@ StartWindow::~StartWindow()
     delete ui;
 }
 
-void StartWindow::on_cheatBtn_clicked()
+void StartWindow::on_btnCheat_clicked()
 {
     // Start cheat mode!
     // Player gets invincibility (intangibility)
@@ -42,4 +43,15 @@ void StartWindow::on_pbHelp_clicked()
 {
     //help->show();
     //help->setFocus();
+    QMessageBox msgHelp;
+    msgHelp.setText("This is where the help screen will go.");
+    msgHelp.exec();
+}
+
+void StartWindow::on_pbHighscores_clicked()
+{
+    //show the highscores
+    QMessageBox msgBox;
+    msgBox.setText("This is where the highscores will go.");
+    msgBox.exec();
 }

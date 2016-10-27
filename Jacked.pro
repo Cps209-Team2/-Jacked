@@ -20,7 +20,6 @@ SOURCES += main.cpp\
     melee.cpp \
     ranged.cpp \
     projectile.cpp \
-    hitbox.cpp \
     startwindow.cpp \
     movablelabel.cpp \
     gamewidget.cpp \
@@ -36,7 +35,6 @@ HEADERS  += \
     melee.h \
     ranged.h \
     projectile.h \
-    hitbox.h \
     obstacle.h \
     startwindow.h \
     movablelabel.h \

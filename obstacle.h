@@ -1,16 +1,14 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
+#include "entity.h"
 
-class Obstacle
+class Obstacle: public Entity
 {
-    double xPos;
-    double yPos;
-
 public:
     Obstacle(double initX, double initY)
     {
-        xPos = initX;
-        yPos = initY;
+        pos.setX(initX);
+        pos.setY(initY);
     }
 };
 

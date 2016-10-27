@@ -10,13 +10,9 @@ public:
     void execute();//creates projectile
 
     Ranged(QString _type):Weapon(type)//equippable on
-
     {
 
     }
-
-    //all characters
-
     ~Ranged() {}
 };
 
