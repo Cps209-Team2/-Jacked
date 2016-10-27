@@ -70,9 +70,6 @@ void Map::loadFile(QString filename) {
 void Map::processLevel(QString levels)
 {
     QTextStream level(&levels);
-    QFile outFile(QString::fromLocal8Bit("out.txt"));
-    outFile.open(QIODevice::WriteOnly | QIODevice::Text);
-    QTextStream out(&outFile);
     QString line;
     while (line != "*")
     {
@@ -89,7 +86,6 @@ void Map::processLevel(QString levels)
             int yPos;
             QChar c;
             line = level.readLine();
-            out << line;
 
             for (int i = 0; i < line.length(); ++i)
             {
@@ -112,9 +108,8 @@ void Map::processLevel(QString levels)
             QChar c;
             QString weapon;
             line = level.readLine();
-            //In here, get the object name that is supposed to be created
-            line = level.readLine();
-            out << line;
+            //Skipping a line for some random reason
+            //line = level.readLine();
 
             for (int i = 0; i < line.length(); ++i)
             {
@@ -130,7 +125,6 @@ void Map::processLevel(QString levels)
                     {
                         weapon += line.at(ind);
                     }
-                    out << weapon;
                 }
                 else if (c == ',')
                 {
@@ -150,8 +144,7 @@ void Map::processLevel(QString levels)
             QString weapon;
             line = level.readLine();
             //In here, get the object name that is supposed to be created - maybe we can have $type in the file?
-            line = level.readLine();
-            out << line;
+            //line = level.readLine();
             for (int i = 0; i < line.length(); ++i)
             {
                 if (c == ':' && line.at(0) == 'p')
@@ -166,7 +159,6 @@ void Map::processLevel(QString levels)
                     {
                         weapon += line.at(ind);
                     }
-                    out << weapon;
                 }
                 else if (c == ',')
                 {
