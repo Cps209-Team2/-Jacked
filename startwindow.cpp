@@ -10,6 +10,8 @@ StartWindow::StartWindow(QWidget *parent) :
     ui->setupUi(this);
     game = new gameWidget(this);
     game->hide();
+    //help = new helpWidget(this);
+    //help->hide();
 }
 
 StartWindow::~StartWindow()
@@ -33,4 +35,11 @@ void StartWindow::on_btnPlay_clicked()
     //start the game!!!
     //newGame.show();
 
+}
+
+//show a helpful information window
+void StartWindow::on_pbHelp_clicked()
+{
+    //help->show();
+    //help->setFocus();
 }

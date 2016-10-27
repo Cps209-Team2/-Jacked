@@ -9,7 +9,7 @@ protected:
 public:
     Weapon(QString name) : type(name)
     {
-
+        type = name;
     }
 
     void execute();

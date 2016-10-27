@@ -24,13 +24,21 @@ gameWidget::gameWidget(QMainWindow *parent) :
     timer->setInterval(40);
     timer->start();
 
-    player = new Player(0,700,new Weapon(QString::fromLocal8Bit("fist")));
+    //enemy object and label
+    enemy = new Enemy(1000, 600, new Weapon(QString::fromLocal8Bit("fist")));
+    elbl = new MovableLabel(this,enemy);
+    QPixmap epix(":/Images/tempEnemy.png");
+    elbl->setPixmap(epix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+    elbl->updatePos();
+
+    player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
     lbl = new MovableLabel(this,player);
     QPixmap pix(":/Images/tempPlayer.png");
     lbl->setPixmap(pix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
     lbl->updatePos();
     //this line causes the vtable error
     //Player *player = new Player(0,700,new Weapon("fist"));
+
 }
 
 void gameWidget::frame()
@@ -47,6 +55,9 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         {
             player->moveLeft();
             lbl->updatePos();
+            enemy->moveRight();
+            elbl->updatePos();
+
         }
     }
     else if(event->key() == Qt::Key_Right)
@@ -55,6 +66,8 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         {
             player->moveRight();
             lbl->updatePos();
+            enemy->moveLeft();
+            elbl->updatePos();
         }
     }
     else if(event->key() == Qt::Key_Space)

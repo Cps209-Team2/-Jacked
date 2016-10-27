@@ -1,5 +1,6 @@
 #ifndef RANGED_H
 #define RANGED_H
+#include <QString>
 #include "weapon.h"
 #include <QString>
 

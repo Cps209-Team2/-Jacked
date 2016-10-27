@@ -13,11 +13,14 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>50</y>
+     <y>30</y>
      <width>341</width>
      <height>101</height>
     </rect>

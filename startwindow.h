@@ -26,8 +26,11 @@ private slots:
 
     void on_btnPlay_clicked();
 
+    void on_pbHelp_clicked();
+
 private:
     gameWidget *game;
+    //helpWidget *help;
     Ui::StartWindow *ui;
 
 

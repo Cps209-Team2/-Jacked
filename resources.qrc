@@ -14,6 +14,7 @@
         <file alias="tsa.jpeg">Images/tsa.jpeg</file>
         <file alias="cheat.png">Images/cheat.png</file>
         <file>Images/level1.png</file>
+        <file>Images/help.png</file>
     </qresource>
     <qresource prefix="/Levels">
         <file alias="lvl1">DefaultLevels/lvl1.txt</file>
