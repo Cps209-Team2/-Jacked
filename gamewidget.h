@@ -9,6 +9,7 @@
 #include <entity.h>
 #include <movablelabel.h>
 #include "player.h"
+#include "enemy.h"
 
 namespace Ui {
 class gameWidget;
@@ -27,7 +28,8 @@ private:
     QTimer *timer;
     int timerTest;
     Player *player;
-    MovableLabel *lbl;
+    Enemy *enemy;
+    MovableLabel *lbl, *elbl;
 
 private slots:
     void frame();
