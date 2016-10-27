@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include <QDebug>
 
 void unitTests();
 
@@ -36,7 +37,8 @@ void unitTests()
     Map testMap;
 
     testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
-    //Map testMap;
-    //testMap.create();
 
+    qDebug() << "X Pos from testMap" << testMap.getPlayer().getPos().x();
+    //assert(testMap.getPlayer().getPos().x() == 0);
+    //assert(testMap.getPlayer().getPos().y() == 0);
 }
