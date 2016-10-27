@@ -53,6 +53,10 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
             lbl->updatePos();
         }
     }
+    else if(event->key() == Qt::Key_Space)
+    {
+        qDebug() << "pow pow" << endl;
+    }
 }
 
 gameWidget::~gameWidget()

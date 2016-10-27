@@ -6,6 +6,7 @@ class Weapon
 {
     QString type;//melee or ranged
 public:
+
     Weapon(QString name)
     {
         type = name;
