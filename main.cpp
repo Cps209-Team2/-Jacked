@@ -36,7 +36,7 @@ void unitTests()
     Map testMap;
 
     testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
-    testMap.loadFile(":/Levels/lvl1.txt");
+    //testMap.loadFile(":/Levels/lvl1.txt");
 
     assert(testMap.getPlayer().getPos().x() == 0);
     assert(testMap.getPlayer().getPos().y() == 0);

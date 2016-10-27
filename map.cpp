@@ -3,6 +3,7 @@
 #include "map.h"
 #include "entity.h"
 #include "enemy.h"
+#include <QDebug>
 
 using namespace std;
 
@@ -119,6 +120,7 @@ void Map::processLevel(QString levels)
                 {
                     //the next thing is the x coordinate
                     xPos = line.at(i + 1).digitValue();
+                    qDebug() << xPos;
                 }
 
                 else if (c == ':' && line.at(0) == 'w')
@@ -132,6 +134,7 @@ void Map::processLevel(QString levels)
                 {
                     //the next thing is the y coordinate
                     yPos = line.at(i + 1).digitValue();
+                    qDebug() << yPos;
                 }
             }
             //Player *player = new Player(xPos, yPos, new Weapon(weapon));
@@ -172,6 +175,8 @@ void Map::processLevel(QString levels)
                     type = line.at(1).digitValue();
                 }
             }
+            qDebug() << xPos;
+            qDebug() << yPos;
             enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
         }
     }
