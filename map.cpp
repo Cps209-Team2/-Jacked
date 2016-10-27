@@ -3,6 +3,7 @@
 #include "map.h"
 #include "entity.h"
 #include "enemy.h"
+#include "player.h"
 
 using namespace std;
 
@@ -140,7 +141,7 @@ void Map::processLevel(QString levels)
                     yPos = line.at(i + 1).digitValue();
                 }
             }
-            //Player *player = new Player(xPos, yPos, new Weapon(weapon));
+            Player *player = new Player(xPos, yPos, new Weapon(weapon));
         }
         else if (line == "#Enemies")
         {
