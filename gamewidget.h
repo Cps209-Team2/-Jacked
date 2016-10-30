@@ -31,6 +31,8 @@ private:
     Enemy *enemy;
     MovableLabel *lbl, *elbl;
 
+    QKeyEvent *key;
+
 private slots:
     void frame();
     void keyPressEvent(QKeyEvent *event);

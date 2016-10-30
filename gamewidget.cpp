@@ -2,6 +2,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QDebug>
+#include <QKeyEvent>
 #include "gamewidget.h"
 #include "ui_gamewidget.h"
 #include "weapon.h"
@@ -43,6 +44,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
 void gameWidget::frame()
 {
+    keyPressEvent(key);
     //timerTest++;
     //qDebug() << timerTest << endl;
 }

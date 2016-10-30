@@ -23,7 +23,7 @@ public:
     void updatePos() { this->move(object->getPos()); }
 
 private slots:
-    void keyPressEvent(QEvent *event){ qDebug() << "test" << endl; }
+    //void keyPressEvent(QEvent *event){ qDebug() << "test" << endl; }
 
 signals:
     void keyPressed();
