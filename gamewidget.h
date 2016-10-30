@@ -33,9 +33,13 @@ private:
 
     QKeyEvent *key;
 
+    bool movLeft;
+    bool movRight;
+
 private slots:
     void frame();
     void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 };
 
 #endif // GAMEWIDGET_H

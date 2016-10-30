@@ -25,18 +25,13 @@ gameWidget::gameWidget(QMainWindow *parent) :
     timer->setInterval(40);
     timer->start();
 
-    //enemy object and label
-    enemy = new Enemy(1000, 600, new Weapon(QString::fromLocal8Bit("fist")));
-    elbl = new MovableLabel(this,enemy);
-    QPixmap epix(":/Images/tempEnemy.png");
-    elbl->setPixmap(epix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
-    elbl->updatePos();
-
     player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
     lbl = new MovableLabel(this,player);
     QPixmap pix(":/Images/tempPlayer.png");
     lbl->setPixmap(pix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
     lbl->updatePos();
+    this->movLeft = false;
+    this->movRight = false;
     //this line causes the vtable error
     //Player *player = new Player(0,700,new Weapon("fist"));
 
@@ -44,7 +39,16 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
 void gameWidget::frame()
 {
-    keyPressEvent(key);
+    if(movLeft)
+    {
+        player->moveLeft();
+        lbl->updatePos();
+    }
+    else if(movRight)
+    {
+        player->moveRight();
+        lbl->updatePos();
+    }
     //timerTest++;
     //qDebug() << timerTest << endl;
 }
@@ -55,26 +59,43 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
     {
         if(player->getPos().x() >= 20)
         {
+            this->movLeft = true;
+            /*
             player->moveLeft();
             lbl->updatePos();
             enemy->moveRight();
             elbl->updatePos();
-
+            */
         }
     }
     else if(event->key() == Qt::Key_Right)
     {
         if(player->getPos().x() <= 1004)
         {
+            this->movRight = true;
+            /*
             player->moveRight();
             lbl->updatePos();
             enemy->moveLeft();
             elbl->updatePos();
+            */
         }
     }
     else if(event->key() == Qt::Key_Space)
     {
         player->getWeapon()->execute();
+    }
+}
+
+void gameWidget::keyReleaseEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_Left)
+    {
+        this->movLeft = false;
+    }
+    else if(event->key() == Qt::Key_Right)
+    {
+        this->movRight = false;
     }
 }
 

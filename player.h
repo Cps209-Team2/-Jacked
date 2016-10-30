@@ -9,7 +9,6 @@
 class Player: public Entity
 {
     Weapon *weapon;
-    QRect *body;
 
 public:
     Player(int initx, int inity, Weapon *item);
