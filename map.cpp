@@ -76,6 +76,8 @@ void Map::processLevel(QString levels)
 {
     QTextStream level(&levels);
     QString line;
+    QString section;
+    QString levelStr;
     while (line != "*")
     {
         line = level.readLine();
@@ -91,6 +93,11 @@ void Map::processLevel(QString levels)
             qDebug() << "line = #Jacked";
             //skip for now, unless we need to know the level number
             line = level.readLine();
+            if (line.contains("level"));
+            {
+                levelStr = *(line.end() - 1);
+                qDebug() << "Level = " << levelStr;
+            }
         }
         /*
         else if (line == "#Obstacles")
@@ -126,33 +133,27 @@ void Map::processLevel(QString levels)
             //Skipping a line for some random reason
             line = level.readLine();
 
-            for (int i = 0; i < line.length(); ++i)
+
+            if (line.at(0) == 'p')
             {
-                if (line.at(0) == 'p')
-                {
-                    //the next thing is the x coordinate
-                    xPos = line.at(9).digitValue();
-                    yPos = line.at(11).digitValue();
-                }
-                else if (line.at(0) == 'w')
-                {
-                    for (int ind = i; ind < line.length(); ind++)
-                    {
-                        weapon += line.at(ind);
-                    }
-                }
-                /*else if (c == ',')
-                {
-                    //the next thing is the y coordinate
-                    qDebug() << "C is " << c << " and c + 1 is " << line.at(i + 1);
-                    yPos = line.at(i).digitValue();
-                    qDebug() << yPos;
-                }*/
+                QStringList lineColon = line.split(':');
+                QStringList positions = lineColon.at(1).split(',');
+                xPos = positions.at(0).toInt();
+                yPos = positions.at(1).toInt();
+
+                line = level.readLine();
+                lineColon = line.split(':');
+                weapon = lineColon.at(1);
             }
+            else
+            {
+                level.readLine();
+            }
+
             qDebug() << "x coordinate" << xPos;
             qDebug() << "y coordinate" << yPos;
             qDebug() << weapon;
-            Player *player = new Player(xPos, yPos, new Weapon(weapon));
+            setPlayer(new Player(xPos, yPos, new Weapon(weapon)));
             //line = level.readLine();
         }
         else if (line == "#Enemies")
@@ -164,48 +165,39 @@ void Map::processLevel(QString levels)
             int type;
             QChar c;
             QString weapon;
-            line = level.readLine();
-            //In here, get the object name that is supposed to be created - maybe we can have $type in the file?
-            //line = level.readLine();
-            for (int i = 0; i < line.length(); ++i)
+            QString name;
+
+            while (line != "*")
             {
-                if (line.at(0) == 'p')
+                line = level.readLine();
+
+                if (line.at(0) == '$')
                 {
-                    //the next thing is the x coordinate
-                    xPos = line.at(9).digitValue();
-                    yPos = line.at(11).digitValue();
+                    line = level.readLine();
+                    QStringList lineColon = line.split(':');
+                    QStringList positions = lineColon.at(1).split(',');
+
+                    xPos = positions.at(0).toInt();
+                    yPos = positions.at(1).toInt();
+                    line = level.readLine();
+
+                    lineColon = line.split(':');
+                    weapon = lineColon.at(1);
+                    line = level.readLine();
+                }
+                else
+                {
+                    line = level.readLine();
                 }
 
-                else if (line.at(0) == 'w')
-                {
-                    for (int ind = i; ind < line.length(); ind++)
-                    {
-                        weapon += line.at(ind);
-                    }
-                }
-                /*else if (c == ',')
-                {
-                    //the next thing is the y coordinate
-                    yPos = line.at(i).digitValue();
-                }
-
-                else if (line.at(0) == '$')
-                {
-                    type = line.at(1).digitValue();
-                }
-                */
+                //*
+                qDebug() << "x coordinate" << xPos;
+                qDebug() << "y coordinate" << yPos;
+                qDebug() << "weapon type = " << weapon;
+                //*/
+                enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
             }
-            qDebug() << "x coordinate" << xPos;
-            qDebug() << "y coordinate" << yPos;
-            qDebug() << "enemy type = " << type;
-            qDebug() << "weapon type = " << weapon;
-            enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
-            //line = level.readLine();
-        } else
-        {
-            line = level.readLine();
         }
-
     }
 }
 

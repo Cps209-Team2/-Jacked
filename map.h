@@ -30,6 +30,7 @@ public:
 
     void create();//initializes new lvl
     void loadFile(QString filename);//loads saved map
+    void save(QString filename);
     void processLevel(QString level); // adds all game variables to the vectors
     void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;
