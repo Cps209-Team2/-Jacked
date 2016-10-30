@@ -59,6 +59,8 @@ void unitTests()
     assert(mydude->getWeapon()->getType() == QString::fromLocal8Bit("fist"));//assert that weapons are properly set on entities
     assert(whataposer->getWeapon()->getType() == QString::fromLocal8Bit("fist"));
 
+    testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+
     //qDebug() << "X Pos from testMap" << testMap.getPlayer().getPos().x();
     //assert(testMap.getPlayer().getPos().x() == 0);
     //assert(testMap.getPlayer().getPos().y() == 0);
