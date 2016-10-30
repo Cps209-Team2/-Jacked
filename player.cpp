@@ -19,3 +19,8 @@ void Player::save()
 {
     //TODO Save the current player's position
 }
+
+void Player::save()
+{
+    //TODO Save the current player's position
+}
