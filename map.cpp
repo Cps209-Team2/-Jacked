@@ -96,7 +96,7 @@ void Map::processLevel(QString levels)
             if (line.contains("level"));
             {
                 levelStr = *(line.end() - 1);
-                qDebug() << levelStr;
+                qDebug() << "Level = " << levelStr;
             }
         }
         /*
@@ -140,10 +140,9 @@ void Map::processLevel(QString levels)
                 QStringList positions = lineColon.at(1).split(',');
                 xPos = positions.at(0).toInt();
                 yPos = positions.at(1).toInt();
-            }
-            else if (line.at(0) == 'w')
-            {
-                QStringList lineColon = line.split(':');
+
+                line = level.readLine();
+                lineColon = line.split(':');
                 weapon = lineColon.at(1);
             }
             else
@@ -167,54 +166,38 @@ void Map::processLevel(QString levels)
             QChar c;
             QString weapon;
             QString name;
-            line = level.readLine();
-            name = line;
-            line = level.readLine();
+            //line = level.readLine();
+            //qDebug() << line;
 
-            if (line.at(0) == 'p')
+            while (line != "*")
             {
-                QStringList lineColon = line.split(':');
-                QStringList positions = lineColon.at(1).split(',');
-
-                //testing the line
-                //*
-                qDebug() << "position list contains: ";
-                for (int i = 0; i < positions.size(); i++)
-                {
-                    qDebug() << positions.at(i);
-                }
-                //*/
-                xPos = positions.at(0).toInt();
-                yPos = positions.at(1).toInt();
                 line = level.readLine();
 
-                lineColon = line.split(':');
-
-                //Testing the line
-                //*
-                qDebug() << "Weaponlist contains: ";
-                for (int i = 0; i < lineColon.size(); i++)
+                if (line.at(0) == '$')
                 {
-                    qDebug() << lineColon.at(i);
-                }
-                //*/
-                weapon = lineColon.at(1);
-                line = level.readLine();
-            }
-            else
-            {
-                level.readLine();
-            }
+                    line = level.readLine();
+                    QStringList lineColon = line.split(':');
+                    QStringList positions = lineColon.at(1).split(',');
 
-            qDebug() << "x coordinate" << xPos;
-            qDebug() << "y coordinate" << yPos;
-            qDebug() << "weapon type = " << weapon;
-            enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
-        } else
-        {
-            line = level.readLine(); // Skips a line that does not contain useful information
+                    xPos = positions.at(0).toInt();
+                    yPos = positions.at(1).toInt();
+                    line = level.readLine();
+
+                    lineColon = line.split(':');
+                    weapon = lineColon.at(1);
+                    line = level.readLine();
+                }
+                else
+                {
+                    line = level.readLine();
+                }
+
+                qDebug() << "x coordinate" << xPos;
+                qDebug() << "y coordinate" << yPos;
+                qDebug() << "weapon type = " << weapon;
+                enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
+            }
         }
-
     }
 }
 
