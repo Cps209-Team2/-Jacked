@@ -61,7 +61,7 @@ void unitTests()
 
     testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
-    //qDebug() << "X Pos from testMap" << testMap.getPlayer().getPos().x();
-    //assert(testMap.getPlayer().getPos().x() == 0);
-    //assert(testMap.getPlayer().getPos().y() == 0);
+    qDebug() << "X Pos from testMap" << testMap.getPlayer().getPos().x();
+    assert(testMap.getPlayer().getPos().x() == 0);
+    assert(testMap.getPlayer().getPos().y() == 0);
 }

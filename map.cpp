@@ -153,7 +153,7 @@ void Map::processLevel(QString levels)
             qDebug() << "x coordinate" << xPos;
             qDebug() << "y coordinate" << yPos;
             qDebug() << weapon;
-            Player *player = new Player(xPos, yPos, new Weapon(weapon));
+            setPlayer(new Player(xPos, yPos, new Weapon(weapon)));
             //line = level.readLine();
         }
         else if (line == "#Enemies")
@@ -166,8 +166,6 @@ void Map::processLevel(QString levels)
             QChar c;
             QString weapon;
             QString name;
-            //line = level.readLine();
-            //qDebug() << line;
 
             while (line != "*")
             {
@@ -192,9 +190,11 @@ void Map::processLevel(QString levels)
                     line = level.readLine();
                 }
 
+                //*
                 qDebug() << "x coordinate" << xPos;
                 qDebug() << "y coordinate" << yPos;
                 qDebug() << "weapon type = " << weapon;
+                //*/
                 enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
             }
         }
