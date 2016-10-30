@@ -9,9 +9,15 @@
 class Player: public Entity
 {
     Weapon *weapon;
+    int jumpSpeed;
+    int gravity;
 
 public:
     Player(int initx, int inity, Weapon *item);
+
+    void jump();
+    void fall();
+
     Weapon* getWeapon() { return weapon; }
     void save();
 };

@@ -32,9 +32,6 @@ gameWidget::gameWidget(QMainWindow *parent) :
     lbl->updatePos();
     this->movLeft = false;
     this->movRight = false;
-    //this line causes the vtable error
-    //Player *player = new Player(0,700,new Weapon("fist"));
-
 }
 
 void gameWidget::frame()
@@ -49,8 +46,10 @@ void gameWidget::frame()
         player->moveRight();
         lbl->updatePos();
     }
-    //timerTest++;
-    //qDebug() << timerTest << endl;
+    else if(canJump)
+    {
+
+    }
 }
 
 void gameWidget::keyPressEvent(QKeyEvent *event)
@@ -84,6 +83,10 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
     else if(event->key() == Qt::Key_Space)
     {
         player->getWeapon()->execute();
+    }
+    else if(event->key() == Qt::Key_Up)
+    {
+        canJump = true;
     }
 }
 

@@ -31,10 +31,9 @@ private:
     Enemy *enemy;
     MovableLabel *lbl, *elbl;
 
-    QKeyEvent *key;
-
     bool movLeft;
     bool movRight;
+    bool canJump;
 
 private slots:
     void frame();
