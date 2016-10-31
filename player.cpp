@@ -13,6 +13,15 @@ Player::Player(int initx, int inity, Weapon *item)
     jumpSpeed = 5;
 }
 
+void Player::saveScore(QFile *file)
+{
+    QTextStream save(file);
+
+    save << "#Player\n";
+    save << "position:" << pos.x() << "," << pos.y() << endl;
+    save << "weapon:" << getWeapon() << "\n\n";
+}
+
 void Player::moveLeft()
 {
     pos.setX(pos.x() - 6);
@@ -25,10 +34,6 @@ void Player::moveRight()
     body->moveTo(pos);
 }
 
-void Player::save()
-{
-    //TODO Save the current player's position
-}
 
 // + and - seem backwards but are correct because y = 0 is at the top
 bool Player::jump()
