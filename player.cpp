@@ -9,43 +9,32 @@ Player::Player(int initx, int inity, Weapon *item)
     weapon = item;
     body = new QRect(pos.x(),pos.y(),50,50);
 
-    gravity = 5;
+    jumpSpeed = 5;
 }
 
 void Player::save()
 {
     //TODO Save the current player's position
 }
-void Player::jump()
+
+// + and - seem backwards but are correct because y = 0 is at the top
+bool Player::jump()
 {
-    if(gravity > 1)
+    if(jumpSpeed > 0)
     {
-        pos.setY(pos.y() + gravity);
-        --gravity;
+        pos.setY(pos.y() - jumpSpeed);
+        --jumpSpeed;
+        return true;
+    }
+    else if(jumpSpeed == 0)
+    {
+        jumpSpeed == 5;
+        return false;
     }
 }
-void Player::fall()
+
+void Player::fall(int x)
 {
-    if(gravity < 5)
-    {
-        pos.setY(pos.y() - gravity);
-        ++gravity;
-    }
+    pos.setY(pos.y() + x);
 }
 
-/*
-void Player::save()
-{
-    //TODO Save the current player's position
-}
-
-void Player::save()
-{
-    //TODO Save the current player's position
-}
-
-void Player::save()
-{
-    //TODO Save the current player's position
-}
-*/

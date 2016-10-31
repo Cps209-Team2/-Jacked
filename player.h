@@ -10,13 +10,15 @@ class Player: public Entity
 {
     Weapon *weapon;
     int jumpSpeed;
-    int gravity;
 
 public:
     Player(int initx, int inity, Weapon *item);
 
-    void jump();
-    void fall();
+    bool jump();
+    void fall(int x);
+
+    int getJS() { return jumpSpeed; }
+    int resetJS(int x) { jumpSpeed = 5; }
 
     Weapon* getWeapon() { return weapon; }
     void save();
