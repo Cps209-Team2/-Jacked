@@ -42,6 +42,11 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
 void gameWidget::frame()
 {
+    this->move();
+}
+
+void gameWidget::move()
+{
     if(movLeft)
     {
         player->moveLeft();

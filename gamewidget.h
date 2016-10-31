@@ -21,6 +21,7 @@ class gameWidget : public QWidget
 
 public:
     explicit gameWidget(QMainWindow *parent = 0);
+    void move();
     ~gameWidget();
 
 private:
