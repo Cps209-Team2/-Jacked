@@ -5,6 +5,7 @@
 #include <QRect>
 #include <QFile>
 #include <QTextStream>
+#include <QString>
 #include "entity.h"
 #include "weapon.h"
 
@@ -12,6 +13,8 @@ class Player: public Entity
 {
     Weapon *weapon;
     int jumpSpeed;
+    QString name;
+    double score;
 
 public:
     Player(int initx, int inity, Weapon *item);
@@ -27,6 +30,9 @@ public:
 
     Weapon* getWeapon() { return weapon; }
     void saveScore(QFile *file);
+    QString getName() { return name; }
+    void setScore(double initScore);
+    double getScore() { return score; }
 };
 
 #endif // PLAYER_H
