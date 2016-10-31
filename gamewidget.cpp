@@ -13,6 +13,7 @@
 #include "weapon.h"
 #include "QString"
 #include "map.h"
+#include "collision.h"
 
 namespace constants
 {
@@ -23,19 +24,17 @@ gameWidget::gameWidget(QMainWindow *parent) :
     QWidget(parent),
     ui(new Ui::gameWidget)
 {
-    timerTest = 0;
     this->setParent(parent);
     ui->setupUi(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
     timer->setInterval(40);
     timer->start();
-    Map world;
-    world.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
-    for (int i = 0; i < world.getEnemies().size(); ++i)
+    for (int i = 0; i < world->getEnemies().size(); ++i)
     {
-        elbl = new MovableLabel(this, world.getEnemies().at(i));
+        elbl = new MovableLabel(this, world->getEnemies().at(i));
         QPixmap img(":/Images/tempEnemy.png");
         elbl->setPixmap(img.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
         elbl->updatePos();
@@ -49,12 +48,25 @@ gameWidget::gameWidget(QMainWindow *parent) :
     QPixmap pix(":/Images/tempPlayer.png");
     lbl->setPixmap(pix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
     lbl->updatePos();
+
+    enemy = new Enemy(400,600,new Weapon(QString::fromLocal8Bit("fist")));
+
     this->movLeft = false;
     this->movRight = false;
     this->jump = false;
 }
 
 void gameWidget::frame()
+{
+    this->move();
+    for(auto i : world->getEnemies())
+    {
+        Collision check(world->_Player(), i);
+        world->_Player()->setX(world->getPlayer().getPos().x() + check.checkCollision());
+    }
+}
+
+void gameWidget::move()
 {
     if(movLeft)
     {
