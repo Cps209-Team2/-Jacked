@@ -6,7 +6,7 @@ level 1
 #Player
 // Set player position and weapon
 position:0,0;
-weapon:fist;
+weapon:fist
 
 //#Obstacles
 // Record Obstacle positions

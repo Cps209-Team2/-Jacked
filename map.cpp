@@ -196,6 +196,7 @@ void Map::processLevel(QString levels)
                 qDebug() << "weapon type = " << weapon;
                 //*/
                 enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
+                qDebug() << "Successful PushBack";
             }
         }
     }
