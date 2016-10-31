@@ -10,8 +10,7 @@ using namespace std;
 
 Map::Map()
 {
-    height = 500;
-    width = 1000;
+
 }
 /*
 void Map::reset() {
@@ -190,14 +189,31 @@ void Map::processLevel(QString levels)
                     line = level.readLine();
                 }
 
-                //*
+
                 qDebug() << "x coordinate" << xPos;
                 qDebug() << "y coordinate" << yPos;
                 qDebug() << "weapon type = " << weapon;
-                //*/
-                enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon)));
+
+                enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon),this->player));
+
+                qDebug() << "next iteration" << endl;
             }
         }
+    }
+}
+
+
+Map::~Map()
+{
+    delete this->player;
+
+    for(auto i : this->enemies)
+    {
+        delete i;
+    }
+    for(auto i : this->obstacles)
+    {
+        delete i;
     }
 }
 

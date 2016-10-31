@@ -27,6 +27,8 @@ public:
 
     Weapon* getWeapon() { return weapon; }
     void saveScore(QFile *file);
+
+    ~Player();
 };
 
 #endif // PLAYER_H

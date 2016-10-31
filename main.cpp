@@ -42,8 +42,11 @@ void unitTests()
 
     Weapon *item = new Weapon(QString::fromLocal8Bit("fist"));
     Player *mydude = new Player(45,45,item);
-    Enemy *whataposer = new Enemy(85,45,item);
+    qDebug() << "player created" << endl;
+    Enemy *whataposer = new Enemy(85,45,item, mydude);
+    qDebug() << "enemy created" << endl;
     Obstacle *rock = new Obstacle(65,45);
+    qDebug() << "obstacle created" << endl;
 
     assert(item->getType() == QString::fromLocal8Bit("fist"));//weapon type
 

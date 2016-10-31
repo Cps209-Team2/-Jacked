@@ -56,3 +56,7 @@ void Player::fall(int x)
     pos.setY(pos.y() + x);
 }
 
+Player::~Player()
+{
+    delete this->weapon;
+}

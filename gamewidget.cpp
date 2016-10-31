@@ -30,6 +30,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
     timer->setInterval(40);
     timer->start();
+
     world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
     for (int i = 0; i < world->getEnemies().size(); ++i)
@@ -49,7 +50,10 @@ gameWidget::gameWidget(QMainWindow *parent) :
     lbl->setPixmap(pix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
     lbl->updatePos();
 
-    enemy = new Enemy(400,600,new Weapon(QString::fromLocal8Bit("fist")));
+    enemy = new Enemy(400,600,new Weapon(QString::fromLocal8Bit("fist")), player);
+    QPixmap epix(":/Images/tempEnemy.png");
+    elbl->setPixmap(pix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+    elbl->updatePos();
 
     this->movLeft = false;
     this->movRight = false;
@@ -63,6 +67,10 @@ void gameWidget::frame()
     {
         Collision check(world->_Player(), i);
         world->_Player()->setX(world->getPlayer().getPos().x() + check.checkCollision());
+    }
+    for(Enemy *i : world->getEnemies())
+    {
+        i->move();
     }
 }
 
@@ -87,12 +95,6 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         if(player->getPos().x() >= 20)
         {
             this->movLeft = true;
-            /*
-            player->moveLeft();
-            lbl->updatePos();
-            enemy->moveRight();
-            elbl->updatePos();
-            */
         }
     }
     else if(event->key() == Qt::Key_Right)
@@ -100,12 +102,6 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         if(player->getPos().x() <= 1004)
         {
             this->movRight = true;
-            /*
-            player->moveRight();
-            lbl->updatePos();
-            enemy->moveLeft();
-            elbl->updatePos();
-            */
         }
     }
     else if(event->key() == Qt::Key_Space)
@@ -137,5 +133,11 @@ void gameWidget::keyReleaseEvent(QKeyEvent *event)
 gameWidget::~gameWidget()
 {
     timer->stop();
+    delete timer;
     delete ui;
+    delete world;
+    delete player;
+    delete enemy;
+    lbl->deleteLater();
+    elbl->deleteLater();
 }

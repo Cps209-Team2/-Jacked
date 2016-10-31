@@ -14,19 +14,20 @@
 #include "obstacle.h"
 #include "entity.h"
 #include "player.h"
+#include "enemy.h"
 
 class Map
 {
     int lvl;
-    double height, width;
-    Entity *player;
+    Player *player;
     std::vector<Obstacle*> obstacles;
-    std::vector<Entity*> enemies;
+    std::vector<Enemy*> enemies;
     int currentScore;
 
 public:
     Map();
-    void setPlayer(Entity *character) { player = character; } //spawns player
+
+    void setPlayer(Player *character) { player = character; } //spawns player
 
     void create();//initializes new lvl
     void loadFile(QString filename);//loads saved map
@@ -36,10 +37,12 @@ public:
     void advance();//advances map to next lvl;
     void reset(); //removes all enemy and obstacle objects and allows for a new level
     void addScore(int plus) { currentScore += plus; }
-    Entity& getPlayer() { return *player; }
-    Entity* _Player() { return player; }
-    std::vector<Entity*> getEnemies() {return enemies;}
+    Player& getPlayer() { return *player; }
+    Player* _Player() { return player; }
+    std::vector<Enemy*> getEnemies() {return enemies;}
     std::vector<Obstacle*> getObstacles() { return obstacles; }
+
+    ~Map();
 };
 
 #endif // MAP_H

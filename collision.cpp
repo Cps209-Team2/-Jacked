@@ -16,11 +16,11 @@ int Collision::checkCollision()
 
     if(rightSide)
     {
-        xCorrect = int(double(a.x() + a.width() - b.x()));
+        xCorrect = a.x() + a.width() - b.x();
     }
     if(leftSide)
     {
-        xCorrect = int(double(b.x() + b.width() - a.x()));
+        xCorrect = a.x() - (b.x() + b.width());
     }
 
     return xCorrect;
