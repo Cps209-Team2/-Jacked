@@ -33,7 +33,8 @@ private:
 
     bool movLeft;
     bool movRight;
-    bool canJump;
+    bool jump;
+    bool isGrounded;
 
 private slots:
     void frame();

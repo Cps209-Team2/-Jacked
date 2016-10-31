@@ -13,6 +13,11 @@
 #include "weapon.h"
 #include "QString"
 
+namespace constants
+{
+    int gravity = 4;
+}
+
 gameWidget::gameWidget(QMainWindow *parent) :
     QWidget(parent),
     ui(new Ui::gameWidget)
@@ -32,6 +37,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     lbl->updatePos();
     this->movLeft = false;
     this->movRight = false;
+    this->jump = false;
 }
 
 void gameWidget::frame()
@@ -39,17 +45,13 @@ void gameWidget::frame()
     if(movLeft)
     {
         player->moveLeft();
-        lbl->updatePos();
     }
     else if(movRight)
     {
         player->moveRight();
-        lbl->updatePos();
     }
-    else if(canJump)
-    {
 
-    }
+    lbl->updatePos();
 }
 
 void gameWidget::keyPressEvent(QKeyEvent *event)
@@ -86,7 +88,7 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key() == Qt::Key_Up)
     {
-        canJump = true;
+        jump = true;
     }
 }
 
@@ -99,6 +101,10 @@ void gameWidget::keyReleaseEvent(QKeyEvent *event)
     else if(event->key() == Qt::Key_Right)
     {
         this->movRight = false;
+    }
+    else if(event->key() == Qt::Key_Up)
+    {
+        jump = true;
     }
 }
 
