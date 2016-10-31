@@ -27,7 +27,7 @@ public:
     void fall(int x);
 
     int getJS() { return jumpSpeed; }
-    int resetJS(int x) { jumpSpeed = 5; }
+    void resetJS(int x) { jumpSpeed = 5; }
 
     Weapon* getWeapon() { return weapon; }
     void saveScore(QFile *file);
