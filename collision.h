@@ -2,28 +2,23 @@
 #define COLLISION_H
 #include <QRect>
 #include <QDebug>
+#include <entity.h>
 
 class Collision
 {
-    QRect *a; //original object
-    QRect *b; //colliding object
+    Entity *_this;
+    Entity *_that;
 public:
     Collision();
 
-    Collision(QRect *_a, QRect *_b)
+    Collision(Entity *obj1, Entity *obj2)
     {
-        a = _a;
-        b = _b;
+        _this = obj1;
+        _that = obj2;
     }
 
-    bool Collide()
-    {
-        if(a->intersects(*b))
-        {
-            qDebug() << "test" << endl;
-        }
-        return false;
-    }
+    int checkCollision();
+
 };
 
 #endif // COLLISION_H

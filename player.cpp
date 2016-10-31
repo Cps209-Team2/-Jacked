@@ -1,6 +1,7 @@
 #include "player.h"
 #include "entity.h"
 #include <QRect>
+#include "collision.h"
 
 Player::Player(int initx, int inity, Weapon *item)
 {
