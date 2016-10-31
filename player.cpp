@@ -13,9 +13,13 @@ Player::Player(int initx, int inity, Weapon *item)
     jumpSpeed = 5;
 }
 
-void Player::saveScore(QFile file)
+void Player::saveScore(QFile *file)
 {
+    QTextStream save(file);
 
+    save << "#Player\n";
+    save << "position:" << pos.x() << "," << pos.y() << endl;
+    save << "weapon:" << getWeapon() << "\n\n";
 }
 
 void Player::moveLeft()

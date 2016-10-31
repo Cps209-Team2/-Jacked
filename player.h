@@ -26,7 +26,7 @@ public:
     int resetJS(int x) { jumpSpeed = 5; }
 
     Weapon* getWeapon() { return weapon; }
-    void saveScore(QFile file);
+    void saveScore(QFile *file);
 };
 
 #endif // PLAYER_H
