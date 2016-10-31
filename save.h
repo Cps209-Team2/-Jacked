@@ -1,27 +1,16 @@
-#ifndef SAVELOAD_H
-#define SAVELOAD_H
+#ifndef SAVE_H
+#define SAVE_H
 
+#include <QString>
 #include <QFile>
-#include <QTextStream>
-#include <string>
-#include "map.h"
-#include "player.h"
-#include "enemy.h"
 
 class Save
 {
-    QFile saveFile;
-    QTextStream save;
-
-    Map *world;
-    Player *player;
-    Enemy *enemy;
+    QString filename;
 public:
-    Save(Map *initWorld, Player *initPlayer, Enemy *initEnemy): world(initWorld), player(initPlayer), enemy(initEnemy){}
-    static void saveWorld();
-    static void saveScore();
-
-
+    Save(QString initFilename): filename(initFilename) {};
+    void saveScore();
+    void saveWorld();
 };
 
-#endif // SAVELOAD_H
+#endif // SAVE_H

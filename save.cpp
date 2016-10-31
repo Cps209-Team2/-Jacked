@@ -1,10 +1,14 @@
 #include "save.h"
+#include "player.h"
 
-Save::saveScore()
+void Save::saveScore()
 {
-    saveFile = "UsrSave.txt";
-    save = saveFile;
+    Player *savePlayer = new Player();
+    QFile saveScore(filename);
+    savePlayer->saveScore(&saveScore);
+}
 
-    save << "#Jacked\n";
-    save << "level " <<
+void saveWorld()
+{
+
 }
