@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     gamewidget.cpp \
     entity.cpp \
     enemy.cpp \
-    player.cpp
+    player.cpp \
+    cheater.cpp
 
 HEADERS  += \
     saveload.h \
@@ -41,7 +42,8 @@ HEADERS  += \
     gamewidget.h \
     entity.h \
     enemy.h \
-    player.h
+    player.h \
+    cheater.h
 
 FORMS    += \
     startwindow.ui \
