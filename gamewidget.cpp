@@ -12,6 +12,7 @@
 #include "enemy.h"
 #include "weapon.h"
 #include "QString"
+#include "map.h"
 
 namespace constants
 {
@@ -29,6 +30,19 @@ gameWidget::gameWidget(QMainWindow *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
     timer->setInterval(40);
     timer->start();
+    Map world;
+    world.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+
+    for (int i = 0; i < world.getEnemies().size(); ++i)
+    {
+        elbl = new MovableLabel(this, world.getEnemies().at(i));
+        QPixmap img(":/Images/tempEnemy.png");
+        elbl->setPixmap(img.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+        elbl->updatePos();
+        elbls.push_back(elbl);
+    }
+
+
 
     player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
     lbl = new MovableLabel(this,player);

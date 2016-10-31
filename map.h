@@ -37,6 +37,7 @@ public:
     void reset(); //removes all enemy and obstacle objects and allows for a new level
     void addScore(int plus) { currentScore += plus; }
     Entity& getPlayer() { return *player; }
+    std::vector<Entity*>& getEnemies() {return enemies;}
 };
 
 #endif // MAP_H
