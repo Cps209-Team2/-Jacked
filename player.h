@@ -16,6 +16,9 @@ class Player: public Entity
 public:
     Player(int initx, int inity, Weapon *item);
 
+    void moveLeft();
+    void moveRight();
+
     bool jump();
     void fall(int x);
 

@@ -10,7 +10,7 @@
 #include <movablelabel.h>
 #include "player.h"
 #include "enemy.h"
-
+#include "map.h"
 namespace Ui {
 class gameWidget;
 }
@@ -21,6 +21,7 @@ class gameWidget : public QWidget
 
 public:
     explicit gameWidget(QMainWindow *parent = 0);
+    void move();
     ~gameWidget();
     std::vector<MovableLabel*> getElbls() { return elbls;}
 
@@ -28,15 +29,21 @@ private:
     Ui::gameWidget *ui;
     QTimer *timer;
     int timerTest;
-    Player *player;
-    Enemy *enemy;
-    MovableLabel *lbl, *elbl;
-    std::vector<MovableLabel*> elbls;
 
     bool movLeft;
     bool movRight;
     bool jump;
     bool isGrounded;
+
+
+
+    // testing variables
+    Player *player;
+    Enemy *enemy;
+    MovableLabel *lbl, *elbl;
+    std::vector<MovableLabel*> elbls;
+    Map *world;
+
 
 private slots:
     void frame();

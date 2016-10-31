@@ -93,7 +93,7 @@ void Map::processLevel(QString levels)
             qDebug() << "line = #Jacked";
             //skip for now, unless we need to know the level number
             line = level.readLine();
-            if (line.contains("level"));
+            if (line.contains("level"))
             {
                 levelStr = *(line.end() - 1);
                 qDebug() << "Level = " << levelStr;

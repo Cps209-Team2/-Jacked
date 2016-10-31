@@ -13,6 +13,7 @@
 #include <QFile>
 #include "obstacle.h"
 #include "entity.h"
+#include "player.h"
 
 class Map
 {
@@ -22,7 +23,6 @@ class Map
     std::vector<Obstacle*> obstacles;
     std::vector<Entity*> enemies;
     int currentScore;
-
 
 public:
     Map();
@@ -37,8 +37,9 @@ public:
     void reset(); //removes all enemy and obstacle objects and allows for a new level
     void addScore(int plus) { currentScore += plus; }
     Entity& getPlayer() { return *player; }
-    std::vector<Entity*>& getEnemies() {return enemies;}
-    //std::vector<Obstacles*>& getObstacles() {return obstacles;}
+    Entity* _Player() { return player; }
+    std::vector<Entity*> getEnemies() {return enemies;}
+    std::vector<Obstacle*> getObstacles() { return obstacles; }
 };
 
 #endif // MAP_H

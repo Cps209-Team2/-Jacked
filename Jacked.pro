@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     entity.cpp \
     enemy.cpp \
     player.cpp \
-    cheater.cpp
+    cheater.cpp \
+    collision.cpp
 
 HEADERS  += \
     saveload.h \
@@ -43,7 +44,8 @@ HEADERS  += \
     entity.h \
     enemy.h \
     player.h \
-    cheater.h
+    cheater.h \
+    collision.h
 
 FORMS    += \
     startwindow.ui \
