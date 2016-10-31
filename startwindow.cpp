@@ -3,6 +3,7 @@
 #include "startwindow.h"
 #include "ui_startwindow.h"
 #include "gamewidget.h"
+#include "help.h"
 
 StartWindow::StartWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,6 +12,8 @@ StartWindow::StartWindow(QWidget *parent) :
     ui->setupUi(this);
     game = new gameWidget(this);
     game->hide();
+    helpScreen = new help(this);
+    helpScreen->hide();
     //help = new helpWidget(this);
     //help->hide();
 }
@@ -41,11 +44,12 @@ void StartWindow::on_btnPlay_clicked()
 //show a helpful information window
 void StartWindow::on_pbHelp_clicked()
 {
-    //help->show();
-    //help->setFocus();
-    QMessageBox msgHelp;
-    msgHelp.setText("This is where the help screen will go.");
-    msgHelp.exec();
+    ui->centralwidget->hide();
+    helpScreen->show();
+    helpScreen->setFocus();
+    //QMessageBox msgHelp;
+    //msgHelp.setText("This is where the help screen will go.");
+   //msgHelp.exec();
 }
 
 void StartWindow::on_pbHighscores_clicked()

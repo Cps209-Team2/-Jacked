@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     entity.cpp \
     enemy.cpp \
     player.cpp \
-    cheater.cpp
+    cheater.cpp \
+    help.cpp
 
 HEADERS  += \
     saveload.h \
@@ -43,11 +44,13 @@ HEADERS  += \
     entity.h \
     enemy.h \
     player.h \
-    cheater.h
+    cheater.h \
+    help.h
 
 FORMS    += \
     startwindow.ui \
-    gamewidget.ui
+    gamewidget.ui \
+    help.ui
 
 QMAKE_CXXFLAGS += -std=c++14
 

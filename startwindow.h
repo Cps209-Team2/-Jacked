@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QKeySequence>
 #include "gamewidget.h"
+#include "help.h"
 
 namespace Ui {
 class StartWindow;
@@ -32,6 +33,7 @@ private slots:
 
 private:
     gameWidget *game;
+    help *helpScreen;
     //helpWidget *help;
     Ui::StartWindow *ui;
 
