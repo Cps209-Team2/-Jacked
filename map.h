@@ -13,6 +13,7 @@
 #include <QFile>
 #include "obstacle.h"
 #include "entity.h"
+#include "enemy.h"
 #include "player.h"
 
 class Map
@@ -21,11 +22,15 @@ class Map
     double height, width;
     Entity *player;
     std::vector<Obstacle*> obstacles;
-    std::vector<Entity*> enemies;
+    std::vector<Enemy*> enemies;
     int currentScore;
+    static Map* instance_;
+
+    Map(const Map& that) = delete;
 
 public:
     Map();
+    static Map& instance();
     void setPlayer(Entity *character) { player = character; } //spawns player
 
     void create();//initializes new lvl
@@ -38,7 +43,7 @@ public:
     void addScore(int plus) { currentScore += plus; }
     Entity& getPlayer() { return *player; }
     Entity* _Player() { return player; }
-    std::vector<Entity*> getEnemies() {return enemies;}
+    std::vector<Enemy*> getEnemies() {return enemies;}
     std::vector<Obstacle*> getObstacles() { return obstacles; }
 };
 
