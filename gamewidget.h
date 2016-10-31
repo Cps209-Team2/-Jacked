@@ -23,6 +23,7 @@ public:
     explicit gameWidget(QMainWindow *parent = 0);
     void move();
     ~gameWidget();
+    std::vector<MovableLabel*> getElbls() { return elbls;}
 
 private:
     Ui::gameWidget *ui;
@@ -31,6 +32,7 @@ private:
     Player *player;
     Enemy *enemy;
     MovableLabel *lbl, *elbl;
+    std::vector<MovableLabel*> elbls;
 
     bool movLeft;
     bool movRight;

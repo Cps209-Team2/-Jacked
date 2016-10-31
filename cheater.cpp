@@ -9,5 +9,5 @@ Cheater::Cheater(int initx, int inity, Weapon *item)
     weapon = item;
     body = new QRect(pos.x(),pos.y(),50,50);
 
-    gravity = 5;
+    jumpSpeed = 5;
 }
