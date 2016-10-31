@@ -12,9 +12,9 @@ Player::Player(int initx, int inity, Weapon *item)
     jumpSpeed = 5;
 }
 
-void Player::save()
+void Player::saveScore(QFile file)
 {
-    //TODO Save the current player's position
+
 }
 
 // + and - seem backwards but are correct because y = 0 is at the top

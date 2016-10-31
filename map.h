@@ -30,7 +30,7 @@ public:
 
     void create();//initializes new lvl
     void loadFile(QString filename);//loads saved map
-    void save(QString filename);
+    static void save(QString filename);
     void processLevel(QString level); // adds all game variables to the vectors
     void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;
@@ -38,6 +38,7 @@ public:
     void addScore(int plus) { currentScore += plus; }
     Entity& getPlayer() { return *player; }
     std::vector<Entity*>& getEnemies() {return enemies;}
+    //std::vector<Obstacles*>& getObstacles() {return obstacles;}
 };
 
 #endif // MAP_H

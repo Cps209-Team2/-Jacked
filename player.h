@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QPoint>
 #include <QRect>
+#include <QFile>
+#include <QTextStream>
 #include "entity.h"
 #include "weapon.h"
 
@@ -21,7 +23,7 @@ public:
     int resetJS(int x) { jumpSpeed = 5; }
 
     Weapon* getWeapon() { return weapon; }
-    void save();
+    void saveScore(QFile file);
 };
 
 #endif // PLAYER_H
