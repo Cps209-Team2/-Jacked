@@ -27,6 +27,7 @@ SOURCES += main.cpp\
     enemy.cpp \
     player.cpp \
     cheater.cpp \
+    help.cpp \
     collision.cpp
 
 HEADERS  += \
@@ -45,11 +46,13 @@ HEADERS  += \
     enemy.h \
     player.h \
     cheater.h \
+    help.h \
     collision.h
 
 FORMS    += \
     startwindow.ui \
-    gamewidget.ui
+    gamewidget.ui \
+    help.ui
 
 QMAKE_CXXFLAGS += -std=c++14
 
