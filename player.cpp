@@ -17,11 +17,16 @@ void Player::saveScore(QFile *file)
 {
     QTextStream save(file);
 
-    save << "#Player\n";
+    save << getName() << ":" << getScore() << endl;
+    //TODO load the scores file into a vector and sort it by score
+}
+/*
+void Player::saveState(QFile *file)
+{
     save << "position:" << pos.x() << "," << pos.y() << endl;
     save << "weapon:" << getWeapon() << "\n\n";
 }
-
+*/
 void Player::moveLeft()
 {
     pos.setX(pos.x() - 6);
@@ -44,7 +49,7 @@ bool Player::jump()
         --jumpSpeed;
         return true;
     }
-    else if(jumpSpeed == 0)
+    else if(jumpSpeed <= 0)
     {
         jumpSpeed == 5;
         return false;

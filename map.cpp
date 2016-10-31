@@ -12,6 +12,17 @@ Map::Map()
 {
 
 }
+
+Map* Map::instance_ = nullptr;
+
+Map& Map::instance() {
+  if (instance_ == nullptr) {
+      instance_ = new Map();
+  }
+  return *instance_;
+}
+//Singleton implementation
+
 /*
 void Map::reset() {
     //removes enemy objects
@@ -152,7 +163,7 @@ void Map::processLevel(QString levels)
             qDebug() << "x coordinate" << xPos;
             qDebug() << "y coordinate" << yPos;
             qDebug() << weapon;
-            setPlayer(new Player(xPos, yPos, new Weapon(weapon)));
+            Map::instance().setPlayer(new Player(xPos, yPos, new Weapon(weapon)));
             //line = level.readLine();
         }
         else if (line == "#Enemies")
@@ -193,10 +204,17 @@ void Map::processLevel(QString levels)
                 qDebug() << "x coordinate" << xPos;
                 qDebug() << "y coordinate" << yPos;
                 qDebug() << "weapon type = " << weapon;
+<<<<<<< HEAD
 
                 enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon),this->player));
 
                 qDebug() << "next iteration" << endl;
+=======
+                //*/
+                Enemy *poser = new Enemy(xPos, yPos, new Weapon(weapon));
+                Map::instance().getEnemies().push_back(poser);
+                //delete poser;
+>>>>>>> 77fa67c0c69b0d67ccdc76877da7ac59ad02fb44
             }
         }
     }

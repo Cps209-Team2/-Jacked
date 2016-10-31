@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     player.cpp \
     cheater.cpp \
     help.cpp \
-    collision.cpp
+    collision.cpp \
+    save.cpp
 
 HEADERS  += \
     saveload.h \
@@ -47,7 +48,8 @@ HEADERS  += \
     player.h \
     cheater.h \
     help.h \
-    collision.h
+    collision.h \
+    save.h
 
 FORMS    += \
     startwindow.ui \

@@ -33,7 +33,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
     world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
-    for (int i = 0; i < world->getEnemies().size(); ++i)
+    for (unsigned i = 0; i < world->getEnemies().size(); ++i)
     {
         elbl = new MovableLabel(this, world->getEnemies().at(i));
         QPixmap img(":/Images/tempEnemy.png");

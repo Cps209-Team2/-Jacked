@@ -14,6 +14,9 @@ class Cheater: public Entity
 
 public:
     Cheater(int initx, int inity, Weapon *item);
+    ~Cheater();
+    void moveLeft();
+    void moveRight();
 
     bool jump();
     void fall(int x);
