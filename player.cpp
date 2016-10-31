@@ -56,9 +56,9 @@ bool Player::jump()
     }
 }
 
-void Player::fall(int x)
+void Player::fall(int y)
 {
-    pos.setY(pos.y() + x);
+    pos.setY(pos.y() + y);
 }
 
 Player::~Player()

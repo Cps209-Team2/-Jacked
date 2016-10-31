@@ -21,7 +21,8 @@ class gameWidget : public QWidget
 
 public:
     explicit gameWidget(QMainWindow *parent = 0);
-    void move();
+    void playerMove();
+    void enemyMove();
     ~gameWidget();
     std::vector<MovableLabel*> getElbls() { return elbls;}
 
@@ -40,7 +41,8 @@ private:
     // testing variables
     Player *player;
     Enemy *enemy;
-    MovableLabel *lbl, *elbl;
+    MovableLabel *lbl;
+    MovableLabel *elbl;
     std::vector<MovableLabel*> elbls;
     Map *world;
 

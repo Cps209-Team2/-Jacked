@@ -30,3 +30,8 @@ void Enemy::moveRight()
 {
     pos.setX(pos.x() + 3);
 }
+
+Enemy::~Enemy()
+{
+
+}

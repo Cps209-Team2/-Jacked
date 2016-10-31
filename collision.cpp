@@ -10,18 +10,21 @@ int Collision::checkCollision()
     QRect b = QRect(_that->getPos(),_that->getSize());
 
     bool rightSide = (a.contains(b.bottomLeft()) || a.contains(b.topLeft()));
-    bool leftSide = (a.contains(b.bottomRight()) || a.contains(b.bottomLeft()));
+    bool leftSide = (a.contains(b.bottomRight()) || a.contains(b.topRight()));
 
-    int xCorrect;
 
     if(rightSide)
     {
-        xCorrect = a.x() + a.width() - b.x();
+        xChange = -1 * (a.x() + a.width() - b.x());
+        crash = true;
+        qDebug() << "right" << endl;
     }
     if(leftSide)
     {
-        xCorrect = a.x() - (b.x() + b.width());
+        xChange = b.x() - a.x() + a.width();
+        crash = true;
+        qDebug() << "left" << endl;
     }
 
-    return xCorrect;
+    return xChange;
 }
