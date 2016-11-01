@@ -39,7 +39,7 @@ void unitTests()
     std::cout << "Entering Unit Tests" << std::endl;
     Map& testMap = Map::instance();
 
-    testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    //testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
     Weapon *item = new Weapon(QString::fromLocal8Bit("fist"));
     Player *mydude = new Player(45,45,item);
@@ -71,4 +71,5 @@ void unitTests()
     testMap.getPlayer().setName(QString::fromLocal8Bit("Bert"));
     Save *save = new Save("SAVE.txt");
     save->saveScore(testMap);
+    exit(0);
 }

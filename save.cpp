@@ -1,8 +1,5 @@
 #include "save.h"
-#include "player.h"
-#include "map.h"
-#include "enemy.h"
-#include <vector>
+
 
 void Save::saveScore(Map& map)
 {
@@ -14,6 +11,12 @@ void Save::saveScore(Map& map)
 }
 
 void saveWorld()
+{
+    //Not Implemented yet
+    //TODO Save the state of the map, enemies, players, and obstacles
+}
+
+void loadScores(QString filename)
 {
 
 }
