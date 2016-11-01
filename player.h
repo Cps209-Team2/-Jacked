@@ -14,7 +14,7 @@ class Player: public Entity
     Weapon *weapon;
     int jumpSpeed;
     QString name;
-    double score;
+    double score = 0;
 
 public:
     Player(int initx, int inity, Weapon *item);
@@ -34,6 +34,7 @@ public:
 
     ~Player();
     QString getName() { return name; }
+    void setName(QString initName) { name = initName; }
     void setScore(double initScore);
     double getScore() { return score; }
 };

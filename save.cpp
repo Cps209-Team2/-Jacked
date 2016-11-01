@@ -1,11 +1,16 @@
 #include "save.h"
 #include "player.h"
+#include "map.h"
+#include "enemy.h"
+#include <vector>
 
-void Save::saveScore()
+void Save::saveScore(Map& map)
 {
-    Player *savePlayer = new Player();
+    Player savePlayer = map.getPlayer();
     QFile saveScore(filename);
-    savePlayer->saveScore(&saveScore);
+    saveScore.open(QIODevice::WriteOnly | QIODevice::Text);
+    savePlayer.saveScore(&saveScore);
+
 }
 
 void saveWorld()

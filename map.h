@@ -26,7 +26,7 @@ class Map
     int currentScore;
     static Map* instance_;
 
-    Map(const Map& that) = delete;
+    explicit Map(const Map& that) = delete;
 
 public:
     Map();
@@ -38,7 +38,7 @@ public:
 
     void create();//initializes new lvl
     void loadFile(QString filename);//loads saved map
-    static void save(QString filename);
+    static void saveScore(QString filename);
     void processLevel(QString level); // adds all game variables to the vectors
     void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;
@@ -50,6 +50,7 @@ public:
 
     std::vector<Enemy*>& getEnemies() {return enemies;}
     std::vector<Obstacle*>& getObstacles() { return obstacles; }
+
 
     ~Map();
 };

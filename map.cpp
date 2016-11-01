@@ -221,15 +221,16 @@ Map::~Map()
 {
     delete this->player;
 
-    for(Enemy *i : this->enemies)
+    for(Enemy *i : enemies)
     {
         delete i;
     }
-    for(Obstacle *i : this->obstacles)
+    for(Obstacle *i : obstacles)
     {
         delete i;
     }
 }
+
 
 /*
 //advances map to next lvl;
@@ -238,3 +239,8 @@ void Map::advance() {
     //create();
 }
 */
+
+static void saveScore()
+{
+
+}
