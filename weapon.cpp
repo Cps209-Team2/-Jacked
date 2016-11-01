@@ -4,7 +4,7 @@
 
 void Weapon::execute() //creates either melee or //ranged hitbox
 {
-    qDebug() << "pow pow" << endl;
+    qDebug() << "teleport *magic*" << endl;
 }
 
 

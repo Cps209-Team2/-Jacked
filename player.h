@@ -15,17 +15,21 @@ class Player: public Entity
     int jumpSpeed;
     QString name;
     double score = 0;
+    int DMG;
 
 public:
     Player(int initx, int inity, Weapon *item);
     Player() {}
 
+    bool isPlayer() { return true; }
+    bool isEnemy() { return false; }
     void moveLeft();
     void moveRight();
 
     bool jump();
     void fall(int y);
 
+    int getHP() { return HP; }
     int getJS() { return jumpSpeed; }
     void resetJS(int x) { jumpSpeed = 5; }
 

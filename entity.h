@@ -10,6 +10,7 @@ class Entity
 protected:
     QPoint pos;
     QRect *body;
+    int HP;
 
 public:
     Entity();
@@ -20,6 +21,11 @@ public:
     virtual void moveLeft(){ }
     virtual void moveRight() { }
     virtual QPoint getPos() { return pos; }
+    virtual bool isEnemy() { return false; }
+    virtual bool isPlayer() { return false; }
+
+    virtual void takeDmg(int x) { HP -= x; }
+    virtual int getDmg() { }
 
     virtual ~Entity();
 };

@@ -14,6 +14,7 @@
 #include "QString"
 #include "map.h"
 #include "collision.h"
+#include <QMessageBox>
 
 namespace constants
 {
@@ -33,10 +34,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
 
     world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
-    for(auto i : world->getEnemies())
-    {
-        qDebug() << "1" << endl;
-    }
+
     /*
     for(int i = 0;i < world->getEnemies().size();i++)
     {
@@ -83,6 +81,13 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
 void gameWidget::frame()
 {
+    if(player->getHP() == 0)
+    {
+        QMessageBox dieBox;
+        dieBox.setText("Game Over!");
+        dieBox.exec();
+        delete this;
+    }
     if(player->getPos().y() == 0)
     { isGrounded = true; }
 
@@ -179,6 +184,10 @@ void gameWidget::keyReleaseEvent(QKeyEvent *event)
     else if(event->key() == Qt::Key_Up)
     {
         jump = true;
+    }
+    else if(event->key() == Qt::Key_Space)
+    {
+
     }
 }
 
