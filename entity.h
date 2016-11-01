@@ -21,7 +21,7 @@ public:
     virtual void moveRight() { }
     virtual QPoint getPos() { return pos; }
 
-    ~Entity() { }
+    virtual ~Entity();
 };
 
 #endif // ENTITY_H

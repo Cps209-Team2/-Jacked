@@ -7,5 +7,5 @@ void Projectile::hit()
 
 void fly()
 {
-    //No idea what this does...
+    //launches ranged hitbox
 }

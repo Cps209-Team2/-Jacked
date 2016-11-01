@@ -14,7 +14,6 @@ class Cheater: public Entity
 
 public:
     Cheater(int initx, int inity, Weapon *item);
-    ~Cheater();
     void moveLeft();
     void moveRight();
 
@@ -26,5 +25,7 @@ public:
 
     Weapon* getWeapon() { return weapon; }
     void save();
+
+    ~Cheater() { delete weapon; }
 };
 #endif // CHEATER_H

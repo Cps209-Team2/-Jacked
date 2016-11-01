@@ -17,7 +17,7 @@
 
 namespace constants
 {
-    int gravity = 4;
+    int gravity = 3;
 }
 
 gameWidget::gameWidget(QMainWindow *parent) :
@@ -30,26 +30,51 @@ gameWidget::gameWidget(QMainWindow *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
     timer->setInterval(40);
     timer->start();
+
+
     world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    for(auto i : world->getEnemies())
+    {
+        qDebug() << "1" << endl;
+    }
+    /*
+    for(int i = 0;i < world->getEnemies().size();i++)
+    {
+        elbls.push_back(new MovableLabel(this, world->getEnemies().at(i)));
+    }
 
     for (unsigned i = 0; i < world->getEnemies().size(); ++i)
     {
+        qDebug() << "creating enemy label..." << endl;
         elbl = new MovableLabel(this, world->getEnemies().at(i));
-        QPixmap img(":/Images/tempEnemy.png");
+        qDebug() << "created label" << endl;
+        QPixmap img(":/Images/robot.png");
         elbl->setPixmap(img.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
         elbl->updatePos();
+        qDebug() << "created enemy" << endl;
         elbls.push_back(elbl);
+        qDebug() << "stored enemy" << endl;
+
     }
+    //*/
 
 
-
+    qDebug() << "creating player" << endl;
     player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
     lbl = new MovableLabel(this,player);
     QPixmap pix(":/Images/tempPlayer.png");
     lbl->setPixmap(pix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
     lbl->updatePos();
+    qDebug() << "created player" << endl;
 
-    enemy = new Enemy(400,600,new Weapon(QString::fromLocal8Bit("fist")));
+    qDebug() << "creating enemies" << endl;
+    enemy = new Enemy(600,600,new Weapon(QString::fromLocal8Bit("fist")), player);
+    qDebug() << "created enemies" << endl;
+    elbl = new MovableLabel(this,enemy);
+    QPixmap epix(":/Images/robot.png");
+    elbl->setPixmap(epix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+    elbl->updatePos();
+    qDebug() << "created elbl" << endl;
 
     this->movLeft = false;
     this->movRight = false;
@@ -58,15 +83,30 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
 void gameWidget::frame()
 {
-    this->move();
+    if(player->getPos().y() == 0)
+    { isGrounded = true; }
+
+    this->playerMove();
+    this->enemyMove();
+
+    Collision bounce(this->player,this->enemy);
+
+    player->setX(player->getPos().x() + bounce.checkCollision());
+    //enemy->setX(enemy->getPos().x() + bounce.checkCollision());
+
+    /*
     for(auto i : world->getEnemies())
     {
         Collision check(world->_Player(), i);
         world->_Player()->setX(world->getPlayer().getPos().x() + check.checkCollision());
     }
+    for(Enemy *i : world->getEnemies())
+    {
+        i->move();
+    }*/
 }
 
-void gameWidget::move()
+void gameWidget::playerMove()
 {
     if(movLeft)
     {
@@ -78,6 +118,17 @@ void gameWidget::move()
     }
 
     lbl->updatePos();
+
+    if(jump)
+    {
+        player->jump();
+    }
+}
+
+void gameWidget::enemyMove()
+{
+    enemy->move();
+    elbl->updatePos();
 }
 
 void gameWidget::keyPressEvent(QKeyEvent *event)
@@ -87,12 +138,6 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         if(player->getPos().x() >= 20)
         {
             this->movLeft = true;
-            /*
-            player->moveLeft();
-            lbl->updatePos();
-            enemy->moveRight();
-            elbl->updatePos();
-            */
         }
     }
     else if(event->key() == Qt::Key_Right)
@@ -100,20 +145,23 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         if(player->getPos().x() <= 1004)
         {
             this->movRight = true;
-            /*
-            player->moveRight();
-            lbl->updatePos();
-            enemy->moveLeft();
-            elbl->updatePos();
-            */
         }
     }
     else if(event->key() == Qt::Key_Space)
     {
         player->getWeapon()->execute();
+        if(player->getPos().x() > 350)
+        {
+            player->setX(50);
+        }
+        else
+        {
+            player->setX((650));
+        }
     }
     else if(event->key() == Qt::Key_Up)
     {
+        isGrounded = false;
         jump = true;
     }
 }
@@ -137,5 +185,11 @@ void gameWidget::keyReleaseEvent(QKeyEvent *event)
 gameWidget::~gameWidget()
 {
     timer->stop();
+    delete timer;
     delete ui;
+    delete world;
+    delete player;
+    delete enemy;
+    lbl->deleteLater();
+    elbl->deleteLater();
 }

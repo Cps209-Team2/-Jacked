@@ -49,15 +49,19 @@ bool Player::jump()
         --jumpSpeed;
         return true;
     }
-    else if(jumpSpeed <= 0)
+    else if(jumpSpeed == 0)
     {
         jumpSpeed == 5;
         return false;
     }
 }
 
-void Player::fall(int x)
+void Player::fall(int y)
 {
-    pos.setY(pos.y() + x);
+    pos.setY(pos.y() + y);
 }
 
+Player::~Player()
+{
+    delete this->weapon;
+}

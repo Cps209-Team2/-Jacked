@@ -24,13 +24,15 @@ public:
     void moveRight();
 
     bool jump();
-    void fall(int x);
+    void fall(int y);
 
     int getJS() { return jumpSpeed; }
     void resetJS(int x) { jumpSpeed = 5; }
 
     Weapon* getWeapon() { return weapon; }
     void saveScore(QFile *file);
+
+    ~Player();
     QString getName() { return name; }
     void setScore(double initScore);
     double getScore() { return score; }

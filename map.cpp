@@ -5,13 +5,13 @@
 #include "enemy.h"
 #include <QDebug>
 #include "player.h"
+#include "obstacle.h"
 
 using namespace std;
 
 Map::Map()
 {
-    height = 500;
-    width = 1000;
+
 }
 
 Map* Map::instance_ = nullptr;
@@ -201,16 +201,33 @@ void Map::processLevel(QString levels)
                     line = level.readLine();
                 }
 
-                //*
+
                 qDebug() << "x coordinate" << xPos;
                 qDebug() << "y coordinate" << yPos;
                 qDebug() << "weapon type = " << weapon;
-                //*/
-                Enemy *poser = new Enemy(xPos, yPos, new Weapon(weapon));
+
+                Enemy *poser = new Enemy(xPos, yPos, new Weapon(weapon),this->player);
                 Map::instance().getEnemies().push_back(poser);
+
                 //delete poser;
             }
         }
+    }
+    qDebug() << "finished" << endl;
+}
+
+
+Map::~Map()
+{
+    delete this->player;
+
+    for(Enemy *i : this->enemies)
+    {
+        delete i;
+    }
+    for(Obstacle *i : this->obstacles)
+    {
+        delete i;
     }
 }
 

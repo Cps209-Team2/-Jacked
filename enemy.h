@@ -2,12 +2,19 @@
 #define ENEMY_H
 #include "entity.h"
 #include "weapon.h"
+#include "player.h"
 
 class Enemy: public Entity
 {
+    Player *player;
     Weapon *weapon;
 public:
-    Enemy(int x, int y, Weapon *item);
+
+    Enemy(int x, int y, Weapon *item, Player *obj);
+    void move();
+    void moveLeft();
+    void moveRight();
+
     ~Enemy();
 
     Weapon* getWeapon() { return weapon; }
