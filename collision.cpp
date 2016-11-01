@@ -17,13 +17,13 @@ int Collision::checkCollision()
     {
         xChange = -1 * (a.x() + a.width() - b.x());
         crash = true;
-        qDebug() << "right" << endl;
+        //qDebug() << "right" << endl;
     }
     if(leftSide)
     {
         xChange = b.x() - a.x() + a.width();
         crash = true;
-        qDebug() << "left" << endl;
+        //qDebug() << "left" << endl;
     }
 
     return xChange;

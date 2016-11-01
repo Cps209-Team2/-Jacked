@@ -49,7 +49,7 @@ bool Player::jump()
         --jumpSpeed;
         return true;
     }
-    else if(jumpSpeed <= 0)
+    else if(jumpSpeed == 0)
     {
         jumpSpeed == 5;
         return false;

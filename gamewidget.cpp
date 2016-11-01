@@ -17,7 +17,7 @@
 
 namespace constants
 {
-    int gravity = 4;
+    int gravity = 3;
 }
 
 gameWidget::gameWidget(QMainWindow *parent) :
@@ -31,14 +31,24 @@ gameWidget::gameWidget(QMainWindow *parent) :
     timer->setInterval(40);
     timer->start();
 
+
     world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    for(auto i : world->getEnemies())
+    {
+        qDebug() << "1" << endl;
+    }
     /*
+    for(int i = 0;i < world->getEnemies().size();i++)
+    {
+        elbls.push_back(new MovableLabel(this, world->getEnemies().at(i)));
+    }
+
     for (unsigned i = 0; i < world->getEnemies().size(); ++i)
     {
         qDebug() << "creating enemy label..." << endl;
         elbl = new MovableLabel(this, world->getEnemies().at(i));
         qDebug() << "created label" << endl;
-        QPixmap img(":/Images/tempEnemy.png");
+        QPixmap img(":/Images/robot.png");
         elbl->setPixmap(img.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
         elbl->updatePos();
         qDebug() << "created enemy" << endl;
@@ -46,7 +56,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
         qDebug() << "stored enemy" << endl;
 
     }
-    */
+    //*/
 
 
     qDebug() << "creating player" << endl;
@@ -108,6 +118,11 @@ void gameWidget::playerMove()
     }
 
     lbl->updatePos();
+
+    if(jump)
+    {
+        player->jump();
+    }
 }
 
 void gameWidget::enemyMove()
