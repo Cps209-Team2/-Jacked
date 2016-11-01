@@ -94,6 +94,20 @@ void gameWidget::frame()
     this->playerMove();
     this->enemyMove();
 
+    /*
+    if(movLeft && hit && (enemy->getPos().x() - player->getPos().x() < 30))
+    {
+        enemy->takeDmg(player->getDmg());
+        qDebug() << "take that!" << endl;
+    }
+
+    else if(movRight && hit && (player->getPos().x() - enemy->getPos().x() < 30))
+    {
+        enemy->takeDmg((player->getDmg()));
+        qDebug() << "take that!" << endl;
+    }
+    */
+
     Collision bounce(this->player,this->enemy);
 
     player->setX(player->getPos().x() + bounce.checkCollision());
@@ -152,7 +166,7 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
             this->movRight = true;
         }
     }
-    else if(event->key() == Qt::Key_Space)
+    else if(event->key() == Qt::Key_Up)
     {
         player->getWeapon()->execute();
         if(player->getPos().x() > 350)
@@ -164,10 +178,9 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
             player->setX((650));
         }
     }
-    else if(event->key() == Qt::Key_Up)
+    else if(event->key() == Qt::Key_Space)
     {
-        isGrounded = false;
-        jump = true;
+        hit = true;
     }
 }
 
@@ -183,11 +196,11 @@ void gameWidget::keyReleaseEvent(QKeyEvent *event)
     }
     else if(event->key() == Qt::Key_Up)
     {
-        jump = true;
+
     }
     else if(event->key() == Qt::Key_Space)
     {
-
+        hit = false;
     }
 }
 

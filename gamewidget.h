@@ -35,6 +35,7 @@ private:
     bool movRight;
     bool jump;
     bool isGrounded;
+    bool hit;
 
 
 
