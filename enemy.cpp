@@ -1,3 +1,5 @@
+#include <QString>
+#include <QDebug>
 #include "enemy.h"
 
 Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
@@ -7,11 +9,19 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
     weapon = item;
     body = new QRect(pos.x(),pos.y(),80,80);
     player = obj;
+    if(item->getType() == QString::fromLocal8Bit("fist"))
+    { DMG = 5; qDebug() << item << endl; }
+    else
+    { DMG = 10; qDebug() << item << endl;}
 }
 
 void Enemy::move()
 {
-    if(player->getPos().x() < pos.x())
+    if(player == NULL)
+    {
+
+    }
+    else if(player->getPos().x() < pos.x())
     {
         this->moveLeft();
     }

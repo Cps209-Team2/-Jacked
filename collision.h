@@ -2,7 +2,9 @@
 #define COLLISION_H
 #include <QRect>
 #include <QDebug>
-#include <entity.h>
+#include "entity.h"
+#include "player.h"
+#include "enemy.h"
 
 class Collision
 {

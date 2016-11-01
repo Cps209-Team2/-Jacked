@@ -2,6 +2,7 @@
 #include "entity.h"
 #include <QRect>
 #include "collision.h"
+#include <QString>
 
 Player::Player(int initx, int inity, Weapon *item)
 {
@@ -11,6 +12,17 @@ Player::Player(int initx, int inity, Weapon *item)
     body = new QRect(pos.x(),pos.y(),80,80);
 
     jumpSpeed = 5;
+    HP = 30;
+    if(item->getType() == QString::fromLocal8Bit("fist"))
+    {
+        qDebug() << item->getType() << endl;
+        DMG = 10;
+    }
+    else
+    {
+        qDebug() << item->getType() << endl;
+        DMG = 15;
+    }
 }
 
 void Player::saveScore(QFile *file)

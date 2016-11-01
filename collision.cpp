@@ -15,15 +15,25 @@ int Collision::checkCollision()
 
     if(rightSide)
     {
-        xChange = -1 * (a.x() + a.width() - b.x());
+        xChange = -1 * (a.x() + a.width() - b.x()) - 65;
+        if(_this->isPlayer() && _that->isEnemy())
+        {
+            _this->takeDmg(5);
+        }
+
         crash = true;
-        //qDebug() << "right" << endl;
+        qDebug() << "ouch! -5 DMG" << endl;
     }
     if(leftSide)
     {
-        xChange = b.x() - a.x() + a.width();
+        xChange = b.x() - a.x() + a.width() + 65;
+        if(_this->isPlayer() && _that->isEnemy())
+        {
+            _this->takeDmg(5);
+        }
+
         crash = true;
-        //qDebug() << "left" << endl;
+        qDebug() << "ouch! -5 DMG" << endl;
     }
 
     return xChange;
