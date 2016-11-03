@@ -87,7 +87,6 @@ void Map::processLevel(QString levels)
 {
     QTextStream level(&levels);
     QString line;
-    QString section;
     QString levelStr;
     while (line != "*")
     {

@@ -17,6 +17,7 @@ public:
     void saveScore(Map& map);
     void saveWorld();
     void loadScores(QString filename);
+    void processScores(QString load);
 };
 
 #endif // SAVE_H

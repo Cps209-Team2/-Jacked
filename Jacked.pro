@@ -31,6 +31,7 @@ SOURCES += main.cpp\
     collision.cpp \
     save.cpp \
     playerlabel.cpp
+    escmenu.cpp
 
 HEADERS  += \
     saveload.h \
@@ -52,11 +53,13 @@ HEADERS  += \
     collision.h \
     save.h \
     playerlabel.h
+    escmenu.h
 
 FORMS    += \
     startwindow.ui \
     gamewidget.ui \
-    help.ui
+    help.ui \
+    escmenu.ui
 
 QMAKE_CXXFLAGS += -std=c++14
 
