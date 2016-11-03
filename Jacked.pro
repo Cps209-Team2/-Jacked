@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     help.cpp \
     collision.cpp \
     save.cpp \
-    playerlabel.cpp
+    playerlabel.cpp \
+    escmenu.cpp
     escmenu.cpp
 
 HEADERS  += \
@@ -52,7 +53,8 @@ HEADERS  += \
     help.h \
     collision.h \
     save.h \
-    playerlabel.h
+    playerlabel.h \
+    escmenu.h
     escmenu.h
 
 FORMS    += \
