@@ -11,8 +11,9 @@ Player::Player(int initx, int inity, Weapon *item)
     weapon = item;
     body = new QRect(pos.x(),pos.y(),80,80);
 
-    jumpSpeed = 5;
+    jumpSpeed = 7;
     HP = 30;
+
     if(item->getType() == QString::fromLocal8Bit("fist"))
     {
         qDebug() << item->getType() << endl;
@@ -63,9 +64,10 @@ bool Player::jump()
     }
     else if(jumpSpeed == 0)
     {
-        jumpSpeed == 5;
+        jumpSpeed = 7;
         return false;
     }
+    return false;
 }
 
 void Player::fall(int y)

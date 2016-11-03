@@ -16,6 +16,7 @@ class Player: public Entity
     QString name;
     double score = 0;
     int DMG;
+    int jumpHeight;
 
 public:
     Player(int initx, int inity, Weapon *item);

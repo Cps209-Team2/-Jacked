@@ -3,6 +3,7 @@
 #include <QTimer>
 #include <QDebug>
 #include <QKeyEvent>
+#include <QMessageBox>
 #include "gamewidget.h"
 #include "ui_gamewidget.h"
 #include "weapon.h"
@@ -14,7 +15,7 @@
 #include "QString"
 #include "map.h"
 #include "collision.h"
-#include <QMessageBox>
+#include "playerlabel.h"
 
 namespace constants
 {
@@ -59,24 +60,36 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
     qDebug() << "creating player" << endl;
     player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
-    lbl = new MovableLabel(this,player);
+    lbl = new MovableLabel(this,player, new QPixmap(":/Images/tempPlayer.png"));
+    lbl->updatePos();
+
+    /*
     QPixmap pix(":/Images/tempPlayer.png");
     lbl->setPixmap(pix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
-    lbl->updatePos();
+    */
+
+
+
     qDebug() << "created player" << endl;
 
     qDebug() << "creating enemies" << endl;
     enemy = new Enemy(600,600,new Weapon(QString::fromLocal8Bit("fist")), player);
     qDebug() << "created enemies" << endl;
-    elbl = new MovableLabel(this,enemy);
+    elbl = new MovableLabel(this,enemy, new QPixmap(":/Images/robot.png"));
+    elbl->updatePos();
+
+    /*
     QPixmap epix(":/Images/robot.png");
     elbl->setPixmap(epix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
-    elbl->updatePos();
+    */
+
     qDebug() << "created elbl" << endl;
 
     this->movLeft = false;
     this->movRight = false;
     this->jump = false;
+    this->falling = false;
+    this->isGrounded = false;
 }
 
 void gameWidget::frame()
@@ -88,29 +101,26 @@ void gameWidget::frame()
         dieBox.exec();
         delete this;
     }
+
+    if(player->getJS() == 0)
+    {
+        falling == true;
+    }
+
+
+    Collision bounce(this->player,this->enemy);
+    player->setX(player->getPos().x() + bounce.checkCollision());
+
+
     if(player->getPos().y() == 0)
-    { isGrounded = true; }
+    {
+        isGrounded = true;
+        falling = false;
+        constants::gravity = 1;
+    }
 
     this->playerMove();
     this->enemyMove();
-
-    /*
-    if(movLeft && hit && (enemy->getPos().x() - player->getPos().x() < 30))
-    {
-        enemy->takeDmg(player->getDmg());
-        qDebug() << "take that!" << endl;
-    }
-
-    else if(movRight && hit && (player->getPos().x() - enemy->getPos().x() < 30))
-    {
-        enemy->takeDmg((player->getDmg()));
-        qDebug() << "take that!" << endl;
-    }
-    */
-
-    Collision bounce(this->player,this->enemy);
-
-    player->setX(player->getPos().x() + bounce.checkCollision());
     //enemy->setX(enemy->getPos().x() + bounce.checkCollision());
 
     /*
@@ -129,19 +139,36 @@ void gameWidget::playerMove()
 {
     if(movLeft)
     {
-        player->moveLeft();
+        lbl->moveLeft();
     }
     else if(movRight)
     {
-        player->moveRight();
+        lbl->moveRight();
     }
 
-    lbl->updatePos();
-
-    if(jump)
+    //lbl->updatePos();
+/*
+    if(!falling && !isGrounded)
     {
         player->jump();
     }
+
+    if(lbl->getPos().y() > 0)
+    {
+        falling = true;
+    }
+    else if(lbl->getPos().y() < 0)
+    {
+        lbl->setY(0);
+        falling = false;
+    }
+    if(falling)
+    {
+        lbl->setY(lbl->getPos().y() + constants::gravity);
+        //player->getPos().setY(player->getPos().y() + constants::gravity);
+        ++constants::gravity;
+    }
+*/
 }
 
 void gameWidget::enemyMove()
@@ -168,6 +195,11 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key() == Qt::Key_Up)
     {
+        lbl->setY(lbl->getPos().y() - 200);
+        //falling = true;
+        //isGrounded = false;
+
+    /*
         player->getWeapon()->execute();
         if(player->getPos().x() > 350)
         {
@@ -177,6 +209,7 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         {
             player->setX((650));
         }
+    */
     }
     else if(event->key() == Qt::Key_Space)
     {
