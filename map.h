@@ -47,9 +47,9 @@ public:
 
     Player& getPlayer() { return *player; }
     Player* _Player() { return player; }
-
     std::vector<Enemy*>& getEnemies() {return enemies;}
     std::vector<Obstacle*>& getObstacles() { return obstacles; }
+    int getLevel() { return lvl; }
 
 
     ~Map();

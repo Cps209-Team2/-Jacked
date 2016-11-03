@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     cheater.cpp \
     help.cpp \
     collision.cpp \
-    save.cpp
+    save.cpp \
+    escmenu.cpp
 
 HEADERS  += \
     saveload.h \
@@ -49,12 +50,14 @@ HEADERS  += \
     cheater.h \
     help.h \
     collision.h \
-    save.h
+    save.h \
+    escmenu.h
 
 FORMS    += \
     startwindow.ui \
     gamewidget.ui \
-    help.ui
+    help.ui \
+    escmenu.ui
 
 QMAKE_CXXFLAGS += -std=c++14
 
