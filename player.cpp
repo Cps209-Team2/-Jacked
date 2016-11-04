@@ -9,9 +9,10 @@ Player::Player(int initx, int inity, Weapon *item)
     pos.setX(initx);
     pos.setY(inity);
     weapon = item;
-    body = new QRect(pos.x(),pos.y(),80,80);
+    body = new QRect(pos.x(),pos.y(),45,80);
 
-    jumpSpeed = 7;
+    jumpSpeed = 24;
+    jumpDuration = 0;
     HP = 30;
 
     if(item->getType() == QString::fromLocal8Bit("fist"))
@@ -42,13 +43,13 @@ void Player::saveState(QFile *file)
 */
 void Player::moveLeft()
 {
-    pos.setX(pos.x() - 6);
+    pos.setX(pos.x() - 13);
     body->moveTo(pos);
 }
 
 void Player::moveRight()
 {
-    pos.setX(pos.x() + 6);
+    pos.setX(pos.x() + 13);
     body->moveTo(pos);
 }
 
@@ -56,15 +57,17 @@ void Player::moveRight()
 // + and - seem backwards but are correct because y = 0 is at the top
 bool Player::jump()
 {
-    if(jumpSpeed > 0)
+    if(jumpDuration < 25)
     {
-        pos.setY(pos.y() - jumpSpeed);
-        --jumpSpeed;
+    pos.setY(pos.y() - jumpSpeed);
+        jumpSpeed -= 2;
+        ++jumpDuration;
         return true;
     }
-    else if(jumpSpeed == 0)
+    else
     {
-        jumpSpeed = 7;
+        jumpDuration = 0;
+        jumpSpeed = 24;
         return false;
     }
     return false;

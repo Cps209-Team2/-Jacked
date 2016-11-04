@@ -19,7 +19,7 @@
 
 namespace constants
 {
-    int gravity = 3;
+    int gravity = 1;
 }
 
 gameWidget::gameWidget(QMainWindow *parent) :
@@ -30,7 +30,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     ui->setupUi(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
-    timer->setInterval(40);
+    timer->setInterval(30);
     timer->start();
 
 
@@ -60,7 +60,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
     qDebug() << "creating player" << endl;
     player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
-    lbl = new MovableLabel(this,player, new QPixmap(":/Images/tempPlayer.png"));
+    lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
     lbl->updatePos();
 
     /*
@@ -94,13 +94,16 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
 void gameWidget::frame()
 {
-    if(player->getHP() == 0)
+    ++pixChange;
+
+    if(lbl->player()->getHP() == 0)
     {
         QMessageBox dieBox;
         dieBox.setText("Game Over!");
         dieBox.exec();
         delete this;
     }
+
 
     if(player->getJS() == 0)
     {
@@ -110,29 +113,21 @@ void gameWidget::frame()
 
     Collision bounce(this->player,this->enemy);
     player->setX(player->getPos().x() + bounce.checkCollision());
-
-
-    if(player->getPos().y() == 0)
+/*
+    if(lbl->getPos().y() > 0)
     {
-        isGrounded = true;
-        falling = false;
+        lbl->setY(lbl->getPos().y() + constants::gravity);
+        ++constants::gravity;
+    }
+
+    else if(lbl->getPos().y() == 0)
+    {
+        //isGrounded = true;
+        //falling = false;
         constants::gravity = 1;
     }
-
+*/
     this->playerMove();
-    this->enemyMove();
-    //enemy->setX(enemy->getPos().x() + bounce.checkCollision());
-
-    /*
-    for(auto i : world->getEnemies())
-    {
-        Collision check(world->_Player(), i);
-        world->_Player()->setX(world->getPlayer().getPos().x() + check.checkCollision());
-    }
-    for(Enemy *i : world->getEnemies())
-    {
-        i->move();
-    }*/
 }
 
 void gameWidget::playerMove()
@@ -145,7 +140,11 @@ void gameWidget::playerMove()
     {
         lbl->moveRight();
     }
-
+    if(jump)
+    {
+        jump = lbl->player()->jump();
+        lbl->updatePos();
+    }
     //lbl->updatePos();
 /*
     if(!falling && !isGrounded)
@@ -177,6 +176,17 @@ void gameWidget::enemyMove()
     elbl->updatePos();
 }
 
+void gameWidget::lblUpdate()
+{
+    if(movLeft)
+    {
+        if(pixChange == 16)
+        {
+            //lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
+        }
+    }
+}
+
 void gameWidget::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Left)
@@ -184,6 +194,7 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         if(player->getPos().x() >= 20)
         {
             this->movLeft = true;
+            this->movRight = false;
         }
     }
     else if(event->key() == Qt::Key_Right)
@@ -191,11 +202,13 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         if(player->getPos().x() <= 1004)
         {
             this->movRight = true;
+            this->movLeft = false;
         }
     }
     else if(event->key() == Qt::Key_Up)
     {
-        lbl->setY(lbl->getPos().y() - 200);
+        jump = true;
+        //lbl->setY(lbl->getPos().y() - 200);
         //falling = true;
         //isGrounded = false;
 

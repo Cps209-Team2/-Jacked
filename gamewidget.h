@@ -11,6 +11,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "map.h"
+#include "playerlabel.h"
 namespace Ui {
 class gameWidget;
 }
@@ -23,6 +24,7 @@ public:
     explicit gameWidget(QMainWindow *parent = 0);
     void playerMove();
     void enemyMove();
+    void lblUpdate();
     ~gameWidget();
     std::vector<MovableLabel*> getElbls() { return elbls;}
 
@@ -30,6 +32,8 @@ private:
     Ui::gameWidget *ui;
     QTimer *timer;
     int timerTest;
+
+    int pixChange;
 
     bool movLeft;
     bool movRight;
@@ -43,7 +47,7 @@ private:
     // testing variables
     Player *player;
     Enemy *enemy;
-    MovableLabel *lbl;
+    PlayerLabel *lbl;
     MovableLabel *elbl;
     std::vector<MovableLabel*> elbls;
     Map *world;

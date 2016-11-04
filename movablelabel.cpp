@@ -5,7 +5,11 @@
 void MovableLabel::updateImg(QPixmap *pix)
 {
     img = pix;
-    this->setPixmap(pix->scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+
+    if(obj->isPlayer())
+        this->setPixmap(pix->scaled(QSize(45,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+    else
+        this->setPixmap(pix->scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
 }
 
 void MovableLabel::setPos(QPoint pos)

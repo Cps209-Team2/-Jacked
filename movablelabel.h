@@ -10,9 +10,9 @@
 
 class MovableLabel:public QLabel
 {
+    Q_OBJECT
 
 protected:
-    Q_OBJECT
 
     QPixmap *img;
     Entity *obj;
@@ -20,20 +20,23 @@ protected:
 public:
     explicit MovableLabel(QWidget* parent, Entity* object, QPixmap* pix): QLabel(parent), obj(object), img(pix)
     {
-        this->setPixmap(pix->scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+        if(obj->isPlayer())
+            this->setPixmap(pix->scaled(QSize(45,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+        else
+            this->setPixmap(pix->scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
     }
-    void updatePos() { this->move(obj->getPos()); }
-    void updateImg(QPixmap*);
+    virtual void updatePos() { this->move(obj->getPos()); }
+    virtual void updateImg(QPixmap *);
 
-    void moveLeft() { obj->moveLeft(); this->updatePos(); }
-    void moveRight() { obj->moveRight(); this->updatePos(); }
+    virtual void moveLeft() { obj->moveLeft(); this->updatePos(); }
+    virtual void moveRight() { obj->moveRight(); this->updatePos(); }
 
-    QPoint getPos() { return obj->getPos(); }
-    void setPos(QPoint pos);
-    void setY(int y) { obj->setY(y); this->updatePos(); }
-    void setX(int x) { obj->setX(x); this->updatePos(); }
+    virtual QPoint getPos() { return obj->getPos(); }
+    virtual void setPos(QPoint pos);
+    virtual void setY(int y) { obj->setY(y); this->updatePos(); }
+    virtual void setX(int x) { obj->setX(x); this->updatePos(); }
 
-    QPixmap *pix() { return img; }
+    virtual QPixmap *pix() { return img; }
     Entity *object() { return obj; }
 
     virtual ~MovableLabel();
