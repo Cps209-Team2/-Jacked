@@ -38,12 +38,14 @@ void Enemy::move()
 
 void Enemy::moveLeft()
 {
-    pos.setX(pos.x() - 3);
+    pos.setX(pos.x() - 2);
+    this->faceLeft();
 }
 
 void Enemy::moveRight()
 {
-    pos.setX(pos.x() + 3);
+    pos.setX(pos.x() + 2);
+    this->faceRight();
 }
 
 Enemy::~Enemy()

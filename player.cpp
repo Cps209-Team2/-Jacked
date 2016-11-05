@@ -46,14 +46,14 @@ void Player::saveState(QFile *file)
 */
 void Player::moveLeft()
 {
-    pos.setX(pos.x() - 9);
+    pos.setX(pos.x() - 11);
     body->moveTo(pos);
     this->faceLeft();
 }
 
 void Player::moveRight()
 {
-    pos.setX(pos.x() + 9);
+    pos.setX(pos.x() + 11);
     body->moveTo(pos);
     this->faceRight();
 }

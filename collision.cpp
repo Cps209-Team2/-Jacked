@@ -15,7 +15,7 @@ int Collision::checkCollision()
 
     if(rightSide)
     {
-        xChange = -1 * (a.x() + a.width() - b.x()) - 65;
+        xChange = -1 * (a.x() + a.width() - b.x()) - 95;
         if(_this->isPlayer() && _that->isEnemy())
         {
             _this->takeDmg(5);
@@ -26,7 +26,7 @@ int Collision::checkCollision()
     }
     if(leftSide)
     {
-        xChange = b.x() - a.x() + a.width() + 65;
+        xChange = b.x() - a.x() + a.width() + 95;
         if(_this->isPlayer() && _that->isEnemy())
         {
             _this->takeDmg(5);

@@ -16,6 +16,7 @@
 #include "map.h"
 #include "collision.h"
 #include "playerlabel.h"
+#include "enemylabel.h"
 
 namespace constants
 {
@@ -48,7 +49,8 @@ gameWidget::gameWidget(QMainWindow *parent) :
     qDebug() << "creating enemies" << endl;
     enemy = new Enemy(600,600,new Weapon(QString::fromLocal8Bit("fist")), player);
     qDebug() << "created enemies" << endl;
-    elbl = new MovableLabel(this,enemy, new QPixmap(":/Images/robot.png"));
+    elbl = new MovableLabel(this,enemy, new QPixmap(":/Images/Images/robot_facingleft.png"));
+    elbl->show();
     elbl->updatePos();
 
     qDebug() << "created elbl" << endl;
@@ -79,6 +81,7 @@ void gameWidget::frame()
     player->setX(player->getPos().x() + bounce.checkCollision());
 
     this->playerMove();
+    this->enemyMove();
     this->lblUpdate();
 
 }
@@ -98,29 +101,6 @@ void gameWidget::playerMove()
         jump = lbl->player()->jump();
         lbl->updatePos();
     }
-    //lbl->updatePos();
-/*
-    if(!falling && !isGrounded)
-    {
-        player->jump();
-    }
-
-    if(lbl->getPos().y() > 0)
-    {
-        falling = true;
-    }
-    else if(lbl->getPos().y() < 0)
-    {
-        lbl->setY(0);
-        falling = false;
-    }
-    if(falling)
-    {
-        lbl->setY(lbl->getPos().y() + constants::gravity);
-        //player->getPos().setY(player->getPos().y() + constants::gravity);
-        ++constants::gravity;
-    }
-*/
 }
 
 void gameWidget::enemyMove()
@@ -145,41 +125,86 @@ void gameWidget::lblUpdate()
     //walking
     else if(movLeft)
     {
-        pixChange++;
-
         if(pixChange == 0)
         {
             lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
         }
-        else if(pixChange == 16)
+        else if(pixChange == 6)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (3).png"));
+        }
+        else if(pixChange == 13)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (4).png"));
+        }
+        else if(pixChange == 20)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (5).png"));
+        }
+        else if(pixChange == 27)
         {
             lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (6).png"));
         }
-        else if(pixChange == 32)
+        else if(pixChange == 34)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (7).png"));
+        }
+        else if(pixChange == 43)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (8).png"));
+        }
+        else if(pixChange == 50)
         {
             lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
             pixChange = -1;
         }
+        pixChange++;
     }
     else if(movRight)
     {
-        pixChange++;
-
         if(pixChange == 0)
         {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (2).png"));
+        }
+        else if(pixChange == 6)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (3).png"));
+        }
+        else if(pixChange == 13)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (4).png"));
+        }
+        else if(pixChange == 20)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (5).png"));
+        }
+        else if(pixChange == 27)
+        {
             lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (6).png"));
         }
-        else if(pixChange == 16)
+        else if(pixChange == 34)
         {
-            qDebug() << "1" << endl;
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (6).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (7).png"));
         }
-        else if(pixChange == 32)
+        else if(pixChange == 43)
         {
-            qDebug() << "2" << endl;
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
+        }
+        else if(pixChange == 50)
+        {
             lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (2).png"));
             pixChange = -1;
         }
+        pixChange++;
+    }
+
+    if(elbl->facingLeft())
+    {
+        elbl->updateImg(new QPixmap(":/Images/Images/robot_facingleft.png"));
+    }
+    else if(elbl->facingRight())
+    {
+        elbl->updateImg(new QPixmap(":/Images/Images/robot_facingright.png"));
     }
 }
 

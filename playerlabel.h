@@ -14,12 +14,6 @@ public:
     }
     Player *player() { return obj; }
 
-/*
-    void setImg(QPixmap *pix)
-    {
-        img = pix;
-    }
-*/
     ~PlayerLabel();
 };
 

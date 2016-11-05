@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     collision.cpp \
     save.cpp \
     playerlabel.cpp \
-    escmenu.cpp
+    escmenu.cpp \
+    enemylabel.cpp
     escmenu.cpp
 
 HEADERS  += \
@@ -54,7 +55,8 @@ HEADERS  += \
     collision.h \
     save.h \
     playerlabel.h \
-    escmenu.h
+    escmenu.h \
+    enemylabel.h
     escmenu.h
 
 FORMS    += \

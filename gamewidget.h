@@ -12,6 +12,8 @@
 #include "enemy.h"
 #include "map.h"
 #include "playerlabel.h"
+#include "enemylabel.h"
+
 namespace Ui {
 class gameWidget;
 }
