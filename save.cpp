@@ -3,9 +3,9 @@
 #include <QTextStream>
 
 
-void Save::saveScore(Map& map)
+void Save::saveScore(World *world)
 {
-    Player savePlayer = map.getPlayer();
+    Player savePlayer = world->getPlayer();
     QFile saveScore(filename);
     saveScore.open(QIODevice::WriteOnly | QIODevice::Text);
     savePlayer.saveScore(&saveScore);

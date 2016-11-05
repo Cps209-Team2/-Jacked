@@ -1,6 +1,6 @@
 #include "gamewindow.h"
 #include "startwindow.h"
-#include "map.h"
+#include "world.h"
 #include <QApplication>
 #include <iostream>
 #include <vector>
@@ -37,9 +37,9 @@ int main(int argc, char *argv[])
 void unitTests()
 {
     std::cout << "Entering Unit Tests" << std::endl;
-    Map& testMap = Map::instance();
+    World *testMap = World::instance();
 
-    //testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    testMap->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
     Weapon *item = new Weapon(QString::fromLocal8Bit("fist"));
     Player *mydude = new Player(45,45,item);
@@ -63,11 +63,11 @@ void unitTests()
     assert(mydude->getWeapon()->getType() == QString::fromLocal8Bit("fist"));//assert that weapons are properly set on entities
     assert(whataposer->getWeapon()->getType() == QString::fromLocal8Bit("fist"));
 
-    testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    testMap->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
-    assert(testMap.getPlayer().getPos().x() == 0);
-    assert(testMap.getPlayer().getPos().y() == 0);
-    testMap.getPlayer().setName(QString::fromLocal8Bit("Bert"));
+    assert(testMap->getPlayer().getPos().x() == 0);
+    assert(testMap->getPlayer().getPos().y() == 0);
+    testMap->getPlayer().setName(QString::fromLocal8Bit("Bert"));
     Save *save = new Save("SAVE.txt");
     save->saveScore(testMap);
     exit(0);

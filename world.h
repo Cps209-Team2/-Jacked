@@ -17,27 +17,28 @@
 #include "player.h"
 #include "enemy.h"
 
-class Map
+class World
 {
     int lvl;
     Player *player;
     std::vector<Obstacle*> obstacles;
     std::vector<Enemy*> enemies;
     int currentScore;
-    static Map* instance_;
+    static World *instance_;
 
-    explicit Map(const Map& that) = delete;
+    explicit World(const World& that) = delete;
+
 
 public:
-    Map();
-
+    World(){ }
     void setPlayer(Player *character) { player = character; } //spawns player
 
-    static Map& instance();
+    static World *instance();
     //void setPlayer(Entity *character) { player = character; } //spawns player
 
     void create();//initializes new lvl
     void loadFile(QString filename);//loads saved map
+    void addEnemy(Enemy *newEnemy) { enemies.push_back(newEnemy); }
     static void saveScore(QString filename);
     void processLevel(QString level); // adds all game variables to the vectors
     void eSpawn();//spawns enemies
@@ -52,7 +53,7 @@ public:
     int getLevel() { return lvl; }
 
 
-    ~Map();
+    ~World();
 };
 
 #endif // MAP_H

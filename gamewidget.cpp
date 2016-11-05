@@ -13,7 +13,7 @@
 #include "enemy.h"
 #include "weapon.h"
 #include "QString"
-#include "map.h"
+#include "world.h"
 #include "collision.h"
 #include "playerlabel.h"
 #include "enemylabel.h"
@@ -35,7 +35,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     timer->start();
 
     //testing if loadfile works
-    world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    //world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
     //test player
     qDebug() << "creating player" << endl;
@@ -79,6 +79,7 @@ void gameWidget::frame()
 
     Collision bounce(this->player,this->enemy);
     player->setX(player->getPos().x() + bounce.checkCollision());
+    lbl->updatePos();
 
     this->playerMove();
     this->enemyMove();

@@ -10,7 +10,7 @@
 #include <movablelabel.h>
 #include "player.h"
 #include "enemy.h"
-#include "map.h"
+#include "world.h"
 #include "playerlabel.h"
 #include "enemylabel.h"
 
@@ -53,7 +53,7 @@ private:
     PlayerLabel *lbl;
     MovableLabel *elbl;
     std::vector<MovableLabel*> elbls;
-    Map *world;
+    World *world;
 
 
 private slots:

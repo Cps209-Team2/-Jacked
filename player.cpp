@@ -20,12 +20,12 @@ Player::Player(int initx, int inity, Weapon *item)
 
     if(item->getType() == QString::fromLocal8Bit("fist"))
     {
-        qDebug() << item->getType() << endl;
+        //qDebug() << item->getType() << endl;
         DMG = 10;
     }
     else
     {
-        qDebug() << item->getType() << endl;
+        //qDebug() << item->getType() << endl;
         DMG = 15;
     }
 }

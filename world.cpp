@@ -1,6 +1,6 @@
 #include <fstream>
 #include <QMessageBox>
-#include "map.h"
+#include "world.h"
 #include "entity.h"
 #include "enemy.h"
 #include <QDebug>
@@ -9,18 +9,13 @@
 
 using namespace std;
 
-Map::Map()
-{
+World *World::instance_ = nullptr;
 
-}
-
-Map* Map::instance_ = nullptr;
-
-Map& Map::instance() {
+World *World::instance() {
   if (instance_ == nullptr) {
-      instance_ = new Map();
+      instance_ = new World();
   }
-  return *instance_;
+  return instance_;
 }
 //Singleton implementation
 
@@ -45,7 +40,7 @@ void Map::reset() {
 */
 //initializes new lvl
 
-void Map::create() {
+void World::create() {
     //this->reset();
     //Map::loadFile(1);
     int num = 1;
@@ -61,7 +56,7 @@ void Map::create() {
 
 
 //loads saved or default map
-void Map::loadFile(QString filename) {
+void World::loadFile(QString filename) {
 
        QFile inFile(filename);
 
@@ -76,14 +71,14 @@ void Map::loadFile(QString filename) {
 
        QTextStream in(&inFile);
        QString level = in.readAll();
-       //qDebug() << level;
+       qDebug() << level;
 
        processLevel(level);
        inFile.close();
 }
 
 // Puts all the game variables into the correct vector
-void Map::processLevel(QString levels)
+void World::processLevel(QString levels)
 {
     QTextStream level(&levels);
     QString line;
@@ -95,8 +90,6 @@ void Map::processLevel(QString levels)
         {
             break;
         }
-        //qDebug() << line;
-        //out << line;
 
         if (line == "#Jacked")
         {
@@ -163,7 +156,7 @@ void Map::processLevel(QString levels)
             qDebug() << "x coordinate" << xPos;
             qDebug() << "y coordinate" << yPos;
             qDebug() << weapon;
-            Map::instance().setPlayer(new Player(xPos, yPos, new Weapon(weapon)));
+            World::instance()->setPlayer(new Player(xPos, yPos, new Weapon(weapon)));
             //line = level.readLine();
         }
         else if (line == "#Enemies")
@@ -206,7 +199,9 @@ void Map::processLevel(QString levels)
                 qDebug() << "weapon type = " << weapon;
 
                 Enemy *poser = new Enemy(xPos, yPos, new Weapon(weapon),this->player);
-                Map::instance().getEnemies().push_back(poser);
+                qDebug() << "created enemy" << endl;
+
+                World::instance()->addEnemy(poser);
 
                 //delete poser;
             }
@@ -216,7 +211,7 @@ void Map::processLevel(QString levels)
 }
 
 
-Map::~Map()
+World::~World()
 {
     delete this->player;
 

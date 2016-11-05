@@ -1,7 +1,7 @@
 #include "escmenu.h"
 #include "ui_escmenu.h"
 #include "save.h"
-#include "map.h"
+#include "world.h"
 #include <QString>
 
 EscMenu::EscMenu(QWidget *parent) :
@@ -18,9 +18,9 @@ EscMenu::~EscMenu()
 
 void EscMenu::on_btnSave_clicked()
 {
-    Map *map = new Map();
+    World *world = new World();
     Save *save = new Save(QString::fromLocal8Bit("save.jkd"));
-    save->saveScore(*map);
+    save->saveScore(world);
     //save->saveWorld();
     delete save;
 }

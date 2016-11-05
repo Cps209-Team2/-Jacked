@@ -14,7 +14,6 @@ INCLUDEPATH += .
 CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 
 SOURCES += main.cpp\
-    map.cpp \
     highscore.cpp \
     weapon.cpp \
     melee.cpp \
@@ -32,12 +31,12 @@ SOURCES += main.cpp\
     save.cpp \
     playerlabel.cpp \
     escmenu.cpp \
-    enemylabel.cpp
+    enemylabel.cpp \
+    world.cpp
     escmenu.cpp
 
 HEADERS  += \
     saveload.h \
-    map.h \
     highscore.h \
     weapon.h \
     melee.h \
@@ -56,7 +55,8 @@ HEADERS  += \
     save.h \
     playerlabel.h \
     escmenu.h \
-    enemylabel.h
+    enemylabel.h \
+    world.h
     escmenu.h
 
 FORMS    += \
