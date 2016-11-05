@@ -33,60 +33,31 @@ gameWidget::gameWidget(QMainWindow *parent) :
     timer->setInterval(30);
     timer->start();
 
-
+    //testing if loadfile works
     world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
-    /*
-    for(int i = 0;i < world->getEnemies().size();i++)
-    {
-        elbls.push_back(new MovableLabel(this, world->getEnemies().at(i)));
-    }
-
-    for (unsigned i = 0; i < world->getEnemies().size(); ++i)
-    {
-        qDebug() << "creating enemy label..." << endl;
-        elbl = new MovableLabel(this, world->getEnemies().at(i));
-        qDebug() << "created label" << endl;
-        QPixmap img(":/Images/robot.png");
-        elbl->setPixmap(img.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
-        elbl->updatePos();
-        qDebug() << "created enemy" << endl;
-        elbls.push_back(elbl);
-        qDebug() << "stored enemy" << endl;
-
-    }
-    //*/
-
-
+    //test player
     qDebug() << "creating player" << endl;
     player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
     lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
     lbl->updatePos();
 
-    /*
-    QPixmap pix(":/Images/tempPlayer.png");
-    lbl->setPixmap(pix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
-    */
-
-
-
     qDebug() << "created player" << endl;
 
+    //test enemy
     qDebug() << "creating enemies" << endl;
     enemy = new Enemy(600,600,new Weapon(QString::fromLocal8Bit("fist")), player);
     qDebug() << "created enemies" << endl;
     elbl = new MovableLabel(this,enemy, new QPixmap(":/Images/robot.png"));
     elbl->updatePos();
 
-    /*
-    QPixmap epix(":/Images/robot.png");
-    elbl->setPixmap(epix.scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
-    */
-
     qDebug() << "created elbl" << endl;
 
+    //direction bools
     this->movLeft = false;
     this->movRight = false;
+
+    //jumping and falling bools
     this->jump = false;
     this->falling = false;
     this->isGrounded = false;
@@ -94,7 +65,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
 
 void gameWidget::frame()
 {
-    ++pixChange;
+    //++pixChange;
 
     if(lbl->player()->getHP() == 0)
     {
@@ -178,12 +149,28 @@ void gameWidget::enemyMove()
 
 void gameWidget::lblUpdate()
 {
-    if(movLeft)
+    // standing still
+    if((!movLeft && !movRight) && facingRight)
     {
+        lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
+    }
+    else if((!movLeft && !movRight) && facingLeft)
+    {
+        lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (8).png"));
+    }
+
+    //walking
+    else if(movLeft)
+    {
+        lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
         if(pixChange == 16)
         {
             //lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
         }
+    }
+    else if(movRight)
+    {
+        lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (2).png"));
     }
 }
 

@@ -15,6 +15,9 @@ Player::Player(int initx, int inity, Weapon *item)
     jumpDuration = 0;
     HP = 30;
 
+    facingRight = true;
+    facingLeft = false;
+
     if(item->getType() == QString::fromLocal8Bit("fist"))
     {
         qDebug() << item->getType() << endl;
