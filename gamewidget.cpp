@@ -61,11 +61,11 @@ gameWidget::gameWidget(QMainWindow *parent) :
     this->jump = false;
     this->falling = false;
     this->isGrounded = false;
+    pixChange = 0;
 }
 
 void gameWidget::frame()
 {
-    //++pixChange;
 
     if(lbl->player()->getHP() == 0)
     {
@@ -75,30 +75,12 @@ void gameWidget::frame()
         delete this;
     }
 
-
-    if(player->getJS() == 0)
-    {
-        falling == true;
-    }
-
-
     Collision bounce(this->player,this->enemy);
     player->setX(player->getPos().x() + bounce.checkCollision());
-/*
-    if(lbl->getPos().y() > 0)
-    {
-        lbl->setY(lbl->getPos().y() + constants::gravity);
-        ++constants::gravity;
-    }
 
-    else if(lbl->getPos().y() == 0)
-    {
-        //isGrounded = true;
-        //falling = false;
-        constants::gravity = 1;
-    }
-*/
     this->playerMove();
+    this->lblUpdate();
+
 }
 
 void gameWidget::playerMove()
@@ -149,12 +131,13 @@ void gameWidget::enemyMove()
 
 void gameWidget::lblUpdate()
 {
+
     // standing still
-    if((!movLeft && !movRight) && facingRight)
+    if(!movLeft && !movRight && lbl->facingRight())
     {
         lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
     }
-    else if((!movLeft && !movRight) && facingLeft)
+    else if(!movLeft && !movRight && lbl->facingLeft())
     {
         lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (8).png"));
     }
@@ -162,15 +145,41 @@ void gameWidget::lblUpdate()
     //walking
     else if(movLeft)
     {
-        lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
-        if(pixChange == 16)
+        pixChange++;
+
+        if(pixChange == 0)
         {
-            //lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
+        }
+        else if(pixChange == 16)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (6).png"));
+        }
+        else if(pixChange == 32)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
+            pixChange = -1;
         }
     }
     else if(movRight)
     {
-        lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (2).png"));
+        pixChange++;
+
+        if(pixChange == 0)
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (6).png"));
+        }
+        else if(pixChange == 16)
+        {
+            qDebug() << "1" << endl;
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (6).png"));
+        }
+        else if(pixChange == 32)
+        {
+            qDebug() << "2" << endl;
+            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (2).png"));
+            pixChange = -1;
+        }
     }
 }
 
@@ -178,19 +187,13 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Left)
     {
-        if(player->getPos().x() >= 20)
-        {
-            this->movLeft = true;
-            this->movRight = false;
-        }
+        this->movLeft = true;
+        this->movRight = false;
     }
     else if(event->key() == Qt::Key_Right)
     {
-        if(player->getPos().x() <= 1004)
-        {
-            this->movRight = true;
-            this->movLeft = false;
-        }
+        this->movRight = true;
+        this->movLeft = false;
     }
     else if(event->key() == Qt::Key_Up)
     {

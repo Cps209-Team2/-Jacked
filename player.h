@@ -17,8 +17,6 @@ class Player: public Entity
     double score = 0;
     int DMG;
     int jumpDuration;
-    bool facingRight;
-    bool facingLeft;
 
 
 public:
@@ -29,9 +27,6 @@ public:
     bool isEnemy() { return false; }
     void moveLeft();
     void moveRight();
-
-    void faceRight() { facingRight = true; facingLeft = false; }
-    void faceLeft() { facingLeft = true; facingRight = false; }
 
     bool jump();
     void fall(int y);

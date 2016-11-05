@@ -10,9 +10,11 @@ class Enemy: public Entity
     Weapon *weapon;
     bool enemy;
     int DMG;
+
 public:
 
     Enemy(int x, int y, Weapon *item, Player *obj);
+
     bool isEnemy() { return true; }
     bool isPlayer() { return false; }
 

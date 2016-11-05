@@ -25,11 +25,21 @@ public:
         else
             this->setPixmap(pix->scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
     }
-    virtual void updatePos() { this->move(obj->getPos()); }
+
     virtual void updateImg(QPixmap *);
 
+    // directly moves obj
+    virtual void updatePos() { this->move(obj->getPos()); }
+
+    // invokes obj directional move methods
     virtual void moveLeft() { obj->moveLeft(); this->updatePos(); }
     virtual void moveRight() { obj->moveRight(); this->updatePos(); }
+
+    // direction obj is facing, getters and setters
+    virtual void faceRight() { obj->faceRight(); }
+    virtual void faceLeft() { obj->faceLeft(); }
+    virtual bool facingRight() { return obj->facingRight(); }
+    virtual bool facingLeft() { return obj->facingLeft(); }
 
     virtual QPoint getPos() { return obj->getPos(); }
     virtual void setPos(QPoint pos);

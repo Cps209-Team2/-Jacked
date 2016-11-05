@@ -13,8 +13,7 @@ public:
         obj = dynamic_cast<Player *>(object);
     }
     Player *player() { return obj; }
-    void faceRight() { obj->faceRight(); }
-    void faceLeft() { obj->faceLeft(); }
+
 /*
     void setImg(QPixmap *pix)
     {

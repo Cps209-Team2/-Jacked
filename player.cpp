@@ -15,8 +15,8 @@ Player::Player(int initx, int inity, Weapon *item)
     jumpDuration = 0;
     HP = 30;
 
-    facingRight = true;
-    facingLeft = false;
+    right = true;
+    left = false;
 
     if(item->getType() == QString::fromLocal8Bit("fist"))
     {
@@ -46,14 +46,16 @@ void Player::saveState(QFile *file)
 */
 void Player::moveLeft()
 {
-    pos.setX(pos.x() - 13);
+    pos.setX(pos.x() - 9);
     body->moveTo(pos);
+    this->faceLeft();
 }
 
 void Player::moveRight()
 {
-    pos.setX(pos.x() + 13);
+    pos.setX(pos.x() + 9);
     body->moveTo(pos);
+    this->faceRight();
 }
 
 
