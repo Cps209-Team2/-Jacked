@@ -62,6 +62,14 @@ void Player::moveRight()
 // + and - seem backwards but are correct because y = 0 is at the top
 bool Player::jump()
 {
+    if(jumpDuration <= 13)
+    {
+        _rise = true;
+    }
+    else
+    {
+        _rise = false;
+    }
     if(jumpDuration < 25)
     {
     pos.setY(pos.y() - jumpSpeed);
@@ -73,23 +81,13 @@ bool Player::jump()
     {
         jumpDuration = 0;
         jumpSpeed = 24;
+        falling = false;
         return false;
     }
-    if(jumpDuration <= 13)
-    {
-        _rise = true;
-    }
-    else
-    {
-        _rise= false;
-    }
+
     return false;
 }
 
-void Player::fall(int y)
-{
-    pos.setY(pos.y() + y);
-}
 
 Player::~Player()
 {

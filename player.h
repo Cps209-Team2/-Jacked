@@ -18,6 +18,7 @@ class Player: public Entity
     int DMG;
     int jumpDuration;
     bool _rise;
+    bool falling;
 
 
 public:
@@ -30,8 +31,8 @@ public:
     void moveRight();
 
     bool jump();
-    void fall(int y);
     bool rise() { return _rise; }
+    bool isFalling() { return falling; }
 
     int getHP() { return HP; }
     int getJS() { return jumpSpeed; }

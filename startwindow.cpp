@@ -34,6 +34,8 @@ void StartWindow::on_btnCheat_clicked()
 void StartWindow::on_btnPlay_clicked()
 {
     ui->centralwidget->hide();
+    //game = new gameWidget(this);
+    //game->hide();
     game->show();
     game->setFocus();
     game->begin();
