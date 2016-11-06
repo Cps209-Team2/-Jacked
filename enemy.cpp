@@ -58,6 +58,13 @@ void Enemy::moveRight()
     this->faceRight();
 }
 
+void Enemy::saveState(QFile *file)
+{
+    QTextStream save(file);
+    save << "position:" << pos.x() << "," << pos.y() << endl;
+    save << "weapon:" << getWeapon() << "\n\n";
+}
+
 Enemy::~Enemy()
 {
 

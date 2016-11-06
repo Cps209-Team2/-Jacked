@@ -1,12 +1,13 @@
 #include "save.h"
 #include <QFile>
 #include <QTextStream>
+#include <vector>
 
 
 void Save::saveScore(World *world)
 {
     Player savePlayer = world->getPlayer();
-    QFile saveScore(filename);
+    QFile saveScore(scoreFile);
     saveScore.open(QIODevice::WriteOnly | QIODevice::Text);
     savePlayer.saveScore(&saveScore);
     QTextStream out(&saveScore);
@@ -14,16 +15,32 @@ void Save::saveScore(World *world)
     saveScore.close();
 }
 
-void saveWorld()
+void Save::saveWorld(World *world)
 {
-    //Not Implemented yet
     //TODO Save the state of the map, enemies, players, and obstacles
+    QFile saveState(worldFile); // Need to change to different filename!!
+    saveState.open(QIODevice::WriteOnly | QIODevice::Text);
+    Player savePlayer = world->getPlayer();
+    savePlayer.saveState(&saveState);
+    /*
+    Enemy saveEnemies;
+    vector<Enemy*> enemies = world->getEnemies();
+
+    for (int i = 0; i < enemies.size(); i++)
+    {
+        saveEnemies = enemies.at(i);
+        //Save enemies here
+    }
+*/
+    saveState.close();
 }
 
 void processScores(QString loadMe)
 {
     QTextStream load(&loadMe);
     QString line;
+    QString name;
+    int score;
 
     //while (line != "*")
     for (int i = 0; i < 10; i++) //Temporarily loads the first 10 high score entries
@@ -34,6 +51,12 @@ void processScores(QString loadMe)
 
         //TODO Places top 10 scores onto high scores window
         //We could also do the score sorting (and file cleanup?) here
+        QStringList lineColon = line.split(':');
+        name = lineColon.at(0);
+        score = lineColon.at(1).toInt();
+
+        //Put into High Score window
+
     }
 }
 

@@ -17,7 +17,7 @@ help::~help()
 
 void help::on_pbDone_clicked()
 {
-    emit helpClosed();
+    emit destroyed();
     this->close();
 
 }

@@ -20,7 +20,7 @@ public:
 private slots:
     void on_pbDone_clicked();
 signals:
-    void helpClosed();
+    void destroyed();
 
 private:
     Ui::help *ui;

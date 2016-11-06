@@ -37,6 +37,7 @@ public:
 
     Weapon* getWeapon() { return weapon; }
     void saveScore(QFile *file);
+    void saveState(QFile *file);
 
     ~Player();
     QString getName() { return name; }

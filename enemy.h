@@ -4,6 +4,8 @@
 #include "weapon.h"
 #include "player.h"
 #include "world.h"
+#include <QFile>
+#include <QTextStream>
 
 class Enemy: public Entity
 {
@@ -19,18 +21,17 @@ public:
 
     bool isEnemy() { return true; }
     bool isPlayer() { return false; }
-
     int getDMG() { return DMG; }
-
     void move();
-
     void moveLeft();
     void moveRight();
+    void saveState(QFile *file);
 
 
     //getters and setters
     Weapon* getWeapon() { return weapon; }
     void beginGame() {start = true;}
+
      ~Enemy();
 };
 

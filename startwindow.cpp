@@ -63,7 +63,7 @@ void StartWindow::on_helpClosed()
 {
 
     ui->btnCheat->show();
-    ui->btnCheat->setVisible(true);
+    ui->btnCheat->show();
     ui->btnPlay->show();
     ui->lblTitle->show();
     ui->pbHelp->show();

@@ -10,11 +10,12 @@
 
 class Save
 {
-    QString filename;
+    QString scoreFile;
+    QString worldFile;
 public:
-    Save(QString initFilename): filename(initFilename) {}
+    Save(QString initScoreFile, QString initWorldFile): scoreFile(initScoreFile), worldFile(initWorldFile) {}
     void saveScore(World *world);
-    void saveWorld();
+    void saveWorld(World *world);
     void loadScores(QString filename);
     void processScores(QString load);
 };
