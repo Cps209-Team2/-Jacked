@@ -201,7 +201,7 @@ void World::processLevel(QString levels)
                 Enemy *poser = new Enemy(xPos, yPos, new Weapon(weapon),this->player);
                 qDebug() << "created enemy" << endl;
 
-                World::instance()->addEnemy(poser);
+                //World::instance()->addEnemy(poser);
 
                 //delete poser;
             }
@@ -215,7 +215,7 @@ World::~World()
 {
     delete this->player;
 
-    for(Enemy *i : enemies)
+    for(Entity *i : enemies)
     {
         delete i;
     }

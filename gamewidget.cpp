@@ -48,6 +48,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     //test enemy
     qDebug() << "creating enemies" << endl;
     enemy = new Enemy(600,600,new Weapon(QString::fromLocal8Bit("fist")), player);
+    //World::addEnemy(enemy);
     qDebug() << "created enemies" << endl;
     elbl = new MovableLabel(this,enemy, new QPixmap(":/Images/Images/robot_facingleft.png"));
     elbl->show();
@@ -65,6 +66,15 @@ gameWidget::gameWidget(QMainWindow *parent) :
     this->isGrounded = false;
     pixChange = 0;
 }
+
+void gameWidget::begin() {
+    //for (int i = 0; i < World::instance()->getEnemies().size(); ++i) {
+    //World::instance()->getEnemies().at(i)->beginGame();
+    //}
+    enemy->beginGame();
+}
+
+
 
 void gameWidget::frame()
 {
