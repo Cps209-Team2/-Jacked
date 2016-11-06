@@ -10,6 +10,7 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
     weapon = item;
     body = new QRect(pos.x(),pos.y(),80,80);
     player = obj;
+    this->start = false;
     qDebug() <<  "assigned body and player obj" << endl;
     if(item->getType() == QString::fromLocal8Bit("fist"))
     { DMG = 5; }
@@ -24,6 +25,7 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
     {
         this->faceRight();
     }
+    //World::instance()->addEnemy(this);
 }
 
 void Enemy::move()
@@ -32,12 +34,12 @@ void Enemy::move()
     {
 
     }
-    else if(player->getPos().x() < pos.x())
+    else if(player->getPos().x() < pos.x() && this->start == true)
     {
         this->moveLeft();
         left = true;
     }
-    else
+    else if (this->start == true)
     {
         this->moveRight();
         right = true;

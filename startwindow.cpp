@@ -35,6 +35,8 @@ void StartWindow::on_btnPlay_clicked()
     ui->centralwidget->hide();
     game->show();
     game->setFocus();
+    game->begin();
+
     //start the game!!!
     //newGame.show();
 

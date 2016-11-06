@@ -29,6 +29,7 @@ public:
     void lblUpdate();
     ~gameWidget();
     std::vector<MovableLabel*> getElbls() { return elbls;}
+    void begin();
 
 private:
     Ui::gameWidget *ui;

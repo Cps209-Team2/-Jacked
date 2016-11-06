@@ -15,14 +15,13 @@
 #include "entity.h"
 #include "enemy.h"
 #include "player.h"
-#include "enemy.h"
 
 class World
 {
     int lvl;
     Player *player;
     std::vector<Obstacle*> obstacles;
-    std::vector<Enemy*> enemies;
+    std::vector<Entity*> enemies;
     int currentScore;
     static World *instance_;
 
@@ -36,9 +35,9 @@ public:
     static World *instance();
     //void setPlayer(Entity *character) { player = character; } //spawns player
 
-    void create();//initializes new lvl
+    void create();//initializes new lvlb
     void loadFile(QString filename);//loads saved map
-    void addEnemy(Enemy *newEnemy) { enemies.push_back(newEnemy); }
+    //void addEnemy(Enemy *newEnemy) { enemies.push_back(newEnemy); }
     static void saveScore(QString filename);
     void processLevel(QString level); // adds all game variables to the vectors
     void eSpawn();//spawns enemies
@@ -46,9 +45,11 @@ public:
     void reset(); //removes all enemy and obstacle objects and allows for a new level
     void addScore(int plus) { currentScore += plus; }
 
+
+    //getters
     Player& getPlayer() { return *player; }
     Player* _Player() { return player; }
-    std::vector<Enemy*>& getEnemies() {return enemies;}
+    std::vector<Entity*>& getEnemies() {return enemies;}
     std::vector<Obstacle*>& getObstacles() { return obstacles; }
     int getLevel() { return lvl; }
 
