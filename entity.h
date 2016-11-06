@@ -13,6 +13,7 @@ protected:
     int HP;
     bool left;
     bool right;
+    int DMG;
 
 public:
     Entity();
@@ -36,7 +37,7 @@ public:
     virtual bool isPlayer() { return false; }
 
     virtual void takeDmg(int x) { HP -= x; }
-    virtual int getDmg() { }
+    virtual int getDmg() { return DMG; }
 
     virtual ~Entity();
 };

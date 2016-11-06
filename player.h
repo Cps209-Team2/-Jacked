@@ -8,15 +8,16 @@
 #include <QString>
 #include "entity.h"
 #include "weapon.h"
+#include "collisioninfo.h"
 
 class Player: public Entity
 {
     Weapon *weapon;
-    int jumpSpeed;
     QString name;
     double score = 0;
-    int DMG;
     int jumpDuration;
+    int jumpSpeed;
+    CollisionInfo *knockback;
     bool _rise;
     bool falling;
 
@@ -40,6 +41,7 @@ public:
     void setJS(int y) { jumpSpeed = y; }
     void setJD(int y) { jumpDuration = y; }
 
+    void recoil(CollisionInfo *);
 
     Weapon* getWeapon() { return weapon; }
     void saveScore(QFile *file);

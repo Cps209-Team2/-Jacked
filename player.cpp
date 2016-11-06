@@ -88,6 +88,10 @@ bool Player::jump()
     return false;
 }
 
+void Player::recoil(CollisionInfo *)
+{
+
+}
 
 Player::~Player()
 {

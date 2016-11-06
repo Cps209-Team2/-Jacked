@@ -2,9 +2,11 @@
 #define COLLISION_H
 #include <QRect>
 #include <QDebug>
+#include <QPoint>
 #include "entity.h"
 #include "player.h"
 #include "enemy.h"
+#include "collisioninfo.h"
 
 class Collision
 {
@@ -12,6 +14,7 @@ class Collision
     Entity *_that;
     bool crash;
     int xChange;
+    QPoint *point;
 public:
     Collision();
 

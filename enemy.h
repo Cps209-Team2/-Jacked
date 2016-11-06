@@ -11,7 +11,6 @@ class Enemy: public Entity
     Weapon *weapon;
     bool enemy;
     bool start;
-    int DMG;
 
 public:
     Enemy() {}
@@ -19,8 +18,6 @@ public:
 
     bool isEnemy() { return true; }
     bool isPlayer() { return false; }
-
-    int getDMG() { return DMG; }
 
     void move();
 

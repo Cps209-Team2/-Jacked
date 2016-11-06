@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     playerlabel.cpp \
     escmenu.cpp \
     enemylabel.cpp \
-    world.cpp
+    world.cpp \
+    collisioninfo.cpp
     escmenu.cpp
 
 HEADERS  += \
@@ -56,7 +57,8 @@ HEADERS  += \
     playerlabel.h \
     escmenu.h \
     enemylabel.h \
-    world.h
+    world.h \
+    collisioninfo.h
     escmenu.h
 
 FORMS    += \
@@ -67,4 +69,5 @@ FORMS    += \
 
 QMAKE_CXXFLAGS += -std=c++14
 
-RESOURCES = resources.qrc
+RESOURCES = \
+    Images.qrc

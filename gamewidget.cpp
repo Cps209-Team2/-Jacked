@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QMessageBox>
+#include <QPoint>
 #include "gamewidget.h"
 #include "ui_gamewidget.h"
 #include "weapon.h"
@@ -79,10 +80,7 @@ void gameWidget::begin() {
 void gameWidget::frame()
 {
 
-    if(lbl->getPos().x() == 0)
-    {
-        isGrounded = true;
-    }
+    this->lblUpdate();
 
     if(lbl->player()->getHP() == 0)
     {
@@ -95,9 +93,8 @@ void gameWidget::frame()
     Collision bounce(this->player,this->enemy);
     player->setX(player->getPos().x() + bounce.checkCollision());
 
-    this->lblUpdate();
     this->playerMove();
-    this->enemyMove();
+    //this->enemyMove();
     this->lblUpdate();
 
 }
