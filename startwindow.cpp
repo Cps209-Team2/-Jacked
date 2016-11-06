@@ -14,8 +14,7 @@ StartWindow::StartWindow(QWidget *parent) :
     game->hide();
     helpScreen = new help(this);
     helpScreen->hide();
-    //help = new helpWidget(this);
-    //help->hide();
+    connect(helpScreen, SIGNAL(destroyed()), this, SLOT(on_helpClosed()));
 }
 
 StartWindow::~StartWindow()
@@ -44,12 +43,29 @@ void StartWindow::on_btnPlay_clicked()
 //show a helpful information window
 void StartWindow::on_pbHelp_clicked()
 {
-    ui->centralwidget->hide();
+    //ui->centralwidget->hide();
     helpScreen->show();
-    helpScreen->setFocus();
-    //QMessageBox msgHelp;
-    //msgHelp.setText("This is where the help screen will go.");
-   //msgHelp.exec();
+    //ui->btnCheat->hide();
+    ui->btnCheat->setVisible(false);
+    //ui->btnPlay->hide();
+    ui->btnPlay->setVisible(false);
+    //ui->lblTitle->hide();
+    ui->lblTitle->setVisible(false);
+    //ui->pbHelp->hide();
+    ui->pbHelp->setVisible(false);
+    //ui->pbHighscores->hide();
+    ui->pbHighscores->setVisible(false);
+}
+
+void StartWindow::on_helpClosed()
+{
+
+    ui->btnCheat->show();
+    ui->btnCheat->setVisible(true);
+    ui->btnPlay->show();
+    ui->lblTitle->show();
+    ui->pbHelp->show();
+    ui->pbHighscores->show();
 }
 
 void StartWindow::on_pbHighscores_clicked()

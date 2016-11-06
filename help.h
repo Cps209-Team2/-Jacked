@@ -11,6 +11,7 @@ class help;
 class help : public QWidget
 {
     Q_OBJECT
+    QWidget *parent;
 
 public:
     explicit help(QMainWindow *parent = 0);
@@ -18,6 +19,8 @@ public:
 
 private slots:
     void on_pbDone_clicked();
+signals:
+    void helpClosed();
 
 private:
     Ui::help *ui;

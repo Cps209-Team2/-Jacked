@@ -31,6 +31,8 @@ private slots:
 
     void on_btnCheat_clicked();
 
+    void on_helpClosed();
+
 private:
     gameWidget *game;
     help *helpScreen;
