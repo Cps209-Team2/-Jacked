@@ -1,14 +1,7 @@
 #include "highscore.h"
-#include <string>
 
-void writeFile() {
-}
-
-void showBestTime() {
-
-}
-
-
-std::string scoreList() {
-
+void highscore::addHighScore(int highScore)
+{
+    highScores.push_back(highScore);
+    highScores.erase(highScores.end());
 }

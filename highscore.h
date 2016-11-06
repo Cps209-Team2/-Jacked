@@ -6,17 +6,11 @@
 using namespace std;
 
 class highscore {
-
-    istream *file;
-    vector<int> scores;
-    int currentScore;
+    vector<int> highScores;
 public:
     highscore();
-    void addTime(){}
-    //void addDistance(int initDistance){distance = initDistance;}
-    void writeFile(string filename);
-    void showBestTime();
-    string scoreList();
+    vector<int>* getHighScore() { return& highScores; }
+    void addHighScore(int highScore);
 };
 
 #endif // HIGHSCORE_H

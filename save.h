@@ -12,7 +12,7 @@ class Save
 {
     QString filename;
 public:
-    Save(QString initFilename): filename(initFilename) {};
+    Save(QString initFilename): filename(initFilename) {}
     void saveScore(World *world);
     void saveWorld();
     void loadScores(QString filename);
