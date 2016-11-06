@@ -9,7 +9,7 @@ Player::Player(int initx, int inity, Weapon *item)
     pos.setX(initx);
     pos.setY(inity);
     weapon = item;
-    body = new QRect(pos.x(),pos.y(),45,80);
+    body = new QRect(pos.x(),pos.y(),68,80);
 
     jumpSpeed = 24;
     jumpDuration = 0;
@@ -64,6 +64,14 @@ void Player::moveRight()
 // + and - seem backwards but are correct because y = 0 is at the top
 bool Player::jump()
 {
+    if(jumpDuration <= 13)
+    {
+        _rise = true;
+    }
+    else
+    {
+        _rise = false;
+    }
     if(jumpDuration < 25)
     {
     pos.setY(pos.y() - jumpSpeed);
@@ -75,15 +83,13 @@ bool Player::jump()
     {
         jumpDuration = 0;
         jumpSpeed = 24;
+        falling = false;
         return false;
     }
+
     return false;
 }
 
-void Player::fall(int y)
-{
-    pos.setY(pos.y() + y);
-}
 
 Player::~Player()
 {

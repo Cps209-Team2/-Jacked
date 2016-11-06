@@ -15,22 +15,26 @@
         <file alias="cheat.png">Images/cheat.png</file>
         <file>Images/level1.png</file>
         <file>Images/help.png</file>
-        <file>Images/Player_LEFT (2).png</file>
-        <file>Images/Player_LEFT (6).png</file>
-        <file>Images/Player_LEFT (8).png</file>
-        <file>Images/Player_RIGHT (2).png</file>
-        <file>Images/Player_RIGHT (6).png</file>
-        <file>Images/Player_RIGHT (8).png</file>
-        <file>Images/Player_LEFT (3).png</file>
-        <file>Images/Player_LEFT (4).png</file>
-        <file>Images/Player_LEFT (5).png</file>
-        <file>Images/Player_LEFT (7).png</file>
-        <file>Images/Player_RIGHT (3).png</file>
-        <file>Images/Player_RIGHT (4).png</file>
-        <file>Images/Player_RIGHT (5).png</file>
-        <file>Images/Player_RIGHT (7).png</file>
         <file>Images/robot_facingleft.png</file>
         <file>Images/robot_facingright.png</file>
+        <file>Images/player_run_left (1).png</file>
+        <file>Images/player_run_left (2).png</file>
+        <file>Images/player_run_left (3).png</file>
+        <file>Images/player_run_left (4).png</file>
+        <file>Images/player_run_left (5).png</file>
+        <file>Images/player_run_left (6).png</file>
+        <file>Images/player_run_right (1).png</file>
+        <file>Images/player_run_right (2).png</file>
+        <file>Images/player_run_right (3).png</file>
+        <file>Images/player_run_right (4).png</file>
+        <file>Images/player_run_right (5).png</file>
+        <file>Images/player_run_right (6).png</file>
+        <file>Images/player_idle_left.png</file>
+        <file>Images/player_idle_right.png</file>
+        <file>Images/player_jump_left (fall).png</file>
+        <file>Images/player_jump_left (rise).png</file>
+        <file>Images/player_jump_right (fall).png</file>
+        <file>Images/player_jump_right (rise).png</file>
     </qresource>
     <qresource prefix="/Levels">
         <file alias="lvl1">DefaultLevels/lvl1.txt</file>

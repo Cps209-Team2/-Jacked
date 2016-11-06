@@ -31,7 +31,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     ui->setupUi(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
-    timer->setInterval(30);
+    timer->setInterval(28);
     timer->start();
 
     //testing if loadfile works
@@ -79,6 +79,11 @@ void gameWidget::begin() {
 void gameWidget::frame()
 {
 
+    if(lbl->getPos().x() == 0)
+    {
+        isGrounded = true;
+    }
+
     if(lbl->player()->getHP() == 0)
     {
         QMessageBox dieBox;
@@ -89,8 +94,8 @@ void gameWidget::frame()
 
     Collision bounce(this->player,this->enemy);
     player->setX(player->getPos().x() + bounce.checkCollision());
-    lbl->updatePos();
 
+    this->lblUpdate();
     this->playerMove();
     this->enemyMove();
     this->lblUpdate();
@@ -99,6 +104,7 @@ void gameWidget::frame()
 
 void gameWidget::playerMove()
 {
+
     if(movLeft)
     {
         lbl->moveLeft();
@@ -122,93 +128,104 @@ void gameWidget::enemyMove()
 
 void gameWidget::lblUpdate()
 {
+    //rising
+    if(jump)
+    {
+        if(lbl->facingRight())
+        {
+            if(lbl->player()->rise())
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_jump_right (rise).png"));
+            } else {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_jump_right (fall).png"));
+            }
+        }
+        else if(lbl->facingLeft())
+        {
+            if(lbl->player()->rise())
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_jump_left (rise).png"));
+            } else {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_jump_left (fall).png"));
+            }
+        }
+    }
+    else
+    {
+        // standing still
+        if(!movLeft && !movRight && lbl->facingRight() && !lbl->player()->rise())
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/player_idle_right.png"));
+        }
+        else if(!movLeft && !movRight && lbl->facingLeft() && !lbl->player()->rise())
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/player_idle_left.png"));
+        }
 
-    // standing still
-    if(!movLeft && !movRight && lbl->facingRight())
-    {
-        lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
-    }
-    else if(!movLeft && !movRight && lbl->facingLeft())
-    {
-        lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (8).png"));
-    }
+        //walking
+        else if(movLeft && !lbl->player()->rise())
+        {
+            if(pixChange == 0)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (1).png"));
+            }
+            else if(pixChange == 6)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (2).png"));
+            }
+            else if(pixChange == 13)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (3).png"));
+            }
+            else if(pixChange == 20)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (4).png"));
+            }
+            else if(pixChange == 27)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (5).png"));
+            }
+            else if(pixChange == 34)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (6).png"));
+                pixChange = -1;
+            }
 
-    //walking
-    else if(movLeft)
-    {
-        if(pixChange == 0)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
+            pixChange++;
         }
-        else if(pixChange == 6)
+        else if(movRight && !lbl->player()->rise())
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (3).png"));
-        }
-        else if(pixChange == 13)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (4).png"));
-        }
-        else if(pixChange == 20)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (5).png"));
-        }
-        else if(pixChange == 27)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (6).png"));
-        }
-        else if(pixChange == 34)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (7).png"));
-        }
-        else if(pixChange == 43)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (8).png"));
-        }
-        else if(pixChange == 50)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
-            pixChange = -1;
-        }
-        pixChange++;
-    }
-    else if(movRight)
-    {
-        if(pixChange == 0)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (2).png"));
-        }
-        else if(pixChange == 6)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (3).png"));
-        }
-        else if(pixChange == 13)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (4).png"));
-        }
-        else if(pixChange == 20)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (5).png"));
-        }
-        else if(pixChange == 27)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (6).png"));
-        }
-        else if(pixChange == 34)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (7).png"));
-        }
-        else if(pixChange == 43)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
-        }
-        else if(pixChange == 50)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (2).png"));
-            pixChange = -1;
-        }
-        pixChange++;
-    }
+            if(pixChange == 0)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (1).png"));
+            }
+            else if(pixChange == 6)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (2).png"));
+            }
+            else if(pixChange == 13)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (3).png"));
+            }
+            else if(pixChange == 20)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (4).png"));
+            }
+            else if(pixChange == 27)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (5).png"));
+            }
+            else if(pixChange == 34)
+            {
+                lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (6).png"));
+                pixChange = -1;
+            }
 
+            pixChange++;
+        }
+
+    }
+    //enemy
     if(elbl->facingLeft())
     {
         elbl->updateImg(new QPixmap(":/Images/Images/robot_facingleft.png"));
@@ -234,6 +251,7 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
     else if(event->key() == Qt::Key_Up)
     {
         jump = true;
+        isGrounded = false;
         //lbl->setY(lbl->getPos().y() - 200);
         //falling = true;
         //isGrounded = false;
