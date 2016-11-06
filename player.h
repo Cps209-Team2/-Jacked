@@ -17,6 +17,7 @@ class Player: public Entity
     double score = 0;
     int DMG;
     int jumpDuration;
+    bool _rise;
 
 
 public:
@@ -30,10 +31,14 @@ public:
 
     bool jump();
     void fall(int y);
+    bool rise() { return _rise; }
 
     int getHP() { return HP; }
     int getJS() { return jumpSpeed; }
-    void resetJS(int x) { jumpSpeed = 5; }
+    int getJD() { return jumpDuration; }
+    void setJS(int y) { jumpSpeed = y; }
+    void setJD(int y) { jumpDuration = y; }
+
 
     Weapon* getWeapon() { return weapon; }
     void saveScore(QFile *file);

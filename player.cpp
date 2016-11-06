@@ -9,7 +9,7 @@ Player::Player(int initx, int inity, Weapon *item)
     pos.setX(initx);
     pos.setY(inity);
     weapon = item;
-    body = new QRect(pos.x(),pos.y(),45,80);
+    body = new QRect(pos.x(),pos.y(),68,80);
 
     jumpSpeed = 24;
     jumpDuration = 0;
@@ -74,6 +74,14 @@ bool Player::jump()
         jumpDuration = 0;
         jumpSpeed = 24;
         return false;
+    }
+    if(jumpDuration <= 13)
+    {
+        _rise = true;
+    }
+    else
+    {
+        _rise= false;
     }
     return false;
 }

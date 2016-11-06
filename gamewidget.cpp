@@ -89,6 +89,7 @@ void gameWidget::frame()
 
 void gameWidget::playerMove()
 {
+
     if(movLeft)
     {
         lbl->moveLeft();
@@ -116,11 +117,11 @@ void gameWidget::lblUpdate()
     // standing still
     if(!movLeft && !movRight && lbl->facingRight())
     {
-        lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
+        lbl->updateImg(new QPixmap(":/Images/Images/player_idle_right.png"));
     }
     else if(!movLeft && !movRight && lbl->facingLeft())
     {
-        lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (8).png"));
+        lbl->updateImg(new QPixmap(":/Images/Images/player_idle_left.png"));
     }
 
     //walking
@@ -128,74 +129,61 @@ void gameWidget::lblUpdate()
     {
         if(pixChange == 0)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (1).png"));
         }
         else if(pixChange == 6)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (3).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (2).png"));
         }
         else if(pixChange == 13)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (4).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (3).png"));
         }
         else if(pixChange == 20)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (5).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (4).png"));
         }
         else if(pixChange == 27)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (6).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (5).png"));
         }
         else if(pixChange == 34)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (7).png"));
-        }
-        else if(pixChange == 43)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (8).png"));
-        }
-        else if(pixChange == 50)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_LEFT (2).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (6).png"));
             pixChange = -1;
         }
+
         pixChange++;
     }
+    //walking
     else if(movRight)
     {
         if(pixChange == 0)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (2).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (1).png"));
         }
         else if(pixChange == 6)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (3).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (2).png"));
         }
         else if(pixChange == 13)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (4).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (3).png"));
         }
         else if(pixChange == 20)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (5).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (4).png"));
         }
         else if(pixChange == 27)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (6).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (5).png"));
         }
         else if(pixChange == 34)
         {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (7).png"));
-        }
-        else if(pixChange == 43)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
-        }
-        else if(pixChange == 50)
-        {
-            lbl->updateImg(new QPixmap(":/Images/Images/Player_RIGHT (2).png"));
+            lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (6).png"));
             pixChange = -1;
         }
+
         pixChange++;
     }
 
