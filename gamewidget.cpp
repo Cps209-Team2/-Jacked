@@ -94,8 +94,8 @@ void gameWidget::frame()
 
     Collision bounce(this->player,this->enemy);
     player->setX(player->getPos().x() + bounce.checkCollision());
-    lbl->updatePos();
 
+    this->lblUpdate();
     this->playerMove();
     this->enemyMove();
     this->lblUpdate();
