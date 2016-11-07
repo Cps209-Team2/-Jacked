@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 #include <QPoint>
+#include <QPaintEvent>
 #include "gamewidget.h"
 #include "ui_gamewidget.h"
 #include "weapon.h"
@@ -41,7 +42,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     //test player
     qDebug() << "creating player" << endl;
     player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
-    lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/Player_RIGHT (8).png"));
+    lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/player_idle_right.png"));
     lbl->updatePos();
 
     qDebug() << "created player" << endl;
@@ -98,17 +99,28 @@ void gameWidget::frame()
 
 void gameWidget::playerMove()
 {
-    if(movLeft)
+    if(lbl->player()->isCrouching())
     {
-        lbl->moveLeft();
+
     }
-    else if(movRight)
+    else if(lbl->player()->isAttacking())
     {
-        lbl->moveRight();
+
     }
-    if(jump)
+    else
     {
-        jump = lbl->player()->jump();
+        if(movLeft)
+        {
+            lbl->moveLeft();
+        }
+        else if(movRight)
+        {
+            lbl->moveRight();
+        }
+        if(jump)
+        {
+            jump = lbl->player()->jump();
+        }
     }
 }
 
@@ -119,38 +131,48 @@ void gameWidget::enemyMove()
 
 void gameWidget::collide()
 {
-    Collision bounce(this->lbl->player(),this->elbl->object());
-    if(bounce.getData() != NULL)
+    Collision *bounce = new Collision(this->lbl->player(),this->elbl->object());
+    CollisionInfo *data(bounce->getData());
+    if(data->collide())
     {
-        CollisionInfo *data(bounce.getData());
-
         Entity *temp1 = data->getObj1();
         Entity *temp2 = data->getObj2();
 
-        if(temp1->isPlayer())
+        if(!dynamic_cast<Player *>(temp1)->isAttacking())
         {
-            temp1->setX(temp1->getPos().x() + bounce.getData()->getX());
-            temp1->setY(temp1->getPos().y() - bounce.getData()->getY());
-            //lbl->updatePos();
-            if(dynamic_cast<Player *>(temp1)->attack())
+            qDebug() << "collide" << endl;
+            if(temp1->isPlayer())
             {
-                qDebug() << "ATTACK" << endl;
-            }
-/*
-            if(temp2->isEnemy() && !dynamic_cast<Player*>(temp1)->isAttacking() && data->collide())
-            {
-                if(temp2->facingRight())
+                if(!dynamic_cast<Player *>(temp1)->isCrouching())
                 {
-                    qDebug() << "right" << endl;
-                    temp1->setX(temp1->getPos().x() + data->getX() + 95);
-                }
-                else
-                {
-                    qDebug() << "left" << endl;
-                    temp1->setX(temp1->getPos().x() + data->getX() + 95);
+                    temp1->setX(temp1->getPos().x() + bounce->getData()->getX());
+                    temp1->setY(temp1->getPos().y() - bounce->getData()->getY());
+                    //lbl->updatePos();
+                    if(dynamic_cast<Player *>(temp1)->attack())
+                    {
+                        qDebug() << "ATTACK" << endl;
+                    }
+        /*
+                    if(temp2->isEnemy() && !dynamic_cast<Player*>(temp1)->isAttacking() && data->collide())
+                    {
+                        if(temp2->facingRight())
+                        {
+                            qDebug() << "right" << endl;
+                            temp1->setX(temp1->getPos().x() + data->getX() + 95);
+                        }
+                        else
+                        {
+                            qDebug() << "left" << endl;
+                            temp1->setX(temp1->getPos().x() + data->getX() + 95);
+                        }
+                    }
+        */
                 }
             }
-*/
+        }
+        else
+        {
+            qDebug() << "no collide" << endl;
         }
     }
 
@@ -158,7 +180,26 @@ void gameWidget::collide()
 
 void gameWidget::lblUpdate()
 {
-    //rising
+    if(lbl->player()->isAttacking())
+    {
+        if(lbl->player()->facingLeft())
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/player_attack_left (1).png"));
+        }
+        else if(lbl->player()->facingRight())
+        {
+            lbl->updateImg(new QPixmap(":/Images/Images/player_attack_right (1).png"));
+        }
+    }
+    else if(lbl->player()->isCrouching())
+    {
+        if(lbl->player()->facingLeft())
+            lbl->updateImg(new QPixmap(":/Images/Images/player_crouch_left.png"));
+        else
+            lbl->updateImg(new QPixmap(":/Images/Images/player_crouch_right.png"));
+    }
+    else
+    {
     if(jump && !lbl->player()->isAttacking())
     {
         if(lbl->facingRight())
@@ -255,24 +296,21 @@ void gameWidget::lblUpdate()
         }
 
     }
+    }
 
 
     //enemy
     if(elbl->facingLeft())
     {
-        /*
-        elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
-        */
-
         if(enemyPixChange == 0)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
         }
-        else if(enemyPixChange == 10)
+        else if(enemyPixChange == 8)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
         }
-        else if(enemyPixChange == 20)
+        else if(enemyPixChange == 16)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
             enemyPixChange = -1;
@@ -285,20 +323,20 @@ void gameWidget::lblUpdate()
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
         }
-        else if(enemyPixChange == 10)
+        else if(enemyPixChange == 8)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (2).png"));
         }
-        else if(enemyPixChange == 20)
+        else if(enemyPixChange == 16)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
             enemyPixChange = -1;
         }
     }
+    enemyPixChange++;
 
     lbl->updatePos();
     elbl->updatePos();
-    enemyPixChange++;
 }
 
 void gameWidget::keyPressEvent(QKeyEvent *event)
@@ -338,6 +376,10 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         qDebug() << "atk" << endl;
         lbl->player()->setAttack(true);
     }
+    else if(event->key() == Qt::Key_Down)
+    {
+        lbl->player()->crouch();
+    }
 }
 
 void gameWidget::keyReleaseEvent(QKeyEvent *event)
@@ -358,6 +400,10 @@ void gameWidget::keyReleaseEvent(QKeyEvent *event)
     {
         qDebug() << "release atk" << endl;
         lbl->player()->setAttack(false);
+    }
+    else if(event->key() == Qt::Key_Down)
+    {
+        lbl->player()->stand();
     }
 }
 

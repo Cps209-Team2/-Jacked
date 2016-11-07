@@ -39,6 +39,11 @@
         <file>Images/enemy_left (2).png</file>
         <file>Images/enemy_right (1).png</file>
         <file>Images/enemy_right (2).png</file>
+        <file>Images/player_crouch_left.png</file>
+        <file>Images/player_crouch_right.png</file>
+        <file>Images/lvl1_background.png</file>
+        <file>Images/player_attack_left (1).png</file>
+        <file>Images/player_attack_right (1).png</file>
     </qresource>
     <qresource prefix="/Levels">
         <file alias="lvl1">DefaultLevels/lvl1.txt</file>
