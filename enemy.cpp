@@ -34,13 +34,16 @@ void Enemy::move()
     {
 
     }
-    else if(player->getPos().x() < pos.x() && this->start == true)
+    if(this->start == true)
     {
-        this->moveLeft();
-    }
-    else if (this->start == true)
-    {
-        this->moveRight();
+        if(player->getPos().x() < pos.x())
+        {
+            this->moveLeft();
+        }
+        else
+        {
+            this->moveRight();
+        }
     }
 }
 

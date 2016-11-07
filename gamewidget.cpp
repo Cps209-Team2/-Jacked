@@ -131,9 +131,10 @@ void gameWidget::collide()
         {
             temp1->setX(temp1->getPos().x() + bounce.getData()->getX());
             temp1->setY(temp1->getPos().y() - bounce.getData()->getY());
+            //lbl->updatePos();
             if(dynamic_cast<Player *>(temp1)->attack())
             {
-                qDebug() << "test" << endl;
+                qDebug() << "ATTACK" << endl;
             }
 /*
             if(temp2->isEnemy() && !dynamic_cast<Player*>(temp1)->isAttacking() && data->collide())
@@ -198,23 +199,23 @@ void gameWidget::lblUpdate()
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (1).png"));
             }
-            else if(pixChange == 6)
+            else if(pixChange == 4)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (2).png"));
             }
-            else if(pixChange == 13)
+            else if(pixChange == 9)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (3).png"));
             }
-            else if(pixChange == 20)
+            else if(pixChange == 14)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (4).png"));
             }
-            else if(pixChange == 27)
+            else if(pixChange == 19)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (5).png"));
             }
-            else if(pixChange == 34)
+            else if(pixChange == 24)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_left (6).png"));
                 pixChange = -1;
@@ -228,23 +229,23 @@ void gameWidget::lblUpdate()
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (1).png"));
             }
-            else if(pixChange == 6)
+            else if(pixChange == 4)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (2).png"));
             }
-            else if(pixChange == 13)
+            else if(pixChange == 9)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (3).png"));
             }
-            else if(pixChange == 20)
+            else if(pixChange == 14)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (4).png"));
             }
-            else if(pixChange == 27)
+            else if(pixChange == 19)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (5).png"));
             }
-            else if(pixChange == 34)
+            else if(pixChange == 24)
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_run_right (6).png"));
                 pixChange = -1;
@@ -259,40 +260,45 @@ void gameWidget::lblUpdate()
     //enemy
     if(elbl->facingLeft())
     {
-        elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
         /*
-        elbl->updateImg(new QPixmap(":/Images/Images/robot_facingleft.png"));
+        elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
+        */
 
         if(enemyPixChange == 0)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
         }
-        else if(enemyPixChange == 30)
+        else if(enemyPixChange == 10)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
-            enemyPixChange = 0;
         }
-        */
+        else if(enemyPixChange == 20)
+        {
+            elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
+            enemyPixChange = -1;
+        }
+
     }
     else if(elbl->facingRight())
     {
-        elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (2).png"));
-        /*
-        elbl->updateImg(new QPixmap(":/Images/Images/robot_facingright.png"));
-
         if(enemyPixChange == 0)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
         }
-        else if(enemyPixChange == 30)
+        else if(enemyPixChange == 10)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (2).png"));
         }
-        */
+        else if(enemyPixChange == 20)
+        {
+            elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
+            enemyPixChange = -1;
+        }
     }
 
+    lbl->updatePos();
     elbl->updatePos();
-    //enemyPixChange++;
+    enemyPixChange++;
 }
 
 void gameWidget::keyPressEvent(QKeyEvent *event)

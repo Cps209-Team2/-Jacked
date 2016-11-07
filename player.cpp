@@ -103,13 +103,13 @@ bool Player::attack()
     {
         attackDuration = -12;
         attacking = false;
-        qDebug() << "no ATK" << endl;
+        //qDebug() << "no ATK" << endl;
         return false;
     }
     if(attacking)
     {
         //body = new QRect(pos.x(),pos.y(),68,100);
-        qDebug() << "ATK" << endl;
+        //qDebug() << "ATK" << endl;
         ++attackDuration;
     }
     return true;
