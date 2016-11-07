@@ -299,6 +299,8 @@ void gameWidget::lblUpdate()
     lbl->updatePos();
     elbl->updatePos();
     enemyPixChange++;
+    this->ui->lbScore->setText("Score: " + QString::number(player->getScore()));
+    this->ui->lbHealth->setText("Health: " + player->showHealth());
 }
 
 void gameWidget::keyPressEvent(QKeyEvent *event)

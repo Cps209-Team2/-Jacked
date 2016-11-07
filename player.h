@@ -49,7 +49,7 @@ public:
     void saveScore(QFile *file);
     void saveState(QFile *file);
 
-    bool setAttack(bool atk) { attacking = atk; }
+    void setAttack(bool atk) { attacking = atk; }
     bool isAttacking() { return attacking; }
     bool attack();
 
@@ -58,6 +58,7 @@ public:
     void setName(QString initName) { name = initName; }
     void setScore(double initScore);
     double getScore() { return score; }
+    QString showHealth();
 };
 
 #endif // PLAYER_H
