@@ -62,13 +62,23 @@ void unitTests()
 
     assert(mydude->getWeapon()->getType() == QString::fromLocal8Bit("fist"));//assert that weapons are properly set on entities
     assert(whataposer->getWeapon()->getType() == QString::fromLocal8Bit("fist"));
-
+    qDebug() << "Loading File";
     testMap->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    qDebug() << "File loaded";
 
     assert(testMap->getPlayer().getPos().x() == 0);
     assert(testMap->getPlayer().getPos().y() == 0);
+    assert(testMap->getPlayer().getWeapon()->getType() == "fist");
+    qDebug() << "Weapon is indeed fist";
+    qDebug() << testMap->getPlayer().getWeapon()->getType();
+    qDebug() << "Creating Player";
     testMap->getPlayer().setName(QString::fromLocal8Bit("Bert"));
+    qDebug() << "Created Player, creating save";
     Save *save = new Save("SAVESCORE.txt", "SAVEWORLD.txt");
+    testMap->getPlayer().setName(QString::fromLocal8Bit("JimBob"));
+    qDebug() << "Saving Score and Map";
     save->saveScore(testMap);
+    save->saveWorld(testMap);
+    qDebug() << "Finished saving";
     exit(0);
 }
