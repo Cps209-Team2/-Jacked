@@ -33,11 +33,8 @@ SOURCES += main.cpp\
     escmenu.cpp \
     enemylabel.cpp \
     world.cpp \
-<<<<<<< HEAD
-    collisioninfo.cpp
-=======
-    highscoreswindow.cpp
->>>>>>> 799ff3738fe05dc192feef39a77c2d692bcc59d3
+    collisioninfo.cpp \
+    highscoreswindow.cpp \
     escmenu.cpp
 
 HEADERS  += \
@@ -62,11 +59,8 @@ HEADERS  += \
     escmenu.h \
     enemylabel.h \
     world.h \
-<<<<<<< HEAD
-    collisioninfo.h
-=======
-    highscoreswindow.h
->>>>>>> 799ff3738fe05dc192feef39a77c2d692bcc59d3
+    collisioninfo.h \
+    highscoreswindow.h \
     escmenu.h
 
 FORMS    += \

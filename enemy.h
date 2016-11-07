@@ -20,11 +20,6 @@ public:
 
     bool isEnemy() { return true; }
     bool isPlayer() { return false; }
-<<<<<<< HEAD
-
-=======
-    int getDMG() { return DMG; }
->>>>>>> 799ff3738fe05dc192feef39a77c2d692bcc59d3
     void move();
     void moveLeft();
     void moveRight();
