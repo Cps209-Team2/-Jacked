@@ -4,6 +4,7 @@
 #include <QPoint>
 #include <QRect>
 #include <QSize>
+#include <QFile>
 
 class Entity
 {
@@ -39,6 +40,7 @@ public:
 
     virtual void takeDmg(int x) { HP -= x; }
     virtual int getDmg() { return DMG; }
+    virtual void saveState (QFile *file) = 0;
 
     virtual ~Entity();
 };

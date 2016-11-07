@@ -46,8 +46,8 @@ void unitTests()
     qDebug() << "player created" << endl;
     Enemy *whataposer = new Enemy(85,45,item, mydude);
     qDebug() << "enemy created" << endl;
-    Obstacle *rock = new Obstacle(65,45);
-    qDebug() << "obstacle created" << endl;
+    //Obstacle *rock = new Obstacle(65,45);
+    //qDebug() << "obstacle created" << endl;
 
     assert(item->getType() == QString::fromLocal8Bit("fist"));//weapon type
 
@@ -57,8 +57,8 @@ void unitTests()
     assert(whataposer->getPos().x() == 85);//enemy position
     assert(whataposer->getPos().y() == 45);
 
-    assert(rock->getPos().x() == 65);//obstacle position
-    assert(rock->getPos().y() == 45);
+    //assert(rock->getPos().x() == 65);//obstacle position
+    //assert(rock->getPos().y() == 45);
 
     assert(mydude->getWeapon()->getType() == QString::fromLocal8Bit("fist"));//assert that weapons are properly set on entities
     assert(whataposer->getWeapon()->getType() == QString::fromLocal8Bit("fist"));
