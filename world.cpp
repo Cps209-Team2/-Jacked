@@ -213,7 +213,7 @@ void World::processLevel(QString levels)
 
 World::~World()
 {
-    delete this->player;
+    //delete this->player;
 
     for(Entity *i : enemies)
     {

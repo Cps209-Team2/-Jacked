@@ -32,7 +32,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     ui->setupUi(this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
-    timer->setInterval(28);
+    timer->setInterval(33);
     timer->start();
 
     //testing if loadfile works
@@ -51,7 +51,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     enemy = new Enemy(600,600,new Weapon(QString::fromLocal8Bit("fist")), player);
     //World::addEnemy(enemy);
     qDebug() << "created enemies" << endl;
-    elbl = new MovableLabel(this,enemy, new QPixmap(":/Images/Images/robot_facingleft.png"));
+    elbl = new MovableLabel(this,enemy, new QPixmap(":/Images/Images/enemy_left (1).png"));
     elbl->show();
     elbl->updatePos();
 
@@ -66,6 +66,7 @@ gameWidget::gameWidget(QMainWindow *parent) :
     this->falling = false;
     this->isGrounded = false;
     pixChange = 0;
+    enemyPixChange = 0;
 }
 
 void gameWidget::begin() {
@@ -80,8 +81,6 @@ void gameWidget::begin() {
 void gameWidget::frame()
 {
 
-    this->lblUpdate();
-
     if(lbl->player()->getHP() == 0)
     {
         QMessageBox dieBox;
@@ -90,18 +89,15 @@ void gameWidget::frame()
         delete this;
     }
 
-    Collision bounce(this->player,this->enemy);
-    player->setX(player->getPos().x() + bounce.checkCollision());
-
+    this->collide();
     this->playerMove();
-    //this->enemyMove();
+    this->enemyMove();
     this->lblUpdate();
 
 }
 
 void gameWidget::playerMove()
 {
-
     if(movLeft)
     {
         lbl->moveLeft();
@@ -113,7 +109,6 @@ void gameWidget::playerMove()
     if(jump)
     {
         jump = lbl->player()->jump();
-        lbl->updatePos();
     }
 }
 
@@ -123,10 +118,48 @@ void gameWidget::enemyMove()
     elbl->updatePos();
 }
 
+void gameWidget::collide()
+{
+    Collision bounce(this->lbl->player(),this->elbl->object());
+    if(bounce.getData() != NULL)
+    {
+        CollisionInfo *data(bounce.getData());
+
+        Entity *temp1 = data->getObj1();
+        Entity *temp2 = data->getObj2();
+
+        if(temp1->isPlayer())
+        {
+            temp1->setX(temp1->getPos().x() + bounce.getData()->getX());
+            temp1->setY(temp1->getPos().y() - bounce.getData()->getY());
+            if(dynamic_cast<Player *>(temp1)->attack())
+            {
+                qDebug() << "test" << endl;
+            }
+/*
+            if(temp2->isEnemy() && !dynamic_cast<Player*>(temp1)->isAttacking() && data->collide())
+            {
+                if(temp2->facingRight())
+                {
+                    qDebug() << "right" << endl;
+                    temp1->setX(temp1->getPos().x() + data->getX() + 95);
+                }
+                else
+                {
+                    qDebug() << "left" << endl;
+                    temp1->setX(temp1->getPos().x() + data->getX() + 95);
+                }
+            }
+*/
+        }
+    }
+
+}
+
 void gameWidget::lblUpdate()
 {
     //rising
-    if(jump)
+    if(jump && !lbl->player()->isAttacking())
     {
         if(lbl->facingRight())
         {
@@ -224,13 +257,35 @@ void gameWidget::lblUpdate()
     }
     //enemy
     if(elbl->facingLeft())
-    {
+    {/*
         elbl->updateImg(new QPixmap(":/Images/Images/robot_facingleft.png"));
+        */
+        if(enemyPixChange == 0)
+        {
+            elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
+        }
+        else if(enemyPixChange == 8)
+        {
+            elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
+            enemyPixChange = 0;
+        }
     }
     else if(elbl->facingRight())
     {
+        /*
         elbl->updateImg(new QPixmap(":/Images/Images/robot_facingright.png"));
+        */
+        if(enemyPixChange == 0)
+        {
+            elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
+        }
+        else if(enemyPixChange == 8)
+        {
+            elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (2).png"));
+        }
     }
+    enemyPixChange++;
+    lbl->updatePos();
 }
 
 void gameWidget::keyPressEvent(QKeyEvent *event)
@@ -267,7 +322,8 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key() == Qt::Key_Space)
     {
-        hit = true;
+        qDebug() << "atk" << endl;
+        lbl->player()->setAttack(true);
     }
 }
 
@@ -287,7 +343,8 @@ void gameWidget::keyReleaseEvent(QKeyEvent *event)
     }
     else if(event->key() == Qt::Key_Space)
     {
-        hit = false;
+        qDebug() << "release atk" << endl;
+        lbl->player()->setAttack(false);
     }
 }
 

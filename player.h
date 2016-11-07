@@ -20,7 +20,9 @@ class Player: public Entity
     CollisionInfo *knockback;
     bool _rise;
     bool falling;
-
+    bool attacking;
+    int attackDuration;
+    int atkBuffer;
 
 public:
     Player(int initx, int inity, Weapon *item);
@@ -45,6 +47,10 @@ public:
 
     Weapon* getWeapon() { return weapon; }
     void saveScore(QFile *file);
+
+    bool setAttack(bool atk) { attacking = atk; }
+    bool isAttacking() { return attacking; }
+    bool attack();
 
     ~Player();
     QString getName() { return name; }

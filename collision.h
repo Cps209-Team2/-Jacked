@@ -12,16 +12,17 @@ class Collision
 {
     Entity *_this;
     Entity *_that;
-    bool crash;
+    bool collide;
     int xChange;
     QPoint *point;
+    int x;
+    int y;
 public:
     Collision();
 
-    Collision(Entity *obj1, Entity *obj2): _this(obj1),_that(obj2),crash(false),xChange(0) { }
-    bool collide() { return crash; }
+    Collision(Entity *obj1, Entity *obj2): _this(obj1),_that(obj2),collide(false),x(0),y(0) { }
 
-    int checkCollision();
+    CollisionInfo *getData();
 
 };
 

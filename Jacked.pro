@@ -70,4 +70,4 @@ FORMS    += \
 QMAKE_CXXFLAGS += -std=c++14
 
 RESOURCES = \
-    Images.qrc
+    resources.qrc

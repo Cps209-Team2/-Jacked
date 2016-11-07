@@ -3,10 +3,11 @@
 CollisionInfo::CollisionInfo()
 {
 }
-CollisionInfo::CollisionInfo(int X, int Y, Entity *ent1, Entity *ent2)
+CollisionInfo::CollisionInfo(int x, int y, Entity *ent1, Entity *ent2, bool crash)
 {
-    point->setX(X);
-    point->setY(Y);
+    this->setX(x);
+    this->setY(y);
     obj1 = ent1;
     obj2 = ent2;
+    _collide = crash;
 }

@@ -15,6 +15,8 @@ Player::Player(int initx, int inity, Weapon *item)
     jumpDuration = 0;
     HP = 30;
 
+    attackDuration = 0;
+
     right = true;
     left = false;
 
@@ -90,6 +92,25 @@ bool Player::jump()
 
 void Player::recoil(CollisionInfo *)
 {
+
+}
+
+bool Player::attack()
+{
+    if(!attacking || attackDuration > 24)
+    {
+        attackDuration = -12;
+        attacking = false;
+        qDebug() << "no ATK" << endl;
+        return false;
+    }
+    if(attacking)
+    {
+        //body = new QRect(pos.x(),pos.y(),68,100);
+        qDebug() << "ATK" << endl;
+        ++attackDuration;
+    }
+    return true;
 
 }
 
