@@ -30,12 +30,10 @@ SOURCES += main.cpp\
     collision.cpp \
     save.cpp \
     playerlabel.cpp \
-    escmenu.cpp \
     enemylabel.cpp \
     world.cpp \
     collisioninfo.cpp \
-    highscoreswindow.cpp \
-    escmenu.cpp
+    highscoreswindow.cpp
 
 HEADERS  += \
     saveload.h \
@@ -56,12 +54,10 @@ HEADERS  += \
     collision.h \
     save.h \
     playerlabel.h \
-    escmenu.h \
     enemylabel.h \
     world.h \
     collisioninfo.h \
-    highscoreswindow.h \
-    escmenu.h
+    highscoreswindow.h
 
 FORMS    += \
     startwindow.ui \

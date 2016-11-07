@@ -16,7 +16,7 @@ void Save::saveScore(World *world)
 }
 
 void Save::saveWorld(World *world)
-{
+{/*
     //TODO Save the state of the map, enemies, players, and obstacles
     QFile saveState(worldFile);
     saveState.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -28,11 +28,12 @@ void Save::saveWorld(World *world)
 
     for (int i = 0; i < enemies.size(); i++)
     {
-        saveEnemy = dynamic_cast<Enemy *>(enemies.at(i));
+        saveEnemy = dynamic_cast<Enemy>(enemies.at(i));
         //Save enemies here
     }
-    //*/
+
     saveState.close();
+    //*/
 }
 
 void processScores(QString loadMe)

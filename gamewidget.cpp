@@ -115,7 +115,6 @@ void gameWidget::playerMove()
 void gameWidget::enemyMove()
 {
     enemy->move();
-    elbl->updatePos();
 }
 
 void gameWidget::collide()
@@ -255,37 +254,45 @@ void gameWidget::lblUpdate()
         }
 
     }
+
+
     //enemy
     if(elbl->facingLeft())
-    {/*
+    {
+        elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
+        /*
         elbl->updateImg(new QPixmap(":/Images/Images/robot_facingleft.png"));
-        */
+
         if(enemyPixChange == 0)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
         }
-        else if(enemyPixChange == 8)
+        else if(enemyPixChange == 30)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
             enemyPixChange = 0;
         }
+        */
     }
     else if(elbl->facingRight())
     {
+        elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (2).png"));
         /*
         elbl->updateImg(new QPixmap(":/Images/Images/robot_facingright.png"));
-        */
+
         if(enemyPixChange == 0)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
         }
-        else if(enemyPixChange == 8)
+        else if(enemyPixChange == 30)
         {
             elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (2).png"));
         }
+        */
     }
-    enemyPixChange++;
-    lbl->updatePos();
+
+    elbl->updatePos();
+    //enemyPixChange++;
 }
 
 void gameWidget::keyPressEvent(QKeyEvent *event)
