@@ -23,6 +23,7 @@ class Player: public Entity
     bool attacking;
     int attackDuration;
     int atkBuffer;
+    bool crouching;
 
 public:
     Player(int initx, int inity, Weapon *item);
@@ -42,6 +43,9 @@ public:
     int getJD() { return jumpDuration; }
     void setJS(int y) { jumpSpeed = y; }
     void setJD(int y) { jumpDuration = y; }
+    void crouch() { crouching = true; }
+    void stand() { crouching = false; }
+    bool isCrouching() { return crouching; }
 
     void recoil(CollisionInfo *);
 

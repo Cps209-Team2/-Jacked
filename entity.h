@@ -29,6 +29,7 @@ public:
     virtual QPoint getPos() { return pos; }
     virtual QSize getSize() { return body->size(); }
     virtual QRect getBody() { return *body; }
+    virtual void setBody(QRect *temp) { body = temp; }
 
     virtual void faceRight() { right = true; left = false; }
     virtual void faceLeft() { left = true; right = false; }

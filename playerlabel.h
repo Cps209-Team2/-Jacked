@@ -13,6 +13,7 @@ public:
         obj = dynamic_cast<Player *>(object);
     }
     Player *player() { return obj; }
+    void updateImg(QPixmap *pix);
 
     ~PlayerLabel();
 };

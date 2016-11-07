@@ -19,6 +19,7 @@ Player::Player(int initx, int inity, Weapon *item)
 
     right = true;
     left = false;
+    crouching = false;
 
     if(item->getType() == QString::fromLocal8Bit("fist"))
     {
