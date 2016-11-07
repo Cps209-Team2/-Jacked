@@ -39,13 +39,15 @@ void Player::saveScore(QFile *file)
     save << getName() << ":" << getScore() << endl;
     //TODO load the scores file into a vector and sort it by score
 }
-/*
+
 void Player::saveState(QFile *file)
 {
+
+    QTextStream save(file);
     save << "position:" << pos.x() << "," << pos.y() << endl;
     save << "weapon:" << getWeapon() << "\n\n";
 }
-*/
+
 void Player::moveLeft()
 {
     pos.setX(pos.x() - 11);

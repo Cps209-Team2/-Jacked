@@ -13,7 +13,7 @@
 #include <QFile>
 #include "obstacle.h"
 #include "entity.h"
-#include "enemy.h"
+//#include "enemy.h"
 #include "player.h"
 
 class World
@@ -49,7 +49,7 @@ public:
     //getters
     Player& getPlayer() { return *player; }
     Player* _Player() { return player; }
-    std::vector<Entity*>& getEnemies() {return enemies;}
+    std::vector<Entity*> getEnemies() {return enemies;}
     std::vector<Obstacle*>& getObstacles() { return obstacles; }
     int getLevel() { return lvl; }
 

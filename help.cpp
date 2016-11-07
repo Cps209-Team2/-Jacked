@@ -3,10 +3,10 @@
 #include "ui_help.h"
 #include "startwindow.h"
 
-help::help(QMainWindow *parent) :
-    QWidget(parent),
+help::help(QMainWindow *initParent) : QWidget(initParent),
     ui(new Ui::help)
 {
+    parent = initParent;
     ui->setupUi(this);
 }
 
@@ -17,8 +17,7 @@ help::~help()
 
 void help::on_pbDone_clicked()
 {
-    this->hide();
-    //Ui::StartWindow::show();
-    //StartWindow::show();
+    emit destroyed();
+    this->close();
 
 }

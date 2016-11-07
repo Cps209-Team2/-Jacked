@@ -19,7 +19,7 @@ EscMenu::~EscMenu()
 void EscMenu::on_btnSave_clicked()
 {
     World *world = new World();
-    Save *save = new Save(QString::fromLocal8Bit("save.jkd"));
+    Save *save = new Save(QString::fromLocal8Bit("saveScore.jkd"), QString::fromLocal8Bit("saveWorld.jkd"));
     save->saveScore(world);
     //save->saveWorld();
     delete save;

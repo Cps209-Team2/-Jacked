@@ -47,6 +47,7 @@ public:
 
     Weapon* getWeapon() { return weapon; }
     void saveScore(QFile *file);
+    void saveState(QFile *file);
 
     bool setAttack(bool atk) { attacking = atk; }
     bool isAttacking() { return attacking; }
