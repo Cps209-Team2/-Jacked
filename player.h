@@ -62,6 +62,7 @@ public:
     void setName(QString initName) { name = initName; }
     void setScore(double initScore);
     double getScore() { return score; }
+    QString showHealth();
 };
 
 #endif // PLAYER_H

@@ -10,6 +10,11 @@
     <height>748</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>14</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -30,6 +35,37 @@
    </property>
    <property name="pixmap">
     <pixmap resource="resources.qrc">:/Images/Images/level1.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbScore">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>180</y>
+     <width>281</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Score: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbHealth">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>180</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Health: &amp;&amp;&amp;&amp;&amp;</string>
    </property>
   </widget>
  </widget>

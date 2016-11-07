@@ -117,6 +117,24 @@ bool Player::attack()
 
 }
 
+// Passes points to be ADDED to current score
+void Player::setScore(double initScore) {
+    score += initScore; //note += not =
+}
+
+//creates an image of health symbols for the health label.
+QString Player::showHealth() {
+    QString healthBar = "";
+    if (this->getHP() > 0) {
+        for (int i = 0; i < this->getHP(); i += 5) {
+            healthBar += "&";
+        }
+        return healthBar;
+    }
+    else
+        return "";
+}
+
 Player::~Player()
 {
     delete this->weapon;
