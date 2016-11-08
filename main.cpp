@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
 void unitTests()
 {
     std::cout << "Entering Unit Tests" << std::endl;
-    World *testMap = World::instance();
 
     Weapon *item = new Weapon(QString::fromLocal8Bit("fist"));
     Player *mydude = new Player(45,45,item);
@@ -61,6 +60,11 @@ void unitTests()
     assert(mydude->getWeapon()->getType() == QString::fromLocal8Bit("fist"));//assert that weapons are properly set on entities
     assert(whataposer->getWeapon()->getType() == QString::fromLocal8Bit("fist"));
     qDebug() << "Loading File";
+
+
+    //testing loadfile
+    World *testMap = World::instance();    
+
     testMap->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
     qDebug() << "File loaded";
 

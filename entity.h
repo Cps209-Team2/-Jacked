@@ -44,11 +44,7 @@ public:
     virtual int getHP() { return HP; }
     virtual void setHP(int health) { HP = health; }
     virtual void saveState (QFile *file) = 0;
-<<<<<<< HEAD
     virtual void die() { body = new QRect(0,0,0,0); }
-
-=======
->>>>>>> 91a74420de2d71ac8ded48c5329b7b75d807edd1
     virtual ~Entity();
 };
 

@@ -25,7 +25,7 @@ void Save::saveWorld(World *world)
     //*
     qDebug() << "Attempting to save enemies";
     qDebug() << "Attempting to get the enemies vector from world";
-    std::vector<Entity*> enemies = world->getEnemies();
+    std::vector<Enemy*> enemies = world->getEnemies();
     qDebug() << "Entering for loop";
     for (int i = 0; i < enemies.size(); ++i)
     {
