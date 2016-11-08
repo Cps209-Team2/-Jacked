@@ -1,5 +1,9 @@
 #include "highscore.h"
 
+highscore::highscore(QString file) {
+        scoreFile->processScores(file);
+}
+
 void highscore::addHighScore(int highScore)
 {
     highScores.push_back(highScore);

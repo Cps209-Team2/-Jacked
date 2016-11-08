@@ -2,6 +2,8 @@
 #define HIGHSCORESWINDOW_H
 
 #include <QWidget>
+#include <QLabel>
+#include "highscore.h"
 
 namespace Ui {
 class HighScoresWindow;
@@ -17,6 +19,10 @@ public:
 
 private:
     Ui::HighScoresWindow *ui;
+    highscore them;
+    QLabel newLabel;
+    Save *scores;
+    std::vector<QLabel> labels;
 };
 
 #endif // HIGHSCORESWINDOW_H

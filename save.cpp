@@ -37,12 +37,11 @@ void Save::saveWorld(World *world)
     //*/
 }
 
-void processScores(QString loadMe)
+void Save::processScores(QString loadMe)
 {
     QTextStream load(&loadMe);
-    QString line;
-    QString name;
-    int score;
+    QString line;// name;
+    //int score;
 
     //while (line != "*")
     for (int i = 0; i < 10; i++) //Temporarily loads the first 10 high score entries
@@ -50,14 +49,16 @@ void processScores(QString loadMe)
                                  //can be written
     {
         line = load.readLine();
-
+        this->scoreInfo.push_back(line);
         //TODO Places top 10 scores onto high scores window
         //We could also do the score sorting (and file cleanup?) here
+        /*
         QStringList lineColon = line.split(':');
         name = lineColon.at(0);
         score = lineColon.at(1).toInt();
 
         //Put into High Score window
+        //*/
 
     }
 }
@@ -79,6 +80,6 @@ void loadScores(QString filename)
     QTextStream in(&inFile);
     QString load = in.readAll();
 
-    processScores(load);
+    //processScores(load);
     inFile.close();
 }
