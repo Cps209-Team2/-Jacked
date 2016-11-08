@@ -1,5 +1,4 @@
-#include <QString>
-#include <QDebug>
+
 #include "enemy.h"
 
 Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
@@ -63,7 +62,7 @@ void Enemy::saveState(QFile *file)
 {
     QTextStream save(file);
     save << "position:" << pos.x() << "," << pos.y() << endl;
-    save << "weapon:" << getWeapon() << "\n\n";
+    save << "weapon:" << getWeapon()->getType() << "\n\n";
 }
 
 Enemy::~Enemy()

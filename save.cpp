@@ -24,14 +24,18 @@ void Save::saveWorld(World *world)
     savePlayer.saveState(&saveState);
     //*
     qDebug() << "Attempting to save enemies";
+    qDebug() << "Attempting to get the enemies vector from world";
     std::vector<Entity*> enemies = world->getEnemies();
-
-    for (unsigned int i = 0; i < enemies.size(); i++)
+    qDebug() << "Entering for loop";
+    for (int i = 0; i < enemies.size(); ++i)
     {
+        qDebug() << "Getting the enemy stored at" << i;
         saveEnemy = dynamic_cast<Enemy*>(enemies.at(i));
+        qDebug() << "Writing that enemy to the file";
         //Save enemies here
         saveEnemy->saveState(&saveState);
     }
+    qDebug() << "Saved Enemies?";
 
     saveState.close();
     //*/

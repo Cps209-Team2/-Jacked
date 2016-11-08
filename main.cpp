@@ -39,8 +39,6 @@ void unitTests()
     std::cout << "Entering Unit Tests" << std::endl;
     World *testMap = World::instance();
 
-    testMap->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
-
     Weapon *item = new Weapon(QString::fromLocal8Bit("fist"));
     Player *mydude = new Player(45,45,item);
     qDebug() << "player created" << endl;
