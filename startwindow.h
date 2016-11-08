@@ -11,14 +11,22 @@ namespace Ui {
 class StartWindow;
 }
 
+class gameWidget;
+
 class StartWindow : public QMainWindow
 {
     Q_OBJECT
+private:
+    gameWidget *game;
+    help *helpScreen;
+    //helpWidget *help;
+    Ui::StartWindow *ui;
+
 
 public:
-    explicit StartWindow(QWidget *parent = 0);
+    explicit StartWindow(QMainWindow *parent = 0);
+    QWidget *getStart();
     ~StartWindow();
-
     bool cheatMode = false;
 
 private slots:
@@ -32,12 +40,6 @@ private slots:
     void on_btnCheat_clicked();
 
     void on_helpClosed();
-
-private:
-    gameWidget *game;
-    help *helpScreen;
-    //helpWidget *help;
-    Ui::StartWindow *ui;
 
 
 };

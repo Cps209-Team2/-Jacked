@@ -13,6 +13,7 @@
 #include "world.h"
 #include "playerlabel.h"
 #include "enemylabel.h"
+#include "startwindow.h"
 
 namespace Ui {
 class gameWidget;
@@ -23,7 +24,7 @@ class gameWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit gameWidget(QMainWindow *parent = 0);
+    explicit gameWidget(QWidget *parent = 0);
     void playerMove();
     void enemyMove();
     void collide();
@@ -47,8 +48,9 @@ private:
     bool jump;
     bool falling;
     bool isGrounded;
-    bool hit;
+    int hitCount;
 
+    QWidget *start;
 
 
     // testing variables

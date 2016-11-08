@@ -16,10 +16,11 @@ Player::Player(int initx, int inity, Weapon *item)
     HP = 30;
 
     attackDuration = 0;
-
+    attacking = false;
     right = true;
     left = false;
     crouching = false;
+    hit = false;
 
     if(item->getType() == QString::fromLocal8Bit("fist"))
     {
@@ -47,7 +48,7 @@ void Player::saveState(QFile *file)
     QTextStream save(file);
     save << "name:" << getName() << endl;
     save << "position:" << pos.x() << "," << pos.y() << endl;
-    save << "weapon:" << getWeapon()->getType() ;//<< "\n\n";
+    save << "weapon:" << getWeapon()->getType() << "\n\n";
 }
 
 void Player::moveLeft()
@@ -103,16 +104,17 @@ bool Player::attack()
 {
     if(!attacking || attackDuration > 24)
     {
-        attackDuration = -12;
-        attacking = false;
+        //body = new QRect(pos.x(),pos.y(),68,80);
+        //attackDuration = -64;
+        //attacking = false;
         //qDebug() << "no ATK" << endl;
         return false;
     }
     if(attacking)
     {
-        //body = new QRect(pos.x(),pos.y(),68,100);
-        //qDebug() << "ATK" << endl;
-        ++attackDuration;
+        //body = new QRect(pos.x(),pos.y(),68,300);
+
+        //++attackDuration;
     }
     return true;
 
