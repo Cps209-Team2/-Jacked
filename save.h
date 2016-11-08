@@ -7,6 +7,7 @@
 #include "player.h"
 #include "enemy.h"
 #include <vector>
+using namespace std;
 
 class Save
 {
@@ -14,7 +15,8 @@ class Save
     QString worldFile;
     Player savePlayer;
     Enemy *saveEnemy;
-    std::vector<QString> scoreInfo;
+    QString line;
+    std::vector<QString*> scoreInfo;
 public:
     Save() {}
     Save(QString initScoreFile, QString initWorldFile): scoreFile(initScoreFile), worldFile(initWorldFile) {}
@@ -23,9 +25,12 @@ public:
     void saveWorld(World *world);
     void loadScores(QString filename);
     void processScores(QString load);
+    //~Save(){ for(unsigned i = 0; i< scoreInfo.size(); ++i){delete scoreInfo->at(i);} delete scoreInfo; }
 
     //getters
-    std::vector<QString> getScoreInfo() {return scoreInfo;}
+    std::vector<QString*> getScoreInfo() {return scoreInfo;}
+    //void pushScoreInfo(QString param) {scoreInfo.push_back(param);}
+    QString getLine() {return line;}
 };
 
 #endif // SAVE_H

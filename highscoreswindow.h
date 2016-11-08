@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QMainWindow>
+#include "startwindow.h"
 #include "highscore.h"
 
 namespace Ui {
@@ -14,15 +16,22 @@ class HighScoresWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit HighScoresWindow(QWidget *parent = 0);
+    explicit HighScoresWindow(QMainWindow *parent = 0);
+
     ~HighScoresWindow();
+
+private slots:
+    void on_pbClose_clicked();
 
 private:
     Ui::HighScoresWindow *ui;
     highscore them;
-    QLabel newLabel;
+    QLabel *newLabel;
     Save *scores;
-    std::vector<QLabel> labels;
+    QString names;
+    std::vector<QLabel*> labels;
+    QWidget *parent;
+
 };
 
 #endif // HIGHSCORESWINDOW_H

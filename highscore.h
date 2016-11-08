@@ -19,6 +19,7 @@ public:
     Save* getThem() {return scoreFile;}
     void addHighScore(int highScore);
     void addName(QString name);
+    Save* getSave() {return scoreFile;}
 };
 
 #endif // HIGHSCORE_H
