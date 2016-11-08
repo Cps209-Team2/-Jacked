@@ -41,7 +41,7 @@ void Save::saveWorld(World *world)
     //*/
 }
 
-void processScores(QString loadMe)
+void Save::processScores(QString loadMe)
 {
     QTextStream load(&loadMe);
     QString line;
@@ -62,12 +62,11 @@ void processScores(QString loadMe)
         score = lineColon.at(1).toInt();
 
         //Put into High Score window
-
     }
 }
 
 
-void loadScores(QString filename)
+void Save::loadScores(QString filename)
 {
     QFile inFile(filename);
 
