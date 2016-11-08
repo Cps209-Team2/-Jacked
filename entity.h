@@ -41,13 +41,11 @@ public:
 
     virtual void takeDmg(int x) { HP -= x; }
     virtual int getDmg() { return DMG; }
-<<<<<<< HEAD
     virtual int getHP() { return HP; }
     virtual void setHP(int health) { HP = health; }
-=======
     virtual void saveState (QFile *file) = 0;
+    virtual void die() { body = new QRect(0,0,0,0); }
 
->>>>>>> 1b4a2afa585f394e2fd51fa3d531d7684562ab69
     virtual ~Entity();
 };
 

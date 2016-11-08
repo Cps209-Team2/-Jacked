@@ -37,13 +37,23 @@ void Enemy::move()
     }
     if(this->start == true)
     {
-        if(player->getPos().x() < pos.x())
+        if(player->isCrouching())
         {
-            this->moveLeft();
+            if(this->facingLeft())
+                this->moveLeft();
+            else
+                this->moveRight();
         }
         else
         {
-            this->moveRight();
+            if(player->getPos().x() < pos.x())
+            {
+                this->moveLeft();
+            }
+            else
+            {
+                this->moveRight();
+            }
         }
     }
 }

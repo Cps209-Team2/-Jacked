@@ -143,6 +143,8 @@ void gameWidget::enemyMove()
 
 void gameWidget::collide()
 {
+    if(elbl->object()->getBody() != nullptr)
+    {
     Collision *bounce = new Collision(this->lbl->player(),this->elbl->object());
     CollisionInfo *data(bounce->getData());
     if(data->collide())
@@ -189,9 +191,11 @@ void gameWidget::collide()
             if(temp2->getHP() <= 0)
             {
                 elbl->hide();
+                elbl->object()->setBody(nullptr);
                 //delete elbl->object();
             }
         }
+    }
     }
 
 }

@@ -51,6 +51,7 @@ void StartWindow::on_btnPlay_clicked()
 //show a helpful information window
 void StartWindow::on_pbHelp_clicked()
 {
+    ui->centralwidget->hide();
     //ui->centralwidget->hide();
     helpScreen->show();
     //ui->btnCheat->hide();
