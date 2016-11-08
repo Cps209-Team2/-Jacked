@@ -6,7 +6,7 @@
 
 void Save::saveScore(World *world)
 {
-    Player savePlayer = world->getPlayer();
+    savePlayer = world->getPlayer();
     QFile saveScore(scoreFile);
     saveScore.open(QIODevice::WriteOnly | QIODevice::Text);
     savePlayer.saveScore(&saveScore);
@@ -20,9 +20,10 @@ void Save::saveWorld(World *world)
     //TODO Save the state of the map, enemies, players, and obstacles
     QFile saveState(worldFile);
     saveState.open(QIODevice::WriteOnly | QIODevice::Text);
-    Player savePlayer = world->getPlayer();
+    savePlayer = world->getPlayer();
     savePlayer.saveState(&saveState);
     //*
+    qDebug() << "Attempting to save enemies";
     Entity *saveEnemy;
     std::vector<Entity*> enemies = world->getEnemies();
 

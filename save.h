@@ -12,6 +12,8 @@ class Save
 {
     QString scoreFile;
     QString worldFile;
+    Player savePlayer;
+    Enemy saveEnemy;
 public:
     Save(QString initScoreFile, QString initWorldFile): scoreFile(initScoreFile), worldFile(initWorldFile) {}
     void saveScore(World *world);

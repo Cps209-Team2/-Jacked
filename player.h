@@ -27,7 +27,7 @@ class Player: public Entity
 
 public:
     Player(int initx, int inity, Weapon *item);
-    //Player() {}
+    Player() {}
 
     bool isPlayer() { return true; }
     bool isEnemy() { return false; }
