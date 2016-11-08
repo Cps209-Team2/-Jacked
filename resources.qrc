@@ -44,6 +44,8 @@
         <file>Images/lvl1_background.png</file>
         <file>Images/player_attack_left (1).png</file>
         <file>Images/player_attack_right (1).png</file>
+        <file>Images/player_hit_left.png</file>
+        <file>Images/player_hit_right.png</file>
     </qresource>
     <qresource prefix="/Levels">
         <file alias="lvl1">DefaultLevels/lvl1.txt</file>

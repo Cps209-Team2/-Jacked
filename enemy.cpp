@@ -17,6 +17,8 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
     else
     { DMG = 10; }
 
+    HP = 30;
+
     if(player->getPos().x() < this->pos.x())
     {
         this->faceLeft();

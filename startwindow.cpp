@@ -5,16 +5,21 @@
 #include "gamewidget.h"
 #include "help.h"
 
-StartWindow::StartWindow(QWidget *parent) :
+StartWindow::StartWindow(QMainWindow *parent) :
     QMainWindow(parent),
     ui(new Ui::StartWindow)
 {
     ui->setupUi(this);
-    game = new gameWidget(this);
-    game->hide();
+    //game = new gameWidget(this);
+    //game->hide();
     helpScreen = new help(this);
     helpScreen->hide();
     connect(helpScreen, SIGNAL(destroyed()), this, SLOT(on_helpClosed()));
+}
+
+QWidget *StartWindow::getStart()
+{
+    return ui->centralwidget;
 }
 
 StartWindow::~StartWindow()
@@ -33,8 +38,7 @@ void StartWindow::on_btnCheat_clicked()
 void StartWindow::on_btnPlay_clicked()
 {
     ui->centralwidget->hide();
-    //game = new gameWidget(this);
-    //game->hide();
+    game = new gameWidget(this);
     game->show();
     game->setFocus();
     game->begin();

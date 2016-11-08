@@ -40,7 +40,8 @@ public:
 
     virtual void takeDmg(int x) { HP -= x; }
     virtual int getDmg() { return DMG; }
-
+    virtual int getHP() { return HP; }
+    virtual void setHP(int health) { HP = health; }
     virtual ~Entity();
 };
 

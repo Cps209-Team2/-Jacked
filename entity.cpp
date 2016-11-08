@@ -8,5 +8,4 @@ Entity::Entity()
 
 Entity::~Entity()
 {
-    delete this->body;
 }
