@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     enemylabel.cpp \
     world.cpp \
     collisioninfo.cpp \
-    highscoreswindow.cpp
+    highscoreswindow.cpp \
+    difficulty.cpp
 
 HEADERS  += \
     saveload.h \
@@ -57,14 +58,16 @@ HEADERS  += \
     enemylabel.h \
     world.h \
     collisioninfo.h \
-    highscoreswindow.h
+    highscoreswindow.h \
+    difficulty.h
 
 FORMS    += \
     startwindow.ui \
     gamewidget.ui \
     help.ui \
     escmenu.ui \
-    highscoreswindow.ui
+    highscoreswindow.ui \
+    difficulty.ui
 
 QMAKE_CXXFLAGS += -std=c++14
 
