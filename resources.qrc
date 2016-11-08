@@ -49,5 +49,6 @@
     </qresource>
     <qresource prefix="/Levels">
         <file alias="lvl1">DefaultLevels/lvl1.txt</file>
+        <file alias="lvl2">DefaultLevels/lvl2.txt</file>
     </qresource>
 </RCC>

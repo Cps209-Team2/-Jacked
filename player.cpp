@@ -46,8 +46,9 @@ void Player::saveState(QFile *file)
 {
 
     QTextStream save(file);
+    save << "name:" << getName() << endl;
     save << "position:" << pos.x() << "," << pos.y() << endl;
-    save << "weapon:" << getWeapon() << "\n\n";
+    save << "weapon:" << getWeapon()->getType() << "\n\n";
 }
 
 void Player::moveLeft()

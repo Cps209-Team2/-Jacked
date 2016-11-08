@@ -12,10 +12,10 @@ using namespace std;
 World *World::instance_ = nullptr;
 
 World *World::instance() {
-  if (instance_ == nullptr) {
-      instance_ = new World();
-  }
-  return instance_;
+    if (instance_ == nullptr) {
+        instance_ = new World();
+    }
+    return instance_;
 }
 //Singleton implementation
 
@@ -47,9 +47,9 @@ void World::create() {
     //string line = file.getline();
     //if (line != NULL) {Player one = new Player() }
     //if (file) {
-        //read player pos
-        //read player weapon
-        //loop through enemies
+    //read player pos
+    //read player weapon
+    //loop through enemies
     //}
 }
 
@@ -58,23 +58,23 @@ void World::create() {
 //loads saved or default map
 void World::loadFile(QString filename) {
 
-       QFile inFile(filename);
+    QFile inFile(filename);
 
-       if (!inFile.exists())
-       {
-           qDebug() << QString::fromLocal8Bit("File does not exist");
-           return;
-       }
+    if (!inFile.exists())
+    {
+        qDebug() << QString::fromLocal8Bit("File does not exist");
+        return;
+    }
 
-       if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text))
-               return;
+    if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
 
-       QTextStream in(&inFile);
-       QString level = in.readAll();
-       qDebug() << level;
+    QTextStream in(&inFile);
+    QString level = in.readAll();
+    qDebug() << level;
 
-       processLevel(level);
-       inFile.close();
+    processLevel(level);
+    inFile.close();
 }
 
 // Puts all the game variables into the correct vector
@@ -198,16 +198,12 @@ void World::processLevel(QString levels)
                 qDebug() << "y coordinate" << yPos;
                 qDebug() << "weapon type = " << weapon;
 
-                Enemy *poser = new Enemy(xPos, yPos, new Weapon(weapon),this->player);
+                enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon),this->player));
                 qDebug() << "created enemy" << endl;
-
-                //World::instance()->addEnemy(poser);
-
-                //delete poser;
             }
         }
+        qDebug() << "finished" << endl;
     }
-    qDebug() << "finished" << endl;
 }
 
 

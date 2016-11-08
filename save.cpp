@@ -6,7 +6,7 @@
 
 void Save::saveScore(World *world)
 {
-    Player savePlayer = world->getPlayer();
+    savePlayer = world->getPlayer();
     QFile saveScore(scoreFile);
     saveScore.open(QIODevice::WriteOnly | QIODevice::Text);
     savePlayer.saveScore(&saveScore);
@@ -16,21 +16,26 @@ void Save::saveScore(World *world)
 }
 
 void Save::saveWorld(World *world)
-{/*
+{
     //TODO Save the state of the map, enemies, players, and obstacles
     QFile saveState(worldFile);
     saveState.open(QIODevice::WriteOnly | QIODevice::Text);
-    Player savePlayer = world->getPlayer();
+    savePlayer = world->getPlayer();
     savePlayer.saveState(&saveState);
     //*
-    Entity *saveEnemy;
+    qDebug() << "Attempting to save enemies";
+    qDebug() << "Attempting to get the enemies vector from world";
     std::vector<Entity*> enemies = world->getEnemies();
-
-    for (int i = 0; i < enemies.size(); i++)
+    qDebug() << "Entering for loop";
+    for (int i = 0; i < enemies.size(); ++i)
     {
-        saveEnemy = dynamic_cast<Enemy>(enemies.at(i));
+        qDebug() << "Getting the enemy stored at" << i;
+        saveEnemy = dynamic_cast<Enemy*>(enemies.at(i));
+        qDebug() << "Writing that enemy to the file";
         //Save enemies here
+        saveEnemy->saveState(&saveState);
     }
+    qDebug() << "Saved Enemies?";
 
     saveState.close();
     //*/

@@ -6,6 +6,8 @@
 #include "world.h"
 #include <QFile>
 #include <QTextStream>
+#include <QString>
+#include <QDebug>
 
 class Enemy: public Entity
 {
