@@ -32,4 +32,12 @@ weapon:fist
 $enemy5
 position:500,600
 weapon:fist
+
+$enemy6
+position:600,600
+weapon:fist
+
+$enemy7
+position:700,600
+weapon:fist
 *

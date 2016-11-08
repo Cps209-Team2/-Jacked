@@ -49,7 +49,7 @@ public:
     //getters
     Player& getPlayer() { return *player; }
     Player* _Player() { return player; }
-    std::vector<Entity*> getEnemies() {return enemies;}
+    std::vector<Entity*>& getEnemies() {return enemies;}
     std::vector<Obstacle*>& getObstacles() { return obstacles; }
     int getLevel() { return lvl; }
 

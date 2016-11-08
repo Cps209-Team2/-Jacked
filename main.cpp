@@ -78,6 +78,7 @@ void unitTests()
     testMap->getPlayer().setName(QString::fromLocal8Bit("JimBob"));
     qDebug() << "Saving Score and Map";
     save->saveScore(testMap);
+    qDebug() << "Saved Score, starting to save map";
     save->saveWorld(testMap);
     qDebug() << "Finished saving";
     exit(0);
