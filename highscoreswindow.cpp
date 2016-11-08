@@ -7,7 +7,7 @@ HighScoresWindow::HighScoresWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     scores = them.getThem();
-    for (int i = 0; i < scores->getScoreInfo().size(); ++i) {
+    for (unsigned i = 0; i < scores->getScoreInfo().size(); ++i) {
         newLabel.setText(scores->getScoreInfo().at(i));
         labels.push_back(newLabel);
     }
