@@ -24,10 +24,9 @@ void Save::saveWorld(World *world)
     savePlayer.saveState(&saveState);
     //*
     qDebug() << "Attempting to save enemies";
-    Entity *saveEnemy;
     std::vector<Entity*> enemies = world->getEnemies();
 
-    for (int i = 0; i < enemies.size(); i++)
+    for (unsigned int i = 0; i < enemies.size(); i++)
     {
         saveEnemy = dynamic_cast<Enemy*>(enemies.at(i));
         //Save enemies here
