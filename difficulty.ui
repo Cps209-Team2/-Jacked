@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Difficulty</class>
+ <widget class="QWidget" name="Difficulty">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>750</width>
+    <height>481</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="lblDifficulty">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>10</y>
+     <width>411</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/Images/difficulty.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbEasy">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>200</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/easy.png</normaloff>:/Images/easy.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>64</width>
+     <height>64</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbMedium">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>250</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/medium.png</normaloff>:/Images/medium.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>84</width>
+     <height>84</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbHard">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>300</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/hard.png</normaloff>:/Images/hard.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>64</width>
+     <height>64</height>
+    </size>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
