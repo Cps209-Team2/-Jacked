@@ -98,6 +98,10 @@ void gameWidget::frame()
         start->setFocus();
     }
 
+    if(lbl->player()->getPos().y() == 0)
+    {
+        isGrounded = true;
+    }
 
     if(lbl->player() != NULL)
         this->playerMove();
@@ -425,7 +429,7 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         }
         else if(event->key() == Qt::Key_Down)
         {
-            lbl->player()->crouch();
+                lbl->player()->crouch();
         }
     }
 }

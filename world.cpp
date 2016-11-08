@@ -1,5 +1,6 @@
 #include <fstream>
 #include <QMessageBox>
+#include <iterator>
 #include "world.h"
 #include "entity.h"
 #include "enemy.h"
@@ -53,6 +54,17 @@ void World::create() {
     //}
 }
 
+void World::trash(Enemy *dead)
+{
+    for(size_t i = 0; i < enemies.size(); i++)
+    {
+        if(enemies.at(i) == dead)
+        {
+            enemies.erase(enemies.begin() + i);
+            trashbin.push_back(dead);
+        }
+    }
+}
 
 
 //loads saved or default map
@@ -209,13 +221,17 @@ void World::processLevel(QString levels)
 
 World::~World()
 {
-    //delete this->player;
+    delete this->player;
 
-    for(Entity *i : enemies)
+    for(Enemy *i : enemies)
     {
         delete i;
     }
     for(Obstacle *i : obstacles)
+    {
+        delete i;
+    }
+    for(Enemy *i : trashbin)
     {
         delete i;
     }
