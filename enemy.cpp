@@ -9,6 +9,7 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
     weapon = item;
     body = new QRect(pos.x(),pos.y(),80,80);
     player = obj;
+    qDebug() << "assigned player reference" << endl;
     this->start = false;
     qDebug() <<  "assigned body and player obj" << endl;
     if(item->getType() == QString::fromLocal8Bit("fist"))
@@ -17,7 +18,7 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
     { DMG = 10; }
 
     HP = 30;
-
+    qDebug() << "assigned player HP" << endl;
     if(player->getPos().x() < this->pos.x())
     {
         this->faceLeft();
@@ -37,13 +38,32 @@ void Enemy::move()
     }
     if(this->start == true)
     {
-        if(player->getPos().x() < pos.x())
+        if(player->isCrouching())
         {
-            this->moveLeft();
+            if(this->facingLeft())
+                this->moveLeft();
+            else
+                this->moveRight();
         }
         else
         {
+            if(player->getPos().x() < pos.x())
+            {
+                this->moveLeft();
+            }
+            else
+            {
+                this->moveRight();
+            }
+        }
+
+        if(this->getPos().x() < 0)
+        {
             this->moveRight();
+        }
+        else if(this->getPos().x() > 964)
+        {
+            this->moveLeft();
         }
     }
 }

@@ -42,6 +42,8 @@ private:
     int pixChange;
     int enemyPixChange;
 
+
+    //all of these variables will be placed in their proper classes later
     bool movLeft;
     bool movRight;
 
@@ -49,6 +51,8 @@ private:
     bool falling;
     bool isGrounded;
     int hitCount;
+
+    //
 
     QWidget *start;
 

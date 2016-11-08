@@ -5,8 +5,9 @@
 #include <QRect>
 #include "entity.h"
 #include "weapon.h"
+#include "player.h"
 
-class Cheater: public Entity
+class Cheater: public Player
 {
     Weapon *weapon;
     int jumpSpeed;

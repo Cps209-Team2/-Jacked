@@ -6,7 +6,7 @@
 help::help(QMainWindow *initParent) : QWidget(initParent),
     ui(new Ui::help)
 {
-    parent = initParent;
+    parent = dynamic_cast<StartWindow *>(initParent)->getStart();
     ui->setupUi(this);
 }
 
@@ -17,6 +17,8 @@ help::~help()
 
 void help::on_pbDone_clicked()
 {
+    parent->show();
+    parent->setFocus();
     emit destroyed();
     this->close();
 

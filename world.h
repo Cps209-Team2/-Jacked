@@ -13,15 +13,15 @@
 #include <QFile>
 #include "obstacle.h"
 #include "entity.h"
-//#include "enemy.h"
+#include "enemy.h"
 #include "player.h"
-
+class Enemy;
 class World
 {
     int lvl;
     Player *player;
     std::vector<Obstacle*> obstacles;
-    std::vector<Entity*> enemies;
+    std::vector<Enemy*> enemies;
     int currentScore;
     static World *instance_;
 
@@ -49,7 +49,7 @@ public:
     //getters
     Player& getPlayer() { return *player; }
     Player* _Player() { return player; }
-    std::vector<Entity*>& getEnemies() {return enemies;}
+    std::vector<Enemy*>& getEnemies() {return enemies;}
     std::vector<Obstacle*>& getObstacles() { return obstacles; }
     int getLevel() { return lvl; }
 

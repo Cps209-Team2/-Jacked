@@ -31,12 +31,13 @@ gameWidget::gameWidget(QWidget *parent) :
 {
     this->setParent(parent);
     ui->setupUi(this);
+
+    //timer
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
     timer->setInterval(33);
     timer->start();
 
-    //testing if loadfile works
     //world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
 
     //test player
@@ -111,6 +112,16 @@ void gameWidget::frame()
 
 void gameWidget::playerMove()
 {
+    if(lbl->player()->getPos().x() < 0)
+    {
+        lbl->getPos().setX(0);
+        lbl->updatePos();
+    }
+    else if(lbl->player()->getPos().x() > 964)
+    {
+        lbl->getPos().setX(964);
+        lbl->updatePos();
+    }
     if(lbl->player()->isCrouching())
     {
 
@@ -121,11 +132,11 @@ void gameWidget::playerMove()
     }
     else
     {
-        if(movLeft)
+        if(movLeft && lbl->player()->getPos().x() > 0)
         {
             lbl->moveLeft();
         }
-        else if(movRight)
+        else if(movRight && lbl->player()->getPos().x() < 964)
         {
             lbl->moveRight();
         }
@@ -149,51 +160,56 @@ void gameWidget::collide()
     {
         Entity *temp1 = data->getObj1();
         Entity *temp2 = data->getObj2();
-
-        if(!dynamic_cast<Player *>(temp1)->isAttacking())
+        if(lbl->player()->isCrouching())
         {
-            //qDebug() << "collide" << endl;
-            if(temp1->isPlayer())
-            {
-                if(!dynamic_cast<Player *>(temp1)->isCrouching())
-                {
-                    if(temp2->facingRight())
-                    {
-                        temp1->setX(temp1->getPos().x() + data->getX() + 130);
-                        temp1->setY(temp1->getPos().y() - data->getY());
-                    }
-                    else
-                    {
-                        temp1->setX(temp1->getPos().x() + data->getX() - 130);
-                        temp1->setY(temp1->getPos().y() - data->getY());
-                    }
-                    temp1->takeDmg(temp2->getDmg());
-                }
-                dynamic_cast<Player *>(temp1)->setHit(true);
-                hitCount = 0;
-            }
         }
         else
         {
-            if(temp2->facingRight())
+            if(!dynamic_cast<Player *>(temp1)->isAttacking())
             {
-                temp2->setX(temp2->getPos().x() - data->getX() - 130);
-                temp2->setY(temp2->getPos().y() - data->getY());
+                //qDebug() << "collide" << endl;
+                if(temp1->isPlayer())
+                {
+                    if(!dynamic_cast<Player *>(temp1)->isCrouching())
+                    {
+                        if(temp2->facingRight())
+                        {
+                            temp1->setX(temp1->getPos().x() + data->getX() + 130);
+                            temp1->setY(temp1->getPos().y() - data->getY());
+                        }
+                        else
+                        {
+                            temp1->setX(temp1->getPos().x() + data->getX() - 130);
+                            temp1->setY(temp1->getPos().y() - data->getY());
+                        }
+                        temp1->takeDmg(temp2->getDmg());
+                    }
+                    dynamic_cast<Player *>(temp1)->setHit(true);
+                    hitCount = 0;
+                }
             }
             else
             {
-                temp2->setX(temp2->getPos().x() - data->getX() + 130);
-                temp2->setY(temp2->getPos().y() - data->getY());
-            }
-            temp2->takeDmg(10);
-            if(temp2->getHP() <= 0)
-            {
-                elbl->hide();
-                //delete elbl->object();
+                if(temp2->facingRight())
+                {
+                    temp2->setX(temp2->getPos().x() - data->getX() - 130);
+                    temp2->setY(temp2->getPos().y() - data->getY());
+                }
+                else
+                {
+                    temp2->setX(temp2->getPos().x() - data->getX() + 130);
+                    temp2->setY(temp2->getPos().y() - data->getY());
+                }
+                temp2->takeDmg(10);
+                if(temp2->getHP() <= 0)
+                {
+                    elbl->hide();
+                    elbl->object()->setBody(nullptr);
+                    //delete elbl->object();
+                }
             }
         }
     }
-
 }
 
 void gameWidget::lblUpdate()

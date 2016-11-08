@@ -13,6 +13,10 @@
         <file alias="tempPlayer.png">Images/tempPlayer.png</file>
         <file alias="tsa.jpeg">Images/tsa.jpeg</file>
         <file alias="cheat.png">Images/cheat.png</file>
+        <file alias="difficulty.png">Images/difficulty.png</file>
+        <file alias="easy.png">Images/easy.png</file>
+        <file alias="medium.png">Images/medium.png</file>
+        <file alias="hard.png">Images/hard.png</file>
         <file>Images/level1.png</file>
         <file>Images/help.png</file>
         <file>Images/robot_facingleft.png</file>
