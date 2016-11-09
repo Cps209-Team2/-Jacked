@@ -208,7 +208,7 @@ void gameWidget::collide()
                 if(temp2->getHP() <= 0)
                 {
                     elbl->hide();
-                    elbl->object()->setBody(nullptr);
+                    //elbl->object()->setBody(nullptr);
                     //delete elbl->object();
                 }
             }
