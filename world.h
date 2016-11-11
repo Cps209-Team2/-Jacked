@@ -22,6 +22,7 @@ class World
     Player *player;
     std::vector<Obstacle*> obstacles;
     std::vector<Enemy*> enemies;
+    std::vector<Enemy*> trashbin;
     int currentScore;
     static World *instance_;
 
@@ -45,6 +46,7 @@ public:
     void reset(); //removes all enemy and obstacle objects and allows for a new level
     void addScore(int plus) { currentScore += plus; }
 
+    void trash(Enemy *);
 
     //getters
     Player& getPlayer() { return *player; }

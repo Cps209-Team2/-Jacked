@@ -98,6 +98,10 @@ void gameWidget::frame()
         start->setFocus();
     }
 
+    if(lbl->player()->getPos().y() == 0)
+    {
+        isGrounded = true;
+    }
 
     if(lbl->player() != NULL)
         this->playerMove();
@@ -204,7 +208,7 @@ void gameWidget::collide()
                 if(temp2->getHP() <= 0)
                 {
                     elbl->hide();
-                    elbl->object()->setBody(nullptr);
+                    //elbl->object()->setBody(nullptr);
                     //delete elbl->object();
                 }
             }
@@ -425,7 +429,7 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         }
         else if(event->key() == Qt::Key_Down)
         {
-            lbl->player()->crouch();
+                lbl->player()->crouch();
         }
     }
 }
