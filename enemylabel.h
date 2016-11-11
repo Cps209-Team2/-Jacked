@@ -13,7 +13,7 @@ public:
     {
         obj = dynamic_cast<Enemy *>(object);
     }
-    Enemy *player() { return obj; }
+    Enemy *object() { return obj; }
 
 /*
     void setImg(QPixmap *pix)

@@ -15,6 +15,7 @@ StartWindow::StartWindow(QMainWindow *parent) :
     helpScreen = new help(this);
     helpScreen->hide();
     connect(helpScreen, SIGNAL(destroyed()), this, SLOT(on_helpClosed()));
+    newWindow = true;
 }
 
 QWidget *StartWindow::getStart()
@@ -38,14 +39,14 @@ void StartWindow::on_btnCheat_clicked()
 void StartWindow::on_btnPlay_clicked()
 {
     ui->centralwidget->hide();
-    game = new gameWidget(this);
+
+        game = new gameWidget(this);
+
+
     game->show();
     game->setFocus();
-    game->begin();
 
-    //start the game!!!
-    //newGame.show();
-
+    newWindow = false;
 }
 
 //show a helpful information window

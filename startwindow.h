@@ -21,6 +21,7 @@ private:
     help *helpScreen;
     //helpWidget *help;
     Ui::StartWindow *ui;
+    bool newWindow;
 
 
 public:

@@ -7,6 +7,7 @@
 #include <QDebug>
 #include "entity.h"
 #include <QPixmap>
+#include "enemy.h"
 
 class MovableLabel:public QLabel
 {
@@ -26,6 +27,7 @@ public:
     virtual void updatePos() { this->move(obj->getPos()); }
 
     // invokes obj directional move methods
+    virtual void movePos() { dynamic_cast<Enemy*>(obj)->move(); }
     virtual void moveLeft() { obj->moveLeft(); this->updatePos(); }
     virtual void moveRight() { obj->moveRight(); this->updatePos(); }
 

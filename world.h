@@ -28,10 +28,10 @@ class World
 
     explicit World(const World& that) = delete;
 
-
-public:
     World(){ }
+public:
     void setPlayer(Player *character) { player = character; } //spawns player
+    void addEntity(Entity *obj);
 
     static World *instance();
     //void setPlayer(Entity *character) { player = character; } //spawns player
@@ -41,12 +41,11 @@ public:
     //void addEnemy(Enemy *newEnemy) { enemies.push_back(newEnemy); }
     static void saveScore(QString filename);
     void processLevel(QString level); // adds all game variables to the vectors
-    void eSpawn();//spawns enemies
     void advance();//advances map to next lvl;
     void reset(); //removes all enemy and obstacle objects and allows for a new level
     void addScore(int plus) { currentScore += plus; }
 
-    void trash(Enemy *);
+    void trash(int ID);
 
     //getters
     Player& getPlayer() { return *player; }

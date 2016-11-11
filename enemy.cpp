@@ -1,7 +1,9 @@
-
 #include "enemy.h"
+#include "entity.h"
 
-Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
+int Enemy::nextId = 0;
+
+Enemy::Enemy(int x, int y, Weapon *item, Player *obj, int ms)
 {
     pos.setX(x);
     pos.setY(y);
@@ -10,15 +12,14 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
     body = new QRect(pos.x(),pos.y(),80,80);
     player = obj;
     qDebug() << "assigned player reference" << endl;
-    this->start = false;
-    qDebug() <<  "assigned body and player obj" << endl;
+
     if(item->getType() == QString::fromLocal8Bit("fist"))
     { DMG = 5; }
     else
     { DMG = 10; }
 
     HP = 30;
-    qDebug() << "assigned player HP" << endl;
+    qDebug() << "assigned enemy HP" << endl;
     if(player->getPos().x() < this->pos.x())
     {
         this->faceLeft();
@@ -27,17 +28,14 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj)
     {
         this->faceRight();
     }
+    moveSpeed = ms;
+    int id = ++nextId;
+    qDebug() << id << endl;
     //World::instance()->addEnemy(this);
 }
 
 void Enemy::move()
 {
-    if(player == NULL)
-    {
-
-    }
-    if(this->start == true)
-    {
         if(player->isCrouching())
         {
             if(this->facingLeft())
@@ -65,18 +63,17 @@ void Enemy::move()
         {
             this->moveLeft();
         }
-    }
 }
 
 void Enemy::moveLeft()
 {
-    pos.setX(pos.x() - 2);
+    pos.setX(pos.x() - moveSpeed);
     this->faceLeft();
 }
 
 void Enemy::moveRight()
 {
-    pos.setX(pos.x() + 2);
+    pos.setX(pos.x() + moveSpeed);
     this->faceRight();
 }
 

@@ -32,6 +32,5 @@ void MovableLabel::setPos(QPoint pos)
 
 MovableLabel::~MovableLabel()
 {
-    delete img;
-    delete obj;
+
 }
