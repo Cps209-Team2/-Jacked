@@ -41,7 +41,7 @@ public:
     bool movingRight() { return movRight; }
     void turnLeft() { movLeft = true; movRight = false; }
     void turnRight() { movLeft = false; movRight = true; }
-    void stopMoving() { movLeft = false; movRight = false; }
+    void stopMoving();
 
     bool jump();
     bool rise() { return _rise; }
