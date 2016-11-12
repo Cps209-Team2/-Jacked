@@ -140,7 +140,7 @@ void gameWidget::frame()
         {
         Collision bounce(player,temp->object());
         CollisionInfo *data = bounce.getData();
-        this->enemyMove(dynamic_cast<Enemy*>(temp->object()));
+        //this->enemyMove(dynamic_cast<Enemy*>(temp->object()));
         this->elblUpdate(temp);
         this->collide(data);
         }
@@ -170,11 +170,11 @@ void gameWidget::playerMove()
 
     else if(lbl->player()->isAttacking()){ }
 
-    if(player->movingLeft() && lbl->player()->getPos().x() > 0)
+    if(player->movingLeft() && !player->movingRight() && lbl->player()->getPos().x() > 0)
     {
         lbl->moveLeft();
     }
-    else if(player->movingRight() && lbl->player()->getPos().x() < 964)
+    else if(player->movingRight() && !player->movingLeft() && lbl->player()->getPos().x() < 964)
     {
         lbl->moveRight();
     }
@@ -244,7 +244,7 @@ void gameWidget::collide(CollisionInfo *data)
                         if(dynamic_cast<Enemy*>(i->object())->getId() == dynamic_cast<Enemy*>(temp2)->getId())
                         {
                             i->hide();
-                            world->trash(i->object()->getId());
+                            world->trash(temp2->getId());
                         }
                     }
                     //enemyLbl->hide();
@@ -438,7 +438,7 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         {
             player->turnLeft();
         }
-        if(event->key() == Qt::Key_Right)
+        else if(event->key() == Qt::Key_Right)
         {
             player->turnRight();
         }
@@ -467,20 +467,20 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
             qDebug() << "atk" << endl;
             lbl->player()->setAttack(true);
         }
-        else if(event->key() == Qt::Key_Down)
+        if(event->key() == Qt::Key_Down)
         {
-                lbl->player()->crouch();
+            lbl->player()->crouch();
         }
     }
 }
 
 void gameWidget::keyReleaseEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_Left)
+    if(event->key() == Qt::Key_Left && !player->movingRight())
     {
         player->stopMoving();
     }
-    else if(event->key() == Qt::Key_Right)
+    else if(event->key() == Qt::Key_Right && !player->movingLeft())
     {
         player->stopMoving();
     }

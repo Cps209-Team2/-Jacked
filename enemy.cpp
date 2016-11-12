@@ -36,7 +36,7 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj, int ms)
 
 void Enemy::move()
 {
-        if(player->isCrouching())
+        if(player->isCrouching() || player->isGrounded())
         {
             if(this->facingLeft())
                 this->moveLeft();

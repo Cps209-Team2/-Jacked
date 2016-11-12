@@ -90,6 +90,7 @@ bool Player::jump()
     pos.setY(pos.y() - jumpSpeed);
         jumpSpeed -= 2;
         ++jumpDuration;
+        grounded = false;
         return true;
     }
     else
@@ -97,10 +98,23 @@ bool Player::jump()
         jumpDuration = 0;
         jumpSpeed = 24;
         falling = false;
+        grounded = true;
         return false;
     }
 
     return false;
+}
+
+void Player::stopMoving()
+{
+    if(movLeft)
+    {
+        movLeft = false;
+    }
+    if(movRight)
+    {
+        movRight = false;
+    }
 }
 
 void Player::recoil(CollisionInfo *)
