@@ -90,7 +90,7 @@ void gameWidget::spawnPlayer()
 
 void gameWidget::loadTestLvl()
 {
-    for(int i = 1; i <= 2; i++)
+    for(int i = 1; i <= 1; i++)
     {
         Enemy *temp = new Enemy(rand() % 150 + 350, 600, new Weapon("fist"), player, rand() % 5 + 1);
         world->addEntity(temp);
@@ -129,7 +129,7 @@ void gameWidget::frame()
         //this->reset();
         start->show();
         start->setFocus();
-
+        timer->stop();
         isOpen = false;
     }
     for(int i = 0; i < elbls.size(); i++)
@@ -140,7 +140,7 @@ void gameWidget::frame()
         {
         Collision bounce(player,temp->object());
         CollisionInfo *data = bounce.getData();
-        //this->enemyMove(dynamic_cast<Enemy*>(temp->object()));
+        this->enemyMove(dynamic_cast<Enemy*>(temp->object()));
         this->elblUpdate(temp);
         this->collide(data);
         }
