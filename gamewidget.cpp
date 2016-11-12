@@ -20,6 +20,8 @@
 #include "playerlabel.h"
 #include "enemylabel.h"
 
+#include <vector>
+
 namespace constants
 {
     int gravity = 1;
@@ -90,6 +92,7 @@ void gameWidget::spawnPlayer()
 
 void gameWidget::loadTestLvl()
 {
+    /*
     for(int i = 1; i <= 2; i++)
     {
         Enemy *temp = new Enemy(rand() % 150 + 350, 600, new Weapon("fist"), player, rand() % 5 + 1);
@@ -97,6 +100,21 @@ void gameWidget::loadTestLvl()
         elbls.push_back(new MovableLabel(this,temp,new QPixmap(":/Images/Images/enemy_left (1).png")));
         qDebug() << temp->getId() << endl;
     }
+    */
+    world->loadFile(":/Levels/lvl1");
+    std::vector<Enemy*> enemies = world->getEnemies();
+
+    for (int i = 0; i < enemies.size(); ++i)
+    {
+        elbls.push_back(new MovableLabel(this, enemies.at(i), new QPixmap(":/Images/Images/enemy_left (1).png")));
+    }
+    /*
+    std::vector<Enemy*> enemies = world->getEnemies();
+    for (int i = 0; i < enemies.size(); ++i)
+    {
+        qDebug() << "The enemies currently in the world vector have the weapon type of "<< enemies.at(i)->getWeapon()->getType();
+    }
+    */
 }
 
 void gameWidget::frame()

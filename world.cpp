@@ -10,7 +10,7 @@
 
 using namespace std;
 
-World *World::instance_ = nullptr;
+World *World::instance_ = new World();
 
 World *World::instance() {
     if (instance_ == nullptr) {
