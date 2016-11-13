@@ -2,6 +2,7 @@
 #define ESCMENU_H
 
 #include <QWidget>
+#include <QTimer>
 
 namespace Ui {
 class EscMenu;
@@ -18,8 +19,12 @@ public:
 private slots:
     void on_btnSave_clicked();
 
+    void on_btnExit_clicked();
+
 private:
     Ui::EscMenu *ui;
+    QTimer timer;
+    QWidget *thisParent;
 };
 
 #endif // ESCMENU_H

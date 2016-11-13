@@ -19,6 +19,8 @@
 #include "collision.h"
 #include "playerlabel.h"
 #include "enemylabel.h"
+#include "save.h"
+#include "escmenu.h"
 
 #include <vector>
 
@@ -457,6 +459,12 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
         if(event->key() == Qt::Key_Down)
         {
             lbl->player()->crouch();
+        }
+        if(event->key() == Qt::Key_Escape)
+        {
+            timer->stop();
+            escMenu = new EscMenu(this);
+            escMenu->show();
         }
     }
 }
