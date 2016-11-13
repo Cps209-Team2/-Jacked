@@ -25,6 +25,9 @@ class Player: public Entity
     int atkBuffer;
     bool crouching;
     bool hit;
+    bool grounded;
+    bool movRight;
+    bool movLeft;
 
 public:
     Player(int initx, int inity, Weapon *item);
@@ -34,6 +37,11 @@ public:
     bool isEnemy() { return false; }
     void moveLeft();
     void moveRight();
+    bool movingLeft() { return movLeft; }
+    bool movingRight() { return movRight; }
+    void turnLeft() { movLeft = true; movRight = false; }
+    void turnRight() { movLeft = false; movRight = true; }
+    void stopMoving();
 
     bool jump();
     bool rise() { return _rise; }
@@ -54,6 +62,9 @@ public:
     void saveScore(QFile *file);
     void saveState(QFile *file);
 
+    int getAttackDur() { return attackDuration; }
+    void setGrounded(bool g) { grounded = g; }
+    bool isGrounded() { return grounded; }
     void setAttack(bool atk) { attacking = atk; }
     bool isAttacking() { return attacking; }
     bool attack();

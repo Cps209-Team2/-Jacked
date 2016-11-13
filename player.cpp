@@ -21,6 +21,10 @@ Player::Player(int initx, int inity, Weapon *item)
     left = false;
     crouching = false;
     hit = false;
+    grounded = true;
+
+    movRight = false;
+    movLeft = false;
 
     if(item->getType() == QString::fromLocal8Bit("fist"))
     {
@@ -55,6 +59,8 @@ void Player::moveLeft()
 {
     pos.setX(pos.x() - 11);
     body->moveTo(pos);
+    movLeft = true;
+    movRight = false;
     this->faceLeft();
 }
 
@@ -62,6 +68,8 @@ void Player::moveRight()
 {
     pos.setX(pos.x() + 11);
     body->moveTo(pos);
+    movRight = true;
+    movLeft = false;
     this->faceRight();
 }
 
@@ -82,6 +90,7 @@ bool Player::jump()
     pos.setY(pos.y() - jumpSpeed);
         jumpSpeed -= 2;
         ++jumpDuration;
+        grounded = false;
         return true;
     }
     else
@@ -89,10 +98,23 @@ bool Player::jump()
         jumpDuration = 0;
         jumpSpeed = 24;
         falling = false;
+        grounded = true;
         return false;
     }
 
     return false;
+}
+
+void Player::stopMoving()
+{
+    if(movLeft)
+    {
+        movLeft = false;
+    }
+    if(movRight)
+    {
+        movRight = false;
+    }
 }
 
 void Player::recoil(CollisionInfo *)
@@ -102,20 +124,23 @@ void Player::recoil(CollisionInfo *)
 
 bool Player::attack()
 {
-    if(!attacking || attackDuration > 24)
+    /*
+    if(!attacking || attackDuration > 0)
     {
-        //body = new QRect(pos.x(),pos.y(),68,80);
-        //attackDuration = -64;
-        //attacking = false;
-        //qDebug() << "no ATK" << endl;
+        attacking = false;
         return false;
     }
+    if(attackDuration == 20)
+    {
+        attackDuration = -20;
+    }
+    */
     if(attacking)
     {
-        //body = new QRect(pos.x(),pos.y(),68,300);
-
-        //++attackDuration;
+        attackDuration ++;
+        return true;
     }
+
     return true;
 
 }

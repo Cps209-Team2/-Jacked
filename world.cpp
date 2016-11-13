@@ -10,58 +10,36 @@
 
 using namespace std;
 
-World *World::instance_ = nullptr;
+World *World::instance_ = new World();
 
-World *World::instance() {
+World &World::instance() {
     if (instance_ == nullptr) {
         instance_ = new World();
     }
-    return instance_;
+    return *instance_;
 }
 //Singleton implementation
 
-/*
-void Map::reset() {
-    //removes enemy objects
-    for (int i = 0; i < this->enemies.size(); i++) {
-        delete[] this->enemies.at(i);
-
+void World::addEntity(Entity *obj)
+{
+    if(dynamic_cast<Player *>(obj) != nullptr)
+    {
+        player = dynamic_cast<Player*>(obj);
     }
-    this->enemies.clear();
-
-    //removes obstacles
-    for (int i = 0; i < this->obstacles.size(); i++) {
-        delete[] this->obstacles.at(i);
+    if(dynamic_cast<Enemy *>(obj) != nullptr)
+    {
+        enemies.push_back(dynamic_cast<Enemy*>(obj));
     }
-    this->obstacles.clear();
-
-    //reset player
-    //need to decide what to do
-}
-*/
-//initializes new lvl
-
-void World::create() {
-    //this->reset();
-    //Map::loadFile(1);
-    int num = 1;
-    //string line = file.getline();
-    //if (line != NULL) {Player one = new Player() }
-    //if (file) {
-    //read player pos
-    //read player weapon
-    //loop through enemies
-    //}
 }
 
-void World::trash(Enemy *dead)
+void World::trash(int ID)
 {
     for(size_t i = 0; i < enemies.size(); i++)
     {
-        if(enemies.at(i) == dead)
+        if(enemies.at(i)->getId() == ID)
         {
+            trashbin.push_back(dynamic_cast<Enemy*>(enemies.at(i)));
             enemies.erase(enemies.begin() + i);
-            trashbin.push_back(dead);
         }
     }
 }
@@ -168,7 +146,9 @@ void World::processLevel(QString levels)
             qDebug() << "x coordinate" << xPos;
             qDebug() << "y coordinate" << yPos;
             qDebug() << weapon;
-            World::instance()->setPlayer(new Player(xPos, yPos, new Weapon(weapon)));
+            Player *player = new Player(xPos, yPos, new Weapon(weapon));
+            this->addEntity(player);
+            qDebug() << "created player" << endl;
             //line = level.readLine();
         }
         else if (line == "#Enemies")
@@ -205,12 +185,11 @@ void World::processLevel(QString levels)
                     line = level.readLine();
                 }
 
-
                 qDebug() << "x coordinate" << xPos;
                 qDebug() << "y coordinate" << yPos;
                 qDebug() << "weapon type = " << weapon;
-
-                enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon),this->player));
+                Enemy *enemy = new Enemy(xPos, yPos, new Weapon(weapon),this->player, rand() % 5 + 1);
+                this->addEntity(enemy);
                 qDebug() << "created enemy" << endl;
             }
         }
@@ -236,15 +215,6 @@ World::~World()
         delete i;
     }
 }
-
-
-/*
-//advances map to next lvl;
-void Map::advance() {
-    lvl++;
-    //create();
-}
-*/
 
 static void saveScore()
 {

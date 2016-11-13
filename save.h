@@ -21,8 +21,11 @@ public:
     Save() {}
     Save(QString initScoreFile, QString initWorldFile): scoreFile(initScoreFile), worldFile(initWorldFile) {}
     Save(QString File): scoreFile(File) { }
-    void saveScore(World *world);
-    void saveWorld(World *world);
+
+
+    void saveScore(World& world);
+    void saveWorld(World& world);
+
     void loadScores(QString filename);
     void processScores(QString load);
     //~Save(){ for(unsigned i = 0; i< scoreInfo.size(); ++i){delete scoreInfo->at(i);} delete scoreInfo; }

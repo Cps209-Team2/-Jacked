@@ -25,6 +25,7 @@ private:
     highscore themScores;
     //helpWidget *help;
     Ui::StartWindow *ui;
+    bool newWindow;
 
 
 public:

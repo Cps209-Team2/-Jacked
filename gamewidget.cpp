@@ -19,6 +19,10 @@
 #include "collision.h"
 #include "playerlabel.h"
 #include "enemylabel.h"
+#include "save.h"
+#include "escmenu.h"
+
+#include <vector>
 
 namespace constants
 {
@@ -32,134 +36,151 @@ gameWidget::gameWidget(QWidget *parent) :
     this->setParent(parent);
     ui->setupUi(this);
 
+    //world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    world = World::instance();
+
+    this->spawnPlayer();
+    this->loadTestLvl();
+    //player = world->_Player();
+
     //timer
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(frame()));
     timer->setInterval(33);
     timer->start();
 
-    //world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
-
-    //test player
-    qDebug() << "creating player" << endl;
-    player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
-    lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/player_idle_right.png"));
-    lbl->updatePos();
-
-    qDebug() << "created player" << endl;
-
-    //test enemy
-    qDebug() << "creating enemies" << endl;
-    enemy = new Enemy(600,600,new Weapon(QString::fromLocal8Bit("fist")), player);
-    //World::addEnemy(enemy);
-    qDebug() << "created enemies" << endl;
-    elbl = new MovableLabel(this,enemy, new QPixmap(":/Images/Images/enemy_left (1).png"));
-    elbl->show();
-    elbl->updatePos();
-
-    qDebug() << "created elbl" << endl;
-
-    //direction bools
-    this->movLeft = false;
-    this->movRight = false;
-
     //jumping and falling bools
     this->jump = false;
-    this->falling = false;
-    this->isGrounded = false;
+    //this->falling = false;
     pixChange = 0;
     enemyPixChange = 0;
     hitCount = 0;
 
+    isOpen = true;
+
     start = dynamic_cast<StartWindow *>(parent)->getStart();
 }
 
-void gameWidget::begin() {
-    //for (int i = 0; i < World::instance()->getEnemies().size(); ++i) {
-    //World::instance()->getEnemies().at(i)->beginGame();
-    //}
-    enemy->beginGame();
+void gameWidget::spawnPlayer()
+{
+    qDebug() << "creating player" << endl;
+    player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
+    world.addEntity(player);
+    lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/player_idle_right.png"));
+    lbl->updatePos();
 }
 
+void gameWidget::loadTestLvl()
+{
+    /*
+    for(int i = 1; i <= 2; i++)
+    {
+        Enemy *temp = new Enemy(rand() % 150 + 350, 600, new Weapon("fist"), player, rand() % 5 + 1);
+        world->addEntity(temp);
+        elbls.push_back(new MovableLabel(this,temp,new QPixmap(":/Images/Images/enemy_left (1).png")));
+        qDebug() << temp->getId() << endl;
+    }
+    */
 
+    world.loadFile(":/Levels/lvl1");
+    std::vector<Enemy*> enemies = world.getEnemies();
+
+    for (int i = 0; i < enemies.size(); ++i)
+    {
+        elbls.push_back(new MovableLabel(this, enemies.at(i), new QPixmap(":/Images/Images/enemy_left (1).png")));
+    }
+}
 
 void gameWidget::frame()
 {
+    qDebug() << elbls.size() << endl;
 
     if(lbl->player()->getHP() == 0)
     {
-        lbl->player()->setHP(-500);
+        player->setHP(-500);
         QMessageBox dieBox;
         dieBox.setText("Game Over!");
         dieBox.exec();
-        lbl->player()->setBody(new QRect());
         this->hide();
+        this->reset();
+        timer->stop();
         start->show();
         start->setFocus();
     }
 
     if(lbl->player()->getPos().y() == 0)
     {
-        isGrounded = true;
+        player->setGrounded(true);
     }
 
-    if(lbl->player() != NULL)
-        this->playerMove();
-    if(elbl->object() != NULL)
+    if(world.getEnemies().size() == 0 && isOpen == true)
     {
-        this->enemyMove();
-        this->collide();
-        this->lblUpdate();
+        QMessageBox winBox;
+        winBox.setText("You Win!");
+        winBox.exec();
+        this->hide();
+        this->reset();
+        start->show();
+        start->setFocus();
+        timer->stop();
+        isOpen = false;
     }
+    for(int i = 0; i < world.getEnemies().size(); i++)
+    {
+        //MovableLabel *temp = elbls.at(i);
+
+        this->enemyMove(dynamic_cast<Enemy*>(world.getEnemies().at(i)));
+        Collision bounce(player,world.getEnemies().at(i));
+        CollisionInfo *data = bounce.getData();
+        this->collide(data);
+    }
+    this->elblUpdate();
+    this->playerMove();
+    this->lblUpdate();
+
+}
+void gameWidget::updatePlayerCondition()
+{
 
 }
 
 void gameWidget::playerMove()
 {
-    if(lbl->player()->getPos().x() < 0)
+    if(player->getPos().x() < 0)
     {
-        lbl->getPos().setX(0);
+        player->setX(0);
         lbl->updatePos();
     }
-    else if(lbl->player()->getPos().x() > 964)
+    else if(player->getPos().x() > 964)
     {
-        lbl->getPos().setX(964);
+        player->setX(964);
         lbl->updatePos();
     }
-    if(lbl->player()->isCrouching())
-    {
+    if(lbl->player()->isCrouching()){ }
 
-    }
-    else if(lbl->player()->isAttacking())
-    {
+    else if(lbl->player()->isAttacking()){ }
 
-    }
-    else
+    if(player->movingLeft() && !player->movingRight() && lbl->player()->getPos().x() > 0)
     {
-        if(movLeft && lbl->player()->getPos().x() > 0)
-        {
-            lbl->moveLeft();
-        }
-        else if(movRight && lbl->player()->getPos().x() < 964)
-        {
-            lbl->moveRight();
-        }
-        if(jump)
-        {
-            jump = lbl->player()->jump();
-        }
+        lbl->moveLeft();
+    }
+    else if(player->movingRight() && !player->movingLeft() && lbl->player()->getPos().x() < 964)
+    {
+        lbl->moveRight();
+    }
+    if(jump)
+    {
+        jump = lbl->player()->jump();
     }
 }
 
-void gameWidget::enemyMove()
+void gameWidget::enemyMove(Enemy *obj)
 {
-    enemy->move();
+    obj->move();
 }
 
-void gameWidget::collide()
+void gameWidget::collide(CollisionInfo *data)
 {
-    Collision *bounce = new Collision(this->lbl->player(),this->elbl->object());
-    CollisionInfo *data(bounce->getData());
     if(data->collide())
     {
         Entity *temp1 = data->getObj1();
@@ -204,12 +225,18 @@ void gameWidget::collide()
                     temp2->setX(temp2->getPos().x() - data->getX() + 130);
                     temp2->setY(temp2->getPos().y() - data->getY());
                 }
+                player->setAttack(false);
                 temp2->takeDmg(10);
                 if(temp2->getHP() <= 0)
                 {
-                    elbl->hide();
-                    //elbl->object()->setBody(nullptr);
-                    //delete elbl->object();
+                    for(MovableLabel *i : elbls)
+                    {
+                        if(dynamic_cast<Enemy*>(i->object())->getId() == dynamic_cast<Enemy*>(temp2)->getId())
+                        {
+                            i->hide();
+                        }
+                    }
+                    world.trash(temp2->getId());
                 }
             }
         }
@@ -269,17 +296,17 @@ void gameWidget::lblUpdate()
         else
         {
             // standing still
-            if(!movLeft && !movRight && lbl->facingRight() && !lbl->player()->rise())
+            if(!player->movingLeft() && !player->movingRight() && lbl->facingRight() && !lbl->player()->rise())
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_idle_right.png"));
             }
-            else if(!movLeft && !movRight && lbl->facingLeft() && !lbl->player()->rise())
+            else if(!player->movingLeft() && !player->movingRight() && lbl->facingLeft() && !lbl->player()->rise())
             {
                 lbl->updateImg(new QPixmap(":/Images/Images/player_idle_left.png"));
             }
 
             //walking
-            else if(movLeft && !lbl->player()->rise())
+            else if(player->movingLeft() && !player->rise())
             {
                 if(pixChange == 0)
                 {
@@ -309,7 +336,7 @@ void gameWidget::lblUpdate()
 
                 pixChange++;
             }
-            else if(movRight && !lbl->player()->rise())
+            else if(player->movingRight() && !player->rise())
             {
                 if(pixChange == 0)
                 {
@@ -343,49 +370,54 @@ void gameWidget::lblUpdate()
         }
     }
 
-
-    //enemy
-    if(elbl->facingLeft())
-    {
-        if(enemyPixChange == 0)
-        {
-            elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
-        }
-        else if(enemyPixChange == 8)
-        {
-            elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
-        }
-        else if(enemyPixChange == 16)
-        {
-            elbl->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
-            enemyPixChange = -1;
-        }
-
-    }
-    else if(elbl->facingRight())
-    {
-        if(enemyPixChange == 0)
-        {
-            elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
-        }
-        else if(enemyPixChange == 8)
-        {
-            elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (2).png"));
-        }
-        else if(enemyPixChange == 16)
-        {
-            elbl->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
-            enemyPixChange = -1;
-        }
-    }
-
-    enemyPixChange++;
     hitCount++;
     lbl->updatePos();
-    elbl->updatePos();
+
 
     this->ui->lbScore->setText("Score: " + QString::number(player->getScore()));
     this->ui->lbHealth->setText("Health: " + player->showHealth());
+}
+
+void gameWidget::elblUpdate()
+{
+    for(MovableLabel *i : elbls)
+    {
+        if(i)
+        {
+            if(enemyPixChange == 0)
+            {
+                i->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
+            }
+            else if(enemyPixChange == 8)
+            {
+                i->updateImg(new QPixmap(":/Images/Images/enemy_left (2).png"));
+            }
+            else if(enemyPixChange == 16)
+            {
+                i->updateImg(new QPixmap(":/Images/Images/enemy_left (1).png"));
+                enemyPixChange = -1;
+            }
+
+        }
+        else if(i->facingRight())
+        {
+            if(enemyPixChange == 0)
+            {
+                i->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
+            }
+            else if(enemyPixChange == 8)
+            {
+                i->updateImg(new QPixmap(":/Images/Images/enemy_right (2).png"));
+            }
+            else if(enemyPixChange == 16)
+            {
+                i->updateImg(new QPixmap(":/Images/Images/enemy_right (1).png"));
+                enemyPixChange = -1;
+            }
+        }
+        i->updatePos();
+    }
+    enemyPixChange++;
 }
 
 void gameWidget::keyPressEvent(QKeyEvent *event)
@@ -394,18 +426,16 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
     {
         if(event->key() == Qt::Key_Left)
         {
-            this->movLeft = true;
-            this->movRight = false;
+            player->turnLeft();
         }
         else if(event->key() == Qt::Key_Right)
         {
-            this->movRight = true;
-            this->movLeft = false;
+            player->turnRight();
         }
-        else if(event->key() == Qt::Key_Up)
+        if(event->key() == Qt::Key_Up)
         {
             jump = true;
-            isGrounded = false;
+            player->setGrounded(false);
             //lbl->setY(lbl->getPos().y() - 200);
             //falling = true;
             //isGrounded = false;
@@ -422,40 +452,52 @@ void gameWidget::keyPressEvent(QKeyEvent *event)
             }
         */
         }
-        else if(event->key() == Qt::Key_Space)
+        if(event->key() == Qt::Key_Space)
         {
-            qDebug() << "atk" << endl;
             lbl->player()->setAttack(true);
         }
-        else if(event->key() == Qt::Key_Down)
+        if(event->key() == Qt::Key_Down)
         {
-                lbl->player()->crouch();
+            lbl->player()->crouch();
+        }
+        if(event->key() == Qt::Key_Escape)
+        {
+            timer->stop();
+            escMenu = new EscMenu(this);
+            escMenu->show();
         }
     }
 }
 
 void gameWidget::keyReleaseEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_Left)
+    if(event->key() == Qt::Key_Left && !player->movingRight())
     {
-        this->movLeft = false;
+        player->stopMoving();
     }
-    else if(event->key() == Qt::Key_Right)
+    else if(event->key() == Qt::Key_Right && !player->movingLeft())
     {
-        this->movRight = false;
-    }
-    else if(event->key() == Qt::Key_Up)
-    {
-
+        player->stopMoving();
     }
     else if(event->key() == Qt::Key_Space)
     {
-        qDebug() << "release atk" << endl;
-        lbl->player()->setAttack(false);
+        player->setAttack(false);
     }
     else if(event->key() == Qt::Key_Down)
     {
-        lbl->player()->stand();
+        player->stand();
+    }
+}
+
+void gameWidget::reset()
+{
+    for(Enemy *i : world.getEnemies())
+    {
+        world.trash(i->getId());
+    }
+    for(MovableLabel *i : elbls)
+    {
+        i->deleteLater();
     }
 }
 
@@ -464,9 +506,5 @@ gameWidget::~gameWidget()
     timer->stop();
     delete timer;
     delete ui;
-    delete world;
-    delete player;
-    delete enemy;
-    lbl->deleteLater();
-    elbl->deleteLater();
+    //delete world;
 }

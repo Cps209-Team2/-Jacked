@@ -34,10 +34,11 @@ SOURCES += main.cpp\
     world.cpp \
     collisioninfo.cpp \
     highscoreswindow.cpp \
-    difficulty.cpp
+    difficulty.cpp \
+    accesslabel.cpp \
+    escmenu.cpp
 
 HEADERS  += \
-    saveload.h \
     highscore.h \
     weapon.h \
     melee.h \
@@ -59,7 +60,9 @@ HEADERS  += \
     world.h \
     collisioninfo.h \
     highscoreswindow.h \
-    difficulty.h
+    difficulty.h \
+    accesslabel.h \
+    escmenu.h
 
 FORMS    += \
     startwindow.ui \

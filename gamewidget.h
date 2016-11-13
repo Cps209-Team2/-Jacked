@@ -14,6 +14,7 @@
 #include "playerlabel.h"
 #include "enemylabel.h"
 #include "startwindow.h"
+#include "escmenu.h"
 
 namespace Ui {
 class gameWidget;
@@ -26,12 +27,20 @@ class gameWidget : public QWidget
 public:
     explicit gameWidget(QWidget *parent = 0);
     void playerMove();
-    void enemyMove();
-    void collide();
+    void enemyMove(Enemy *obj);
+    void collide(CollisionInfo *data);
     void lblUpdate();
+    void elblUpdate();
     ~gameWidget();
-    std::vector<MovableLabel*> getElbls() { return elbls;}
-    void begin();
+    std::vector<MovableLabel*> getElbls() { return elbls; }
+    void reset();
+    void updatePlayerCondition();
+
+    void spawnPlayer();
+    void loadTestLvl();
+    //void loadLvl1();
+
+    QTimer* getTimer() { return timer; }
 
 
 private:
@@ -42,28 +51,25 @@ private:
     int pixChange;
     int enemyPixChange;
 
-
     //all of these variables will be placed in their proper classes later
-    bool movLeft;
-    bool movRight;
+    //bool movLeft;
+    //bool movRight;
 
     bool jump;
-    bool falling;
-    bool isGrounded;
+
     int hitCount;
 
-    //
-
     QWidget *start;
-
 
     // testing variables
     Player *player;
     Enemy *enemy;
     PlayerLabel *lbl;
-    MovableLabel *elbl;
+    MovableLabel *enemyLbl;
     std::vector<MovableLabel*> elbls;
-    World *world;
+    World& world = World::instance();
+    EscMenu* escMenu;
+    bool isOpen;
 
 
 private slots:

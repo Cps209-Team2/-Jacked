@@ -15,10 +15,14 @@ protected:
     bool left;
     bool right;
     int DMG;
+    int id;
+
 
 public:
     Entity();
     Entity(int x, int y){ pos.setX(x); pos.setY(y); qDebug() << "created entity" << endl; }
+
+    virtual int getId() { return id; }
 
     virtual void setX(int x) { pos.setX(x); }
     virtual void setY(int y) { pos.setY(y); }

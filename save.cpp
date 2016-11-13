@@ -5,9 +5,9 @@
 using namespace std;
 
 
-void Save::saveScore(World *world)
+void Save::saveScore(World& world)
 {
-    savePlayer = world->getPlayer();
+    savePlayer = world.getPlayer();
     QFile saveScore(scoreFile);
     saveScore.open(QIODevice::WriteOnly | QIODevice::Text);
     savePlayer.saveScore(&saveScore);
@@ -16,17 +16,17 @@ void Save::saveScore(World *world)
     saveScore.close();
 }
 
-void Save::saveWorld(World *world)
+void Save::saveWorld(World& world)
 {
     //TODO Save the state of the map, enemies, players, and obstacles
     QFile saveState(worldFile);
     saveState.open(QIODevice::WriteOnly | QIODevice::Text);
-    savePlayer = world->getPlayer();
+    savePlayer = world.getPlayer();
     savePlayer.saveState(&saveState);
     //*
     qDebug() << "Attempting to save enemies";
     qDebug() << "Attempting to get the enemies vector from world";
-    std::vector<Enemy*> enemies = world->getEnemies();
+    std::vector<Enemy*> enemies = world.getEnemies();
     qDebug() << "Entering for loop";
     for (int i = 0; i < enemies.size(); ++i)
     {

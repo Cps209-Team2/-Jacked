@@ -9,9 +9,9 @@ HighScoresWindow::HighScoresWindow(QMainWindow *parent) :
     ui->setupUi(this);
 
     for (unsigned i = 0; i < them.getNames().size(); ++i) {
-       QString scoreline = them.getNames().at(i);
+       QString scoreline = QString::fromStdString(them.getNames().at(i));
                scoreline += "\nScore: ";
-               scoreline += them.getHighScores().at(i);
+               scoreline += QString::number(them.getHighScores().at(i));
 
        parsedScores.push_back(scoreline);
     }
