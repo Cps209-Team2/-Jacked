@@ -26,6 +26,7 @@ private slots:
 private:
     Ui::HighScoresWindow *ui;
     highscore them;
+    vector<QString> parsedScores;
     QLabel *newLabel;
     Save *scores;
     QString names;

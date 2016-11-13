@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>753</width>
-    <height>477</height>
+    <height>633</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>30</x>
      <y>20</y>
      <width>691</width>
-     <height>191</height>
+     <height>171</height>
     </rect>
    </property>
    <property name="text">
@@ -35,14 +35,79 @@
   <widget class="QPushButton" name="pbClose">
    <property name="geometry">
     <rect>
-     <x>610</x>
-     <y>410</y>
+     <x>300</x>
+     <y>550</y>
      <width>121</width>
      <height>51</height>
     </rect>
    </property>
    <property name="text">
     <string>Close.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblHighscore1">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>190</y>
+     <width>150</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>score1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblHighscore2">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>250</y>
+     <width>150</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>score2</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblHighscore3">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>310</y>
+     <width>150</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>score3</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblHighscore4">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>370</y>
+     <width>150</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>score4</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblHighscore5">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>430</y>
+     <width>150</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>score5</string>
    </property>
   </widget>
  </widget>

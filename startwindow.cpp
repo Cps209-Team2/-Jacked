@@ -85,11 +85,12 @@ void StartWindow::on_helpClosed()
 
 void StartWindow::on_pbHighscores_clicked()
 {
-    //highscoreScreen->show();
+    ui->centralwidget->hide();
+    highscoreScreen->show();
     //show the highscores
     //them = themScores.getSave()->getThem();
-    QMessageBox msgBox;
+    /*QMessageBox msgBox;
     msgBox.setText("Highscorse will go here!!!");
-    msgBox.exec();
+    msgBox.exec(); */
  }
 
