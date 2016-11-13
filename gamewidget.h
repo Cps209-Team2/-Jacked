@@ -64,7 +64,7 @@ private:
     PlayerLabel *lbl;
     MovableLabel *enemyLbl;
     std::vector<MovableLabel*> elbls;
-    World *world;
+    World& world = World::instance();
 
     bool isOpen;
 
