@@ -34,7 +34,6 @@ public:
     void addEntity(Entity *obj);
 
     static World &instance();
-    //void setPlayer(Entity *character) { player = character; } //spawns player
 
     void create();//initializes new lvlb
     void loadFile(QString filename);//loads saved map

@@ -23,6 +23,7 @@ public:
     explicit MovableLabel(QWidget* parent, Entity* object, QPixmap* pix);
 
     virtual void updateImg(QPixmap *);
+
     virtual void hideLabel() { this->hide(); }
 
     // directly moves obj

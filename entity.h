@@ -5,6 +5,7 @@
 #include <QRect>
 #include <QSize>
 #include <QFile>
+#include "accesslabel.h"
 
 class Entity
 {
@@ -16,11 +17,16 @@ protected:
     bool right;
     int DMG;
     int id;
+    AccessLabel *label;
 
 
 public:
     Entity();
     Entity(int x, int y){ pos.setX(x); pos.setY(y); qDebug() << "created entity" << endl; }
+
+    virtual void setLabel(AccessLabel *lbl) { label = lbl; }
+
+    virtual void hideLabel() { label->hideLabel(); }
 
     virtual int getId() { return id; }
 
