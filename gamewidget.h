@@ -14,6 +14,7 @@
 #include "playerlabel.h"
 #include "enemylabel.h"
 #include "startwindow.h"
+#include "escmenu.h"
 
 namespace Ui {
 class gameWidget;
@@ -38,6 +39,8 @@ public:
     void spawnPlayer();
     void loadTestLvl();
     //void loadLvl1();
+
+    QTimer* getTimer() { return timer; }
 
 
 private:
@@ -65,7 +68,7 @@ private:
     MovableLabel *enemyLbl;
     std::vector<MovableLabel*> elbls;
     World& world = World::instance();
-
+    EscMenu* escMenu;
     bool isOpen;
 
 
