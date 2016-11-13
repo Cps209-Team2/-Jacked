@@ -37,8 +37,11 @@ gameWidget::gameWidget(QWidget *parent) :
     //world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
     world = World::instance();
 
+    //
     this->spawnPlayer();
     this->loadTestLvl();
+
+
     //player = world->_Player();
 
     //timer
@@ -63,7 +66,7 @@ void gameWidget::spawnPlayer()
 {
     qDebug() << "creating player" << endl;
     player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
-    world->addEntity(player);
+    //world->addEntity(player);
     lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/player_idle_right.png"));
     lbl->updatePos();
 }
@@ -79,7 +82,6 @@ void gameWidget::loadTestLvl()
         qDebug() << temp->getId() << endl;
     }
     */
-
     world->loadFile(":/Levels/lvl1");
     std::vector<Enemy*> enemies = world->getEnemies();
 
