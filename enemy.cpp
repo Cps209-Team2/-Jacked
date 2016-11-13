@@ -31,8 +31,8 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj, int ms)
     }
     moveSpeed = ms;
     int id = ++nextId;
-    //qDebug() << id << endl;
-    //World::instance()->addEnemy(this);
+    hit = false;
+    hitCount = 0;
 }
 
 void Enemy::move()

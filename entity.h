@@ -17,6 +17,8 @@ protected:
     bool right;
     int DMG;
     int id;
+    bool hit;
+    int hitCount;
     AccessLabel *label;
 
 
@@ -35,7 +37,13 @@ public:
     int getX() { return pos.x(); }
     int getY() { return pos.y(); }
 
-    virtual void moveLeft(){ }
+    virtual void setHit(bool smack) { hit = smack; }
+    virtual bool isHit() { return hit; }
+    virtual void resetHitCount() { hitCount = 0; }
+    virtual int getHitCount() { return hitCount; }
+    virtual void countHit() { hitCount++; }
+
+    virtual void moveLeft() { }
     virtual void moveRight() { }
 
     virtual QPoint getPos() { return pos; }

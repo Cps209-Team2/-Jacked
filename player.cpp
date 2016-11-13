@@ -36,6 +36,7 @@ Player::Player(int initx, int inity, Weapon *item)
         //qDebug() << item->getType() << endl;
         DMG = 15;
     }
+    hitCount = 0;
 }
 
 void Player::saveScore(QFile *file)

@@ -57,6 +57,7 @@ private:
     bool jump;
 
     int hitCount;
+    int enemyHitCount;
 
     QWidget *start;
 

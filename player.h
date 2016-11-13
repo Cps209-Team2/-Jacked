@@ -24,7 +24,6 @@ class Player: public Entity
     int attackDuration;
     int atkBuffer;
     bool crouching;
-    bool hit;
     bool grounded;
     bool movRight;
     bool movLeft;
@@ -68,8 +67,7 @@ public:
     void setAttack(bool atk) { attacking = atk; }
     bool isAttacking() { return attacking; }
     bool attack();
-    void setHit(bool smack) { hit = smack; }
-    bool isHit() { return hit; }
+
     ~Player();
     QString getName() { return name; }
     void setName(QString initName) { name = initName; }

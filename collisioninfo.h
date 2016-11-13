@@ -4,25 +4,31 @@
 #include <QPoint>
 
 class CollisionInfo
-{
-    int x;
-    int y;
+{    
     Entity *obj1;
     Entity *obj2;
+
+    // tests if the objects collided
     bool _collide;
 
+    // distance of overlap
+    int x;
+    int y;
+
 public:
-    CollisionInfo();
+    CollisionInfo() { }
     CollisionInfo(int x, int y, Entity *, Entity *,bool);
 
+    // getters
     int getX() { return x; }
     int getY() { return y; }
-    void setX(int x) { this->x = x; }
-    void setY(int y) { this->y = y; }
     Entity *getObj1() { return obj1; }
     Entity *getObj2() { return obj2; }
     bool collide() { return _collide; }
 
+    // setters
+    void setX(int x) { this->x = x; }
+    void setY(int y) { this->y = y; }
 
     ~CollisionInfo() { }
 };
