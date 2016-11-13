@@ -30,7 +30,6 @@ SOURCES += main.cpp\
     collision.cpp \
     save.cpp \
     playerlabel.cpp \
-    enemylabel.cpp \
     world.cpp \
     collisioninfo.cpp \
     highscoreswindow.cpp \
@@ -56,7 +55,6 @@ HEADERS  += \
     collision.h \
     save.h \
     playerlabel.h \
-    enemylabel.h \
     world.h \
     collisioninfo.h \
     highscoreswindow.h \

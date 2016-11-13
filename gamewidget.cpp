@@ -18,7 +18,6 @@
 #include "world.h"
 #include "collision.h"
 #include "playerlabel.h"
-#include "enemylabel.h"
 #include "save.h"
 #include "escmenu.h"
 
@@ -40,8 +39,8 @@ gameWidget::gameWidget(QWidget *parent) :
     world = World::instance();
 
     //
-    this->spawnPlayer();
     this->loadTestLvl();
+    this->spawnPlayer();
 
 
     //player = world->_Player();
@@ -67,39 +66,30 @@ gameWidget::gameWidget(QWidget *parent) :
 void gameWidget::spawnPlayer()
 {
     qDebug() << "creating player" << endl;
-    player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
-<<<<<<< HEAD
-    //world->addEntity(player);
-=======
+    player = new Player(0,600,new Weapon("fist"));
+    //player = world._Player();
+    //player->getPos().setY(0);
     world.addEntity(player);
->>>>>>> 357d457a228b4b07b77ce1f08339ba1c2052dc00
     lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/player_idle_right.png"));
     lbl->updatePos();
 }
 
 void gameWidget::loadTestLvl()
 {
-    /*
-    for(int i = 1; i <= 2; i++)
-    {
-        Enemy *temp = new Enemy(rand() % 150 + 350, 600, new Weapon("fist"), player, rand() % 5 + 1);
-        world->addEntity(temp);
-        elbls.push_back(new MovableLabel(this,temp,new QPixmap(":/Images/Images/enemy_left (1).png")));
-        qDebug() << temp->getId() << endl;
-    }
-    */
-<<<<<<< HEAD
-    world->loadFile(":/Levels/lvl1");
-    std::vector<Enemy*> enemies = world->getEnemies();
-=======
 
     world.loadFile(":/Levels/lvl1");
     std::vector<Enemy*> enemies = world.getEnemies();
->>>>>>> 357d457a228b4b07b77ce1f08339ba1c2052dc00
 
+    for(int i = 0; i < world.getEnemies().size(); i++)
+    {
+        MovableLabel *lbl = new MovableLabel(this, enemies.at(i), new QPixmap(":/Images/Images/enemy_left (1).png"));
+        elbls.push_back(lbl);
+        world.getEnemies().at(i)->setLabel(lbl);
+    }
     for (int i = 0; i < enemies.size(); ++i)
     {
-        elbls.push_back(new MovableLabel(this, enemies.at(i), new QPixmap(":/Images/Images/enemy_left (1).png")));
+        MovableLabel *lbl = new MovableLabel(this, enemies.at(i), new QPixmap(":/Images/Images/enemy_left (1).png"));
+        elbls.push_back(lbl);
     }
 }
 
@@ -241,6 +231,7 @@ void gameWidget::collide(CollisionInfo *data)
                 temp2->takeDmg(10);
                 if(temp2->getHP() <= 0)
                 {
+                    /*
                     for(MovableLabel *i : elbls)
                     {
                         if(dynamic_cast<Enemy*>(i->object())->getId() == dynamic_cast<Enemy*>(temp2)->getId())
@@ -248,6 +239,8 @@ void gameWidget::collide(CollisionInfo *data)
                             i->hide();
                         }
                     }
+                    */
+                    temp2->hideLabel();
                     world.trash(temp2->getId());
                 }
             }
