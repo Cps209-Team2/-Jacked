@@ -6,19 +6,23 @@
 #include <QKeySequence>
 #include "gamewidget.h"
 #include "help.h"
+#include "highscore.h"
+#include "highscoreswindow.h"
 
 namespace Ui {
 class StartWindow;
 }
 
 class gameWidget;
-
+class HighScoresWindow;
 class StartWindow : public QMainWindow
 {
     Q_OBJECT
 private:
     gameWidget *game;
     help *helpScreen;
+    HighScoresWindow *highscoreScreen;
+    highscore themScores;
     //helpWidget *help;
     Ui::StartWindow *ui;
     bool newWindow;
@@ -41,6 +45,7 @@ private slots:
     void on_btnCheat_clicked();
 
     void on_helpClosed();
+
 
 
 };

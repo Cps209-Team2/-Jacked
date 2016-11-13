@@ -2,6 +2,8 @@
 #include <QMessageBox>
 #include "startwindow.h"
 #include "ui_startwindow.h"
+#include "ui_highscoreswindow.h"
+#include "highscore.h"
 #include "gamewidget.h"
 #include "help.h"
 
@@ -14,7 +16,13 @@ StartWindow::StartWindow(QMainWindow *parent) :
     //game->hide();
     helpScreen = new help(this);
     helpScreen->hide();
+    highscoreScreen = new HighScoresWindow(this);
+    highscoreScreen->hide();
     connect(helpScreen, SIGNAL(destroyed()), this, SLOT(on_helpClosed()));
+
+    //connect(highscoreScreen, SIGNAL(destroyed()),this, SLOT(on_pbHighscores_closed()));
+
+
     newWindow = true;
 }
 
@@ -79,8 +87,12 @@ void StartWindow::on_helpClosed()
 
 void StartWindow::on_pbHighscores_clicked()
 {
+    ui->centralwidget->hide();
+    highscoreScreen->show();
     //show the highscores
-    QMessageBox msgBox;
-    msgBox.setText("This is where the highscores will go.");
-    msgBox.exec();
-}
+    //them = themScores.getSave()->getThem();
+    /*QMessageBox msgBox;
+    msgBox.setText("Highscorse will go here!!!");
+    msgBox.exec(); */
+ }
+

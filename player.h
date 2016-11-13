@@ -73,7 +73,7 @@ public:
     ~Player();
     QString getName() { return name; }
     void setName(QString initName) { name = initName; }
-    void setScore(double initScore);
+    void addScore(double initScore);
     double getScore() { return score; }
     QString showHealth();
 };
