@@ -4,6 +4,7 @@
 #include "movablelabel.h"
 #include "player.h"
 
+// simply used for clarity to distinguish player MovableLabel from enemy MovableLabels
 class PlayerLabel: public MovableLabel
 {
     Player *obj;

@@ -2,9 +2,10 @@
 #include "weapon.h"
 #include <string>
 
-void Weapon::execute() //creates either melee or //ranged hitbox
+Weapon::Weapon(QString name):type(name)
 {
-    qDebug() << "teleport *magic*" << endl;
+    if(name == "fist")
+    {
+        DMG = 5;
+    }
 }
-
-

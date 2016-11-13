@@ -4,38 +4,32 @@
 #include "collision.h"
 #include <QString>
 
-Player::Player(int initx, int inity, Weapon *item)
+Player::Player(int initx, int inity, Weapon *item): Entity(initx,inity)
 {
-    pos.setX(initx);
-    pos.setY(inity);
     weapon = item;
+
     body = new QRect(pos.x(),pos.y(),68,80);
 
     jumpSpeed = 24;
     jumpDuration = 0;
+    hit = false;
+
+    // in current state of game, 30 HP means player has 6 lives
     HP = 30;
 
     attackDuration = 0;
     attacking = false;
-    right = true;
-    left = false;
-    crouching = false;
     hit = false;
+
+    crouching = false;
+    grounded = true;
     grounded = true;
 
     movRight = false;
     movLeft = false;
+    right = true;
+    left = false;
 
-    if(item->getType() == QString::fromLocal8Bit("fist"))
-    {
-        //qDebug() << item->getType() << endl;
-        DMG = 10;
-    }
-    else
-    {
-        //qDebug() << item->getType() << endl;
-        DMG = 15;
-    }
     hitCount = 0;
 }
 
@@ -119,24 +113,8 @@ void Player::stopMoving()
     }
 }
 
-void Player::recoil(CollisionInfo *)
-{
-
-}
-
 bool Player::attack()
 {
-    /*
-    if(!attacking || attackDuration > 0)
-    {
-        attacking = false;
-        return false;
-    }
-    if(attackDuration == 20)
-    {
-        attackDuration = -20;
-    }
-    */
     if(attacking)
     {
         attackDuration ++;
@@ -144,7 +122,6 @@ bool Player::attack()
     }
 
     return true;
-
 }
 
 // Passes points to be ADDED to current score

@@ -5,14 +5,12 @@
 class Weapon
 {
 protected:
-    QString type;//melee or ranged
+    QString type;// type determines DMG
+    int DMG;
 public:
-    Weapon(QString name) : type(name)
-    {
-        type = name;
-    }
+    Weapon(QString name);
 
-    void execute();
+    int getDMG() { return DMG; }
     QString getType() { return type; }
 
     ~Weapon() { }

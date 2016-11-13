@@ -25,55 +25,69 @@ class gameWidget : public QWidget
 
 public:
     explicit gameWidget(QWidget *parent = 0);
+
+    // moves player label and object together based on key events
     void playerMove();
+
+    // moves enemies based on player position
     void enemyMove(Enemy *obj);
+
+    // checks for collision among ALL entities in the game
+    // also handles entities taking DMG and dying
     void collide(CollisionInfo *data);
+
+    // updates label position for player object
     void lblUpdate();
+
+    // updates label position for enemy objects in world
     void elblUpdate();
-    ~gameWidget();
-    std::vector<MovableLabel*> getElbls() { return elbls; }
+
+    // clears all entities from world
     void reset();
-    void updatePlayerCondition();
 
+    // initializes world from .txt file
+    void loadLvl();
+
+    // loads player into gameWidget from world
     void spawnPlayer();
-    void loadTestLvl();
-    //void loadLvl1();
 
+    // returns timer for use in escmenu and highscores
     QTimer* getTimer() { return timer; }
 
+    ~gameWidget();
 
 private:
+
     Ui::gameWidget *ui;
-    QTimer *timer;
-    int timerTest;
-
-    int pixChange;
-    int enemyPixChange;
-
-    //all of these variables will be placed in their proper classes later
-    //bool movLeft;
-    //bool movRight;
-
-    bool jump;
-
-    int hitCount;
-    int enemyHitCount;
 
     QWidget *start;
 
-    // testing variables
+    QTimer *timer;
+
+    // used for changing animations after being hit
+    int pixChange;
+    int enemyPixChange;
+
+    // variables initialized for convenient reference
     Player *player;
-    Enemy *enemy;
     PlayerLabel *lbl;
-    MovableLabel *enemyLbl;
+
+    //contains all labels created for accessibility
     std::vector<MovableLabel*> elbls;
+
     World& world = World::instance();
+
     EscMenu* escMenu;
+
+    // checks if gameWidget is open
     bool isOpen;
 
 
 private slots:
+    // updates every tick of the timer
     void frame();
+
+    // used to manipulate player position
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
 };

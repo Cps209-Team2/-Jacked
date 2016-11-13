@@ -23,8 +23,11 @@ protected:
 public:
     explicit MovableLabel(QWidget* parent, Entity* object, QPixmap* pix);
 
+    // changes img to new QPixMap with appropriate scaling and
     virtual void updateImg(QPixmap *);
+    virtual QPixmap *pix() { return img; }
 
+    // method from AccessLabel.  Hides when obj is dead
     virtual void hideLabel() { isHide = true; }
     virtual bool isHidden() { return isHide; }
 
@@ -42,22 +45,19 @@ public:
     virtual bool facingRight() { return obj->facingRight(); }
     virtual bool facingLeft() { return obj->facingLeft(); }
 
+    // getters and setters for obj pos
     virtual QPoint getPos() { return obj->getPos(); }
     virtual void setPos(QPoint pos);
     virtual void setY(int y) { obj->setY(y); this->updatePos(); }
     virtual void setX(int x) { obj->setX(x); this->updatePos(); }
     virtual void getY() { obj->getPos().y(); }
     virtual void getX() { obj->getPos().x(); }
-    virtual QPixmap *pix() { return img; }
+
     Entity *object() { return obj; }
 
     virtual ~MovableLabel();
 
 private slots:
-    //void keyPressEvent(QEvent *event){ qDebug() << "test" << endl; }
-
-signals:
-    void keyPressed();
 
 };
 

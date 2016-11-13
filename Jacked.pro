@@ -16,9 +16,6 @@ CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 SOURCES += main.cpp\
     highscore.cpp \
     weapon.cpp \
-    melee.cpp \
-    ranged.cpp \
-    projectile.cpp \
     startwindow.cpp \
     movablelabel.cpp \
     gamewidget.cpp \
@@ -40,9 +37,6 @@ SOURCES += main.cpp\
 HEADERS  += \
     highscore.h \
     weapon.h \
-    melee.h \
-    ranged.h \
-    projectile.h \
     obstacle.h \
     startwindow.h \
     movablelabel.h \

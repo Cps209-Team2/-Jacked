@@ -14,7 +14,6 @@ class Enemy: public Entity
     Player *player;
     Weapon *weapon;
     bool enemy;
-    bool start;
     int moveSpeed;
     static int nextId;
 
@@ -22,21 +21,25 @@ public:
     Enemy() {}
     Enemy(int x, int y, Weapon *item, Player *obj, int ms);
 
-    static void setNextId(int ID) { nextId = ID; }
-
-    bool isEnemy() { return true; }
     bool isPlayer() { return false; }
+    bool isEnemy() { return true; }
+
+    // enemy always follows player's current pos unless jumping or crouching
     void move();
+
+    int getDmg() { return weapon->getDMG(); }
+
+    // enemy position changing functions
     void moveLeft();
     void moveRight();
+
+    // used to save current position and health of enemy
     void saveState(QFile *file);
 
-
-    //getters and setters
+    // getter
     Weapon* getWeapon() { return weapon; }
-    void beginGame() {start = true;}
 
-     ~Enemy();
+    ~Enemy();
 };
 
 #endif // ENEMY_H
