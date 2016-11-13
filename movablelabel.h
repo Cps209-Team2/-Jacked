@@ -8,8 +8,9 @@
 #include "entity.h"
 #include <QPixmap>
 #include "enemy.h"
+#include "accesslabel.h"
 
-class MovableLabel:public QLabel
+class MovableLabel:public QLabel, public AccessLabel
 {
     Q_OBJECT
 
@@ -22,6 +23,7 @@ public:
     explicit MovableLabel(QWidget* parent, Entity* object, QPixmap* pix);
 
     virtual void updateImg(QPixmap *);
+    virtual void hideLabel() { this->hide(); }
 
     // directly moves obj
     virtual void updatePos() { this->move(obj->getPos()); }

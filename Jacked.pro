@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     world.cpp \
     collisioninfo.cpp \
     highscoreswindow.cpp \
-    difficulty.cpp
+    difficulty.cpp \
+    accesslabel.cpp
 
 HEADERS  += \
     highscore.h \
@@ -58,7 +59,8 @@ HEADERS  += \
     world.h \
     collisioninfo.h \
     highscoreswindow.h \
-    difficulty.h
+    difficulty.h \
+    accesslabel.h
 
 FORMS    += \
     startwindow.ui \

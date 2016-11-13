@@ -40,8 +40,7 @@ void StartWindow::on_btnPlay_clicked()
 {
     ui->centralwidget->hide();
 
-        game = new gameWidget(this);
-
+    game = new gameWidget(this);
 
     game->show();
     game->setFocus();

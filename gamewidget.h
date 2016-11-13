@@ -29,7 +29,7 @@ public:
     void enemyMove(Enemy *obj);
     void collide(CollisionInfo *data);
     void lblUpdate();
-    void elblUpdate(MovableLabel *elbl);
+    void elblUpdate();
     ~gameWidget();
     std::vector<MovableLabel*> getElbls() { return elbls; }
     void reset();
@@ -53,7 +53,7 @@ private:
     //bool movRight;
 
     bool jump;
-    //bool falling;
+
     int hitCount;
 
     QWidget *start;

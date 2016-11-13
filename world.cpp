@@ -146,7 +146,9 @@ void World::processLevel(QString levels)
             qDebug() << "x coordinate" << xPos;
             qDebug() << "y coordinate" << yPos;
             qDebug() << weapon;
-            World::instance()->setPlayer(new Player(xPos, yPos, new Weapon(weapon)));
+            Player *player = new Player(xPos, yPos, new Weapon(weapon));
+            this->addEntity(player);
+            qDebug() << "created player" << endl;
             //line = level.readLine();
         }
         else if (line == "#Enemies")
@@ -183,12 +185,11 @@ void World::processLevel(QString levels)
                     line = level.readLine();
                 }
 
-
                 qDebug() << "x coordinate" << xPos;
                 qDebug() << "y coordinate" << yPos;
                 qDebug() << "weapon type = " << weapon;
-
-                enemies.push_back(new Enemy(xPos, yPos, new Weapon(weapon),this->player, rand() % 5 + 1));
+                Enemy *enemy = new Enemy(xPos, yPos, new Weapon(weapon),this->player, rand() % 5 + 1);
+                this->addEntity(enemy);
                 qDebug() << "created enemy" << endl;
             }
         }
@@ -214,15 +215,6 @@ World::~World()
         delete i;
     }
 }
-
-
-/*
-//advances map to next lvl;
-void Map::advance() {
-    lvl++;
-    //create();
-}
-*/
 
 static void saveScore()
 {
