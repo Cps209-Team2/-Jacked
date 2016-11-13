@@ -18,12 +18,15 @@ protected:
 
     QPixmap *img;
     Entity *obj;
+    bool isHide;
 
 public:
     explicit MovableLabel(QWidget* parent, Entity* object, QPixmap* pix);
 
     virtual void updateImg(QPixmap *);
-    virtual void hideLabel() { this->hide(); }
+
+    virtual void hideLabel() { isHide = true; }
+    virtual bool isHidden() { return isHide; }
 
     // directly moves obj
     virtual void updatePos() { this->move(obj->getPos()); }

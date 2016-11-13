@@ -12,7 +12,6 @@
 #include "enemy.h"
 #include "world.h"
 #include "playerlabel.h"
-#include "enemylabel.h"
 #include "startwindow.h"
 #include "escmenu.h"
 

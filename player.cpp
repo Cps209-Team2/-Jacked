@@ -147,7 +147,7 @@ bool Player::attack()
 }
 
 // Passes points to be ADDED to current score
-void Player::setScore(double initScore) {
+void Player::addScore(double initScore) {
     score += initScore; //note += not =
 }
 

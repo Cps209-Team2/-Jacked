@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <vector>
+using namespace std;
 
 
 void Save::saveScore(World& world)
@@ -47,24 +48,27 @@ void Save::saveWorld(World& world)
 void Save::processScores(QString loadMe)
 {
     QTextStream load(&loadMe);
-    QString line;
-    QString name;
-    int score;
+    line;// name;
+    //int score;
 
     //while (line != "*")
     for (int i = 0; i < 10; i++) //Temporarily loads the first 10 high score entries
                                  //until more sophisticated scores sorting and management
                                  //can be written
     {
-        line = load.readLine();
-
+        line += load.readLine();
+        line += "\n";
+        //this->pushScoreInfo(line);
         //TODO Places top 10 scores onto high scores window
         //We could also do the score sorting (and file cleanup?) here
+        /*
         QStringList lineColon = line.split(':');
         name = lineColon.at(0);
         score = lineColon.at(1).toInt();
 
         //Put into High Score window
+        //*/
+
     }
 }
 
@@ -85,6 +89,6 @@ void Save::loadScores(QString filename)
     QTextStream in(&inFile);
     QString load = in.readAll();
 
-    processScores(load);
+    //processScores(load);
     inFile.close();
 }

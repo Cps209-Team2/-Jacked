@@ -97,5 +97,5 @@ void Enemy::saveState(QFile *file)
 
 Enemy::~Enemy()
 {
-    player->setScore(500);
+    player->addScore(500);
 }

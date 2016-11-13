@@ -5,7 +5,7 @@ level 1
 
 #Player
 name:Default
-position:600,600
+position:0,600
 weapon:fist
 
 //#Obstacles
@@ -19,17 +19,5 @@ weapon:fist
 
 $enemy2
 position:550,600
-weapon:fist
-
-$enemy3
-position:600,600
-weapon:fist
-
-$enemy4
-position:650,600
-weapon:fist
-
-$enemy5
-position:700,600
 weapon:fist
 *
