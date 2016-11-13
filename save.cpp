@@ -26,7 +26,8 @@ void Save::saveWorld(World& world)
     qDebug() << "Attempting to save enemies";
     qDebug() << "Attempting to get the enemies vector from world";
     std::vector<Enemy*> enemies = world.getEnemies();
-    qDebug() << "Entering for loop";
+    QTextStream save(&saveState);
+    /*
     for (int i = 0; i < enemies.size(); ++i)
     {
         qDebug() << "Getting the enemy stored at" << i;
@@ -35,6 +36,8 @@ void Save::saveWorld(World& world)
         //Save enemies here
         saveEnemy->saveState(&saveState);
     }
+    */
+    saveEnemy->saveState(&saveState);
     qDebug() << "Saved Enemies?";
 
     saveState.close();

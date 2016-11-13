@@ -1,5 +1,6 @@
 #include "enemy.h"
 #include "entity.h"
+#include <vector>
 
 int Enemy::nextId = 0;
 
@@ -30,7 +31,7 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj, int ms)
     }
     moveSpeed = ms;
     int id = ++nextId;
-    qDebug() << id << endl;
+    //qDebug() << id << endl;
     //World::instance()->addEnemy(this);
 }
 
@@ -80,8 +81,18 @@ void Enemy::moveRight()
 void Enemy::saveState(QFile *file)
 {
     QTextStream save(file);
-    save << "position:" << pos.x() << "," << pos.y() << endl;
-    save << "weapon:" << getWeapon()->getType() << "\n\n";
+    std::vector<Enemy*> enemies = World::instance().getEnemies();
+    Enemy *saveEnemy;
+    save << "#Enemies" << endl;
+    for (int i = 0; i < enemies.size(); ++i)
+    {
+        qDebug() << "Getting the enemy stored at" << i;
+        saveEnemy = dynamic_cast<Enemy*>(enemies.at(i));
+        qDebug() << "Writing that enemy to the file";
+        save << "position:" << pos.x() << "," << pos.y() << endl;
+        save << "weapon:" << getWeapon()->getType() << "\n\n";
+    }
+    save << "*";
 }
 
 Enemy::~Enemy()

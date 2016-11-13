@@ -43,7 +43,8 @@ public:
     virtual void setPos(QPoint pos);
     virtual void setY(int y) { obj->setY(y); this->updatePos(); }
     virtual void setX(int x) { obj->setX(x); this->updatePos(); }
-
+    virtual void getY() { obj->getPos().y(); }
+    virtual void getX() { obj->getPos().x(); }
     virtual QPixmap *pix() { return img; }
     Entity *object() { return obj; }
 

@@ -26,6 +26,8 @@ public:
 
     virtual void setX(int x) { pos.setX(x); }
     virtual void setY(int y) { pos.setY(y); }
+    int getX() { return pos.x(); }
+    int getY() { return pos.y(); }
 
     virtual void moveLeft(){ }
     virtual void moveRight() { }

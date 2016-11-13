@@ -27,7 +27,6 @@ void MovableLabel::setPos(QPoint pos)
     obj->setX(pos.x());
     obj->setY(pos.y());
     this->updatePos();
-
 }
 
 MovableLabel::~MovableLabel()

@@ -122,17 +122,27 @@ void World::processLevel(QString levels)
             int yPos;
             QChar c;
             QString weapon;
+            QString name;
             line = level.readLine();
-            //Skipping a line for some random reason
-            line = level.readLine();
+            //Skipping a line because of the comment
+            //line = level.readLine();
 
-
-            if (line.at(0) == 'p')
+            if (line.at(0) == 'n')
             {
                 QStringList lineColon = line.split(':');
+                name = lineColon.at(1);
+                line = level.readLine();
+                lineColon = line.split(':');
                 QStringList positions = lineColon.at(1).split(',');
                 xPos = positions.at(0).toInt();
                 yPos = positions.at(1).toInt();
+
+                for (QString linePart : positions)
+                {
+                    qDebug() << linePart;
+                }
+                qDebug() << "Y-position = " << yPos;
+                qDebug() << "X-position = " << xPos;
 
                 line = level.readLine();
                 lineColon = line.split(':');
@@ -147,6 +157,7 @@ void World::processLevel(QString levels)
             qDebug() << "y coordinate" << yPos;
             qDebug() << weapon;
             Player *player = new Player(xPos, yPos, new Weapon(weapon));
+            player->setName(name);
             this->addEntity(player);
             qDebug() << "created player" << endl;
             //line = level.readLine();
@@ -157,7 +168,6 @@ void World::processLevel(QString levels)
             //set up the world's enemies
             int xPos;
             int yPos;
-            int type;
             QChar c;
             QString weapon;
             QString name;
@@ -172,6 +182,10 @@ void World::processLevel(QString levels)
                     QStringList lineColon = line.split(':');
                     QStringList positions = lineColon.at(1).split(',');
 
+                    for (QString linepart : positions)
+                    {
+                        qDebug() << linepart;
+                    }
                     xPos = positions.at(0).toInt();
                     yPos = positions.at(1).toInt();
                     line = level.readLine();
@@ -193,7 +207,7 @@ void World::processLevel(QString levels)
                 qDebug() << "created enemy" << endl;
             }
         }
-        qDebug() << "finished" << endl;
+        qDebug() << "finished processing file" << endl;
     }
 }
 
@@ -214,9 +228,4 @@ World::~World()
     {
         delete i;
     }
-}
-
-static void saveScore()
-{
-
 }

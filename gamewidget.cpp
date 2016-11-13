@@ -29,19 +29,13 @@ namespace constants
     int gravity = 1;
 }
 
-gameWidget::gameWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::gameWidget)
+gameWidget::gameWidget(QWidget *parent) : QWidget(parent), ui(new Ui::gameWidget) // gameWidget Constuctor
 {
     this->setParent(parent);
     ui->setupUi(this);
-
-    //world->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
     world = World::instance();
-
     this->spawnPlayer();
     this->loadTestLvl();
-    //player = world->_Player();
 
     //timer
     timer = new QTimer(this);
@@ -51,13 +45,10 @@ gameWidget::gameWidget(QWidget *parent) :
 
     //jumping and falling bools
     this->jump = false;
-    //this->falling = false;
     pixChange = 0;
     enemyPixChange = 0;
     hitCount = 0;
-
     isOpen = true;
-
     start = dynamic_cast<StartWindow *>(parent)->getStart();
 }
 

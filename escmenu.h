@@ -21,6 +21,8 @@ private slots:
 
     void on_btnExit_clicked();
 
+    void on_btnLoad_clicked();
+
 private:
     Ui::EscMenu *ui;
     QTimer timer;

@@ -4,8 +4,8 @@ level 1
 // default level 1 configuration
 
 #Player
-// Set player position and weapon
-position:0,600;
+name:Default
+position:600,600
 weapon:fist
 
 //#Obstacles

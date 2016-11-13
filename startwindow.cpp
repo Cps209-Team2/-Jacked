@@ -10,8 +10,6 @@ StartWindow::StartWindow(QMainWindow *parent) :
     ui(new Ui::StartWindow)
 {
     ui->setupUi(this);
-    //game = new gameWidget(this);
-    //game->hide();
     helpScreen = new help(this);
     helpScreen->hide();
     connect(helpScreen, SIGNAL(destroyed()), this, SLOT(on_helpClosed()));
@@ -39,12 +37,9 @@ void StartWindow::on_btnCheat_clicked()
 void StartWindow::on_btnPlay_clicked()
 {
     ui->centralwidget->hide();
-
     game = new gameWidget(this);
-
     game->show();
     game->setFocus();
-
     newWindow = false;
 }
 
@@ -52,17 +47,11 @@ void StartWindow::on_btnPlay_clicked()
 void StartWindow::on_pbHelp_clicked()
 {
     ui->centralwidget->hide();
-    //ui->centralwidget->hide();
     helpScreen->show();
-    //ui->btnCheat->hide();
     ui->btnCheat->setVisible(false);
-    //ui->btnPlay->hide();
     ui->btnPlay->setVisible(false);
-    //ui->lblTitle->hide();
     ui->lblTitle->setVisible(false);
-    //ui->pbHelp->hide();
     ui->pbHelp->setVisible(false);
-    //ui->pbHighscores->hide();
     ui->pbHighscores->setVisible(false);
 }
 
