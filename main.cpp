@@ -41,30 +41,30 @@ void unitTests()
     std::cout << "Entering Unit Tests" << std::endl;
 
     //testing loadfile
-    World *testMap = World::instance();    
+    World& testMap = World::instance();
 
-    testMap->loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
+    testMap.loadFile(QString::fromLocal8Bit(":/Levels/lvl1"));
     qDebug() << "File loaded";
 
 
-    assert(testMap->getPlayer().getPos().x() == 0);
-    assert(testMap->getPlayer().getPos().y() == 0);
-    assert(testMap->getPlayer().getWeapon()->getType() == "fist");
-    Enemy *testEnemy = dynamic_cast<Enemy*>(testMap->getEnemies().at(1));
+    assert(testMap.getPlayer().getPos().x() == 0);
+    assert(testMap.getPlayer().getPos().y() == 0);
+    assert(testMap.getPlayer().getWeapon()->getType() == "fist");
+    Enemy *testEnemy = dynamic_cast<Enemy*>(testMap.getEnemies().at(1));
 
     assert(testEnemy->getPos().x() == 200);
     assert(testEnemy->getPos().y() == 600);
     assert(testEnemy->getWeapon()->getType() == "fist");
 
     qDebug() << "Weapon is indeed fist";
-    qDebug() << testMap->getPlayer().getWeapon()->getType();
+    qDebug() << testMap.getPlayer().getWeapon()->getType();
     qDebug() << "Creating Player";
 
-    testMap->getPlayer().setName(QString::fromLocal8Bit("Bert"));
+    testMap.getPlayer().setName(QString::fromLocal8Bit("Bert"));
     qDebug() << "Created Player, creating save";
     Save *save = new Save("SAVESCORE.txt", "SAVEWORLD.txt");
 
-    testMap->getPlayer().setName(QString::fromLocal8Bit("JimBob"));
+    testMap.getPlayer().setName(QString::fromLocal8Bit("JimBob"));
     qDebug() << "Saving Score and Map";
     save->saveScore(testMap);
     qDebug() << "Saved Score, starting to save map";

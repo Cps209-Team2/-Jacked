@@ -63,7 +63,7 @@ void gameWidget::spawnPlayer()
 {
     qDebug() << "creating player" << endl;
     player = new Player(0,600,new Weapon(QString::fromLocal8Bit("fist")));
-    world->addEntity(player);
+    world.addEntity(player);
     lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/player_idle_right.png"));
     lbl->updatePos();
 }
@@ -80,8 +80,8 @@ void gameWidget::loadTestLvl()
     }
     */
 
-    world->loadFile(":/Levels/lvl1");
-    std::vector<Enemy*> enemies = world->getEnemies();
+    world.loadFile(":/Levels/lvl1");
+    std::vector<Enemy*> enemies = world.getEnemies();
 
     for (int i = 0; i < enemies.size(); ++i)
     {
@@ -111,7 +111,7 @@ void gameWidget::frame()
         player->setGrounded(true);
     }
 
-    if(world->getEnemies().size() == 0 && isOpen == true)
+    if(world.getEnemies().size() == 0 && isOpen == true)
     {
         QMessageBox winBox;
         winBox.setText("You Win!");
@@ -123,12 +123,12 @@ void gameWidget::frame()
         timer->stop();
         isOpen = false;
     }
-    for(int i = 0; i < world->getEnemies().size(); i++)
+    for(int i = 0; i < world.getEnemies().size(); i++)
     {
         //MovableLabel *temp = elbls.at(i);
 
-        this->enemyMove(dynamic_cast<Enemy*>(world->getEnemies().at(i)));
-        Collision bounce(player,world->getEnemies().at(i));
+        this->enemyMove(dynamic_cast<Enemy*>(world.getEnemies().at(i)));
+        Collision bounce(player,world.getEnemies().at(i));
         CollisionInfo *data = bounce.getData();
         this->collide(data);
     }
@@ -234,7 +234,7 @@ void gameWidget::collide(CollisionInfo *data)
                             i->hide();
                         }
                     }
-                    world->trash(temp2->getId());
+                    world.trash(temp2->getId());
                 }
             }
         }
@@ -483,9 +483,9 @@ void gameWidget::keyReleaseEvent(QKeyEvent *event)
 
 void gameWidget::reset()
 {
-    for(Enemy *i : world->getEnemies())
+    for(Enemy *i : world.getEnemies())
     {
-        world->trash(i->getId());
+        world.trash(i->getId());
     }
     for(MovableLabel *i : elbls)
     {
@@ -498,5 +498,5 @@ gameWidget::~gameWidget()
     timer->stop();
     delete timer;
     delete ui;
-    delete world;
+    //delete world;
 }

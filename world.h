@@ -28,12 +28,12 @@ class World
 
     explicit World(const World& that) = delete;
 
-    World(){ }
+    World() {}
 public:
     void setPlayer(Player *character) { player = character; } //spawns player
     void addEntity(Entity *obj);
 
-    static World *instance();
+    static World &instance();
     //void setPlayer(Entity *character) { player = character; } //spawns player
 
     void create();//initializes new lvlb

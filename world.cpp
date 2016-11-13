@@ -12,11 +12,11 @@ using namespace std;
 
 World *World::instance_ = new World();
 
-World *World::instance() {
+World &World::instance() {
     if (instance_ == nullptr) {
         instance_ = new World();
     }
-    return instance_;
+    return *instance_;
 }
 //Singleton implementation
 

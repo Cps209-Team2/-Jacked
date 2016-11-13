@@ -18,7 +18,7 @@ EscMenu::~EscMenu()
 
 void EscMenu::on_btnSave_clicked()
 {
-    World *world = new World();
+    World& world = World::instance();
     Save *save = new Save(QString::fromLocal8Bit("saveScore.jkd"), QString::fromLocal8Bit("saveWorld.jkd"));
     save->saveScore(world);
     //save->saveWorld();

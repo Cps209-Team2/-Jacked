@@ -16,8 +16,8 @@ class Save
     Enemy *saveEnemy;
 public:
     Save(QString initScoreFile, QString initWorldFile): scoreFile(initScoreFile), worldFile(initWorldFile) {}
-    void saveScore(World *world);
-    void saveWorld(World *world);
+    void saveScore(World& world);
+    void saveWorld(World& world);
     void loadScores(QString filename);
     void processScores(QString load);
 };
