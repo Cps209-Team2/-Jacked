@@ -12,9 +12,9 @@
 using namespace std;
 
 class highscore {
-    vector<int> scores;
-    vector<string> names;
-    //Save *scoreFile;
+    vector<int> scores; //holds the highscores
+    vector<string> names; //holds the names of the players.
+
 public:
     highscore();
     //highscore(QString saveFile);

@@ -1,6 +1,8 @@
 #include "highscoreswindow.h"
 #include "ui_highscoreswindow.h"
 
+//at construction a highscore object is created using the text file
+//the scores are then displayed by the labels on the window
 HighScoresWindow::HighScoresWindow(QMainWindow *parent) :
     QWidget(parent),
     ui(new Ui::HighScoresWindow)
@@ -31,6 +33,7 @@ HighScoresWindow::~HighScoresWindow()
     delete ui;
 }
 
+//hide the highscores window and show the mainwindow.
 void HighScoresWindow::on_pbClose_clicked()
 {
     this->hide();
