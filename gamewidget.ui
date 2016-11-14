@@ -30,6 +30,9 @@
      <height>101</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: transparent;</string>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -51,6 +54,9 @@
      <pointsize>14</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background: transparent;</string>
+   </property>
    <property name="text">
     <string>Score: </string>
    </property>
@@ -63,6 +69,13 @@
      <width>161</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: transparent;
+</string>
    </property>
    <property name="text">
     <string>Health: &amp;&amp;&amp;&amp;&amp;</string>

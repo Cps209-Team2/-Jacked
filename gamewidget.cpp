@@ -50,6 +50,7 @@ void gameWidget::spawnPlayer()
 {
     player = world._Player();
     lbl = new PlayerLabel(this,player, new QPixmap(":/Images/Images/player_idle_right.png"));
+    lbl->setStyleSheet("background: transparent;");
     lbl->updatePos();
 }
 
@@ -63,6 +64,7 @@ void gameWidget::loadLvl()
     for(int i = 0; i < world.getEnemies().size(); i++)
     {
         MovableLabel *lbl = new MovableLabel(this, enemies.at(i), new QPixmap(":/Images/Images/enemy_left (1).png"));
+        lbl->setStyleSheet("background: transparent;");
         elbls.push_back(lbl);
         world.getEnemies().at(i)->setLabel(lbl);
     }

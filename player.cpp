@@ -33,6 +33,7 @@ Player::Player(int initx, int inity, Weapon *item): Entity(initx,inity)
     hitCount = 0;
 }
 
+// Saves the player's score to the file "Scores.jkd"
 void Player::saveScore(QFile *file)
 {
     QTextStream save(file);
@@ -41,6 +42,7 @@ void Player::saveScore(QFile *file)
     //TODO load the scores file into a vector and sort it by score
 }
 
+// Saves the player's state to the file "World.jkd"
 void Player::saveState(QFile *file)
 {
 

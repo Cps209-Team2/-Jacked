@@ -82,7 +82,7 @@ void Enemy::moveRight()
     this->faceRight();
 }
 
-
+// Saves the enemy state to the file "World.jkd"
 void Enemy::saveState(QFile *file)
 {
     QTextStream save(file);

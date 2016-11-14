@@ -15,7 +15,7 @@ void unitTests();
 int main(int argc, char *argv[])
 {
     std::vector<std::string> args(argv, argv + argc);
-    /*
+
     if (args.size() > 1)
     {
         if (args.at(1) == "-test")
@@ -23,8 +23,6 @@ int main(int argc, char *argv[])
             unitTests();
         }
     }
-    */
-    //unitTests();
 
 
     QApplication a(argc, argv);
@@ -48,11 +46,11 @@ void unitTests()
 
 
     assert(testMap.getPlayer().getPos().x() == 0);
-    assert(testMap.getPlayer().getPos().y() == 0);
+    assert(testMap.getPlayer().getPos().y() == 600);
     assert(testMap.getPlayer().getWeapon()->getType() == "fist");
     Enemy *testEnemy = dynamic_cast<Enemy*>(testMap.getEnemies().at(1));
 
-    assert(testEnemy->getPos().x() == 200);
+    assert(testEnemy->getPos().x() == 550);
     assert(testEnemy->getPos().y() == 600);
     assert(testEnemy->getWeapon()->getType() == "fist");
 
@@ -68,7 +66,8 @@ void unitTests()
     qDebug() << "Saving Score and Map";
     save->saveScore(testMap);
     qDebug() << "Saved Score, starting to save map";
-    save->saveWorld(testMap);
+    //save->saveWorld(testMap);
     qDebug() << "Finished saving";
+    std::cout <<"All unit tests passed" << endl;
     exit(0);
 }

@@ -23,54 +23,16 @@ void Save::saveWorld(World& world)
     saveState.open(QIODevice::WriteOnly | QIODevice::Text);
     savePlayer = world.getPlayer();
     savePlayer.saveState(&saveState);
-    //*
     qDebug() << "Attempting to save enemies";
     qDebug() << "Attempting to get the enemies vector from world";
     std::vector<Enemy*> enemies = world.getEnemies();
     QTextStream save(&saveState);
-    /*
-    for (int i = 0; i < enemies.size(); ++i)
-    {
-        qDebug() << "Getting the enemy stored at" << i;
-        saveEnemy = dynamic_cast<Enemy*>(enemies.at(i));
-        qDebug() << "Writing that enemy to the file";
-        //Save enemies here
-        saveEnemy->saveState(&saveState);
-    }
-    */
     saveEnemy->saveState(&saveState);
     qDebug() << "Saved Enemies?";
 
     saveState.close();
-    //*/
 }
 
-void Save::processScores(QString loadMe)
-{
-    QTextStream load(&loadMe);
-    line;// name;
-    //int score;
-
-    //while (line != "*")
-    for (int i = 0; i < 10; i++) //Temporarily loads the first 10 high score entries
-                                 //until more sophisticated scores sorting and management
-                                 //can be written
-    {
-        line += load.readLine();
-        line += "\n";
-        //this->pushScoreInfo(line);
-        //TODO Places top 10 scores onto high scores window
-        //We could also do the score sorting (and file cleanup?) here
-        /*
-        QStringList lineColon = line.split(':');
-        name = lineColon.at(0);
-        score = lineColon.at(1).toInt();
-
-        //Put into High Score window
-        //*/
-
-    }
-}
 
 
 void Save::loadScores(QString filename)

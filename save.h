@@ -27,7 +27,6 @@ public:
     void saveWorld(World& world);
 
     void loadScores(QString filename);
-    void processScores(QString load);
     //~Save(){ for(unsigned i = 0; i< scoreInfo.size(); ++i){delete scoreInfo->at(i);} delete scoreInfo; }
 
     //getters

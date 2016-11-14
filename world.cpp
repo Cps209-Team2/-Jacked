@@ -50,13 +50,13 @@ void World::loadFile(QString filename) {
 
     QFile inFile(filename);
 
-    if (!inFile.exists())
+    if (!inFile.exists()) //Check to make sure the file exists
     {
         qDebug() << QString::fromLocal8Bit("File does not exist");
         return;
     }
 
-    if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text)) // Open the file for reading
         return;
 
     QTextStream in(&inFile);
@@ -124,8 +124,6 @@ void World::processLevel(QString levels)
             QString weapon;
             QString name;
             line = level.readLine();
-            //Skipping a line because of the comment
-            //line = level.readLine();
 
             if (line.at(0) == 'n')
             {
