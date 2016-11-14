@@ -36,8 +36,9 @@ public:
     // used to save current position and health of enemy
     void saveState(QFile *file);
 
-    // getter
+    // getters
     Weapon* getWeapon() { return weapon; }
+    Player* getPlayer() {return player;}
 
     ~Enemy();
 };

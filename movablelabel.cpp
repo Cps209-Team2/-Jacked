@@ -40,5 +40,5 @@ void MovableLabel::setPos(QPoint pos)
 
 MovableLabel::~MovableLabel()
 {
-
+    if(obj->isEnemy()) {dynamic_cast<Enemy *>(obj)->getPlayer()->addScore(500);}
 }

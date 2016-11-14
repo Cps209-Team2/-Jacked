@@ -63,6 +63,7 @@ void StartWindow::on_pbHelp_clicked()
     ui->pbHighscores->setVisible(false);
 }
 
+//closes the help window and shows the main window
 void StartWindow::on_helpClosed()
 {
 
@@ -78,10 +79,6 @@ void StartWindow::on_pbHighscores_clicked()
 {
     ui->centralwidget->hide();
     highscoreScreen->show();
-    //show the highscores
-    //them = themScores.getSave()->getThem();
-    /*QMessageBox msgBox;
-    msgBox.setText("Highscorse will go here!!!");
-    msgBox.exec(); */
+
  }
 
