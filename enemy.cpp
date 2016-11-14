@@ -1,25 +1,26 @@
 #include "enemy.h"
 #include "entity.h"
+#include <vector>
 
 int Enemy::nextId = 0;
 
-Enemy::Enemy(int x, int y, Weapon *item, Player *obj, int ms)
+Enemy::Enemy(int x, int y, Weapon *item, Player *obj, int ms):Entity(x, y)
 {
-    pos.setX(x);
-    pos.setY(y);
-    qDebug() << "set position" << endl;
-    weapon = item;
+    // hitbox (QRect)
     body = new QRect(pos.x(),pos.y(),80,80);
+
+    // assigning an object reference for move function
     player = obj;
-    qDebug() << "assigned player reference" << endl;
 
-    if(item->getType() == QString::fromLocal8Bit("fist"))
-    { DMG = 5; }
-    else
-    { DMG = 10; }
+    // assign weapon, which determines how much damage the enemy does.  HP determines how much damage the entity can take
+    weapon = item;
 
-    HP = 30;
-    qDebug() << "assigned enemy HP" << endl;
+    HP = 15;
+
+    hit = false;
+    hitCount = 0;
+
+    // enemy always faces toward player on spawn
     if(player->getPos().x() < this->pos.x())
     {
         this->faceLeft();
@@ -28,10 +29,13 @@ Enemy::Enemy(int x, int y, Weapon *item, Player *obj, int ms)
     {
         this->faceRight();
     }
+
+    // random movespeed between 1 and 6 pixels per frame
     moveSpeed = ms;
+
+    // used to give each enemy a unique ID
     int id = ++nextId;
-    qDebug() << id << endl;
-    //World::instance()->addEnemy(this);
+
 }
 
 void Enemy::move()
@@ -65,6 +69,7 @@ void Enemy::move()
         }
 }
 
+
 void Enemy::moveLeft()
 {
     pos.setX(pos.x() - moveSpeed);
@@ -77,14 +82,27 @@ void Enemy::moveRight()
     this->faceRight();
 }
 
+
 void Enemy::saveState(QFile *file)
 {
     QTextStream save(file);
-    save << "position:" << pos.x() << "," << pos.y() << endl;
-    save << "weapon:" << getWeapon()->getType() << "\n\n";
+    std::vector<Enemy*> enemies = World::instance().getEnemies();
+    Enemy *saveEnemy;
+    save << "#Enemies" << endl;
+    for (int i = 0; i < enemies.size(); ++i)
+    {
+        qDebug() << "Getting the enemy stored at" << i;
+        saveEnemy = dynamic_cast<Enemy*>(enemies.at(i));
+        qDebug() << "Writing that enemy to the file";
+        save << "position:" << pos.x() << "," << pos.y() << endl;
+        save << "weapon:" << getWeapon()->getType() << "\n\n";
+    }
+    save << "*";
 }
 
+// +500 points!
 Enemy::~Enemy()
 {
     player->addScore(500);
+    delete weapon;
 }

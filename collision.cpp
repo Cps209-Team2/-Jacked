@@ -1,17 +1,9 @@
 #include "collision.h"
 
-Collision::Collision()
-{
-}
-
 CollisionInfo *Collision::getData()
 {
     QRect a = QRect(_this->getPos(),_this->getSize());
     QRect b = QRect(_that->getPos(),_that->getSize());
-
-    //collide = ((a.right() > b.left()) && (a.top() < b.bottom()) || (a.bottom() > b.top())) || ((a.left() < b.right() && (a.top() < b.bottom()) || (a.bottom() > b.top())));
-    //collide = a.contains(b);
-
 
     bool rightSide = (a.contains(b.bottomLeft()) || a.contains(b.topLeft()));
     bool leftSide = (a.contains(b.bottomRight()) || a.contains(b.topRight()));
@@ -22,30 +14,6 @@ CollisionInfo *Collision::getData()
     bool bot = a.contains(b) && (a.bottom() > b.top());
     bool top = a.contains(b) && (a.top() < b.bottom());
 
-    /*
-    if(rightSide)
-    {
-        xChange = -1 * (a.x() + a.width() - b.x()) - 95;
-        if(_this->isPlayer() && _that->isEnemy())
-        {
-            _this->takeDmg(5);
-        }
-
-        crash = true;
-        qDebug() << "ouch! -5 DMG" << endl;
-    }
-    if(leftSide)
-    {
-        xChange = b.x() - a.x() + a.width() + 95;
-        if(_this->isPlayer() && _that->isEnemy())
-        {
-            _this->takeDmg(5);
-        }
-
-        crash = true;
-        qDebug() << "ouch! -5 DMG" << endl;
-    }
-    */
     if(rightSide)
     {
         x = -1 * (a.right() - b.left());
@@ -87,14 +55,11 @@ CollisionInfo *Collision::getData()
         y = b.top() - a.bottom();
     }
 
-    //*
     if(x == 0 && y == 0)
         collide = false;
     else
         collide = true;
-    //*/
 
-    //qDebug() << x << " ,  " << y << endl;
     CollisionInfo *data = new CollisionInfo(x,y,_this,_that, collide);
     return data;
 }

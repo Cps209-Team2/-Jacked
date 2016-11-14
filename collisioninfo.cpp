@@ -1,8 +1,5 @@
 #include "collisioninfo.h"
 
-CollisionInfo::CollisionInfo()
-{
-}
 CollisionInfo::CollisionInfo(int x, int y, Entity *ent1, Entity *ent2, bool crash)
 {
     this->setX(x);

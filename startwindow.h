@@ -15,10 +15,12 @@ class StartWindow;
 
 class gameWidget;
 class HighScoresWindow;
+
 class StartWindow : public QMainWindow
 {
     Q_OBJECT
 private:
+
     gameWidget *game;
     help *helpScreen;
     HighScoresWindow *highscoreScreen;
@@ -30,9 +32,14 @@ private:
 
 public:
     explicit StartWindow(QMainWindow *parent = 0);
+
+    // returns this for other widgets to reference
     QWidget *getStart();
-    ~StartWindow();
+
+    //comments required by Bill, Kyle
     bool cheatMode = false;
+    ~StartWindow();
+
 
 private slots:
 

@@ -2,6 +2,7 @@
 #define OBSTACLE_H
 #include "entity.h"
 
+// never became implemented
 class Obstacle: public Entity
 {
 public:

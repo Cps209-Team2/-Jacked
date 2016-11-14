@@ -7,6 +7,8 @@ MovableLabel::MovableLabel(QWidget *parent, Entity *object, QPixmap *pix): QLabe
         this->setPixmap(pix->scaled(QSize(68,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
     else
         this->setPixmap(pix->scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+
+    isHide = false;
 }
 
 void MovableLabel::updateImg(QPixmap *pix)
@@ -14,12 +16,19 @@ void MovableLabel::updateImg(QPixmap *pix)
     img = pix;
 
     if(obj->isPlayer())
+    {
         if(dynamic_cast<Player *>(obj)->isCrouching())
             this->setPixmap(pix->scaled(QSize(64,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
         else
             this->setPixmap(pix->scaled(QSize(68,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+    }
     else
-        this->setPixmap(pix->scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+    {
+        if(obj->isHit())
+            this->setPixmap(pix->scaled(QSize(87,90),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+        else
+            this->setPixmap(pix->scaled(QSize(80,80),Qt::IgnoreAspectRatio, Qt::FastTransformation));
+    }
 }
 
 void MovableLabel::setPos(QPoint pos)
@@ -27,7 +36,6 @@ void MovableLabel::setPos(QPoint pos)
     obj->setX(pos.x());
     obj->setY(pos.y());
     this->updatePos();
-
 }
 
 MovableLabel::~MovableLabel()

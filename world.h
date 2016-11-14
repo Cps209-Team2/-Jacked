@@ -16,34 +16,36 @@
 #include "enemy.h"
 #include "player.h"
 class Enemy;
+
+//comments required by Bill, Kyle
 class World
 {
     int lvl;
     Player *player;
-    std::vector<Obstacle*> obstacles;
-    std::vector<Enemy*> enemies;
-    std::vector<Enemy*> trashbin;
+    std::vector<Obstacle*> obstacles; // not implemented
+    std::vector<Enemy*> enemies; //enemies still alive
+    std::vector<Enemy*> trashbin; // destroyed enemies
     int currentScore;
+
+    //Singleton Implementation
     static World *instance_;
-
     explicit World(const World& that) = delete;
-
     World() {}
 public:
-    void setPlayer(Player *character) { player = character; } //spawns player
+    //sets entity passed in as either player or enemy. If enemy, it is placed in the enemies vector.  If player, overwrites current player
     void addEntity(Entity *obj);
 
     static World &instance();
 
     void create();//initializes new lvlb
     void loadFile(QString filename);//loads saved map
-    //void addEnemy(Enemy *newEnemy) { enemies.push_back(newEnemy); }
     static void saveScore(QString filename);
     void processLevel(QString level); // adds all game variables to the vectors
     void advance();//advances map to next lvl;
     void reset(); //removes all enemy and obstacle objects and allows for a new level
     void addScore(int plus) { currentScore += plus; }
 
+    // places enemy from enemies vector into trashbin.  Used to clean up destroyed enemies
     void trash(int ID);
 
     //getters

@@ -6,6 +6,3 @@ Entity::Entity()
     pos.setY(0);
 }
 
-Entity::~Entity()
-{
-}
