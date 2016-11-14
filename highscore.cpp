@@ -1,5 +1,6 @@
 #include "highscore.h"
 
+//constructs a highscores objects from the text file.
 highscore::highscore(QString param) {
     QFile file(param);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -20,12 +21,14 @@ highscore::highscore(QString param) {
 
 }
 
+//adds a highscore to the vector
 void highscore::addHighScore(int highScore)
 {
     scores.push_back(highScore);
     //highScores.erase(highScores.end());
 }
 
+//adds a name to the vector
 void highscore::addName(string name)
 {
     names.push_back(name);

@@ -24,7 +24,6 @@ private:
     gameWidget *game;
     help *helpScreen;
     HighScoresWindow *highscoreScreen;
-    highscore themScores;
     //helpWidget *help;
     Ui::StartWindow *ui;
     bool newWindow;

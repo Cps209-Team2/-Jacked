@@ -55,7 +55,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>score1</string>
+    <string>Chuck: 20,000</string>
    </property>
   </widget>
   <widget class="QLabel" name="lblHighscore2">
@@ -68,7 +68,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>score2</string>
+    <string>Bruce: 10,000</string>
    </property>
   </widget>
   <widget class="QLabel" name="lblHighscore3">
@@ -81,7 +81,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>score3</string>
+    <string>Aj: 5,000</string>
    </property>
   </widget>
   <widget class="QLabel" name="lblHighscore4">
@@ -94,7 +94,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>score4</string>
+    <string>Kyle: 2,500</string>
    </property>
   </widget>
   <widget class="QLabel" name="lblHighscore5">
@@ -107,7 +107,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>score5</string>
+    <string>Bill: 1,500</string>
    </property>
   </widget>
  </widget>
