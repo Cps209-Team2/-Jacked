@@ -1,8 +1,8 @@
 #include "highscore.h"
 
 //constructs a highscores objects from the text file.
-highscore::highscore() {
-    QFile file("Highscores.txt");
+highscore::highscore(QString param) {
+    QFile file(param);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
        qDebug() << "File could not open." << endl;
     }

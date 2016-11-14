@@ -7,13 +7,14 @@ HighScoresWindow::HighScoresWindow(QMainWindow *parent) :
     QWidget(parent),
     ui(new Ui::HighScoresWindow)
 {
+
     this->parent = dynamic_cast<StartWindow*>(parent)->getStart();
     ui->setupUi(this);
-
-    for (unsigned i = 0; i < them.getNames().size(); ++i) {
-       QString scoreline = QString::fromStdString(them.getNames().at(i));
+    them = new highscore("Highscore.txt");
+    for (unsigned i = 0; i < them->getNames().size(); ++i) {
+       QString scoreline = QString::fromStdString(them->getNames().at(i));
                scoreline += "\nScore: ";
-               scoreline += QString::number(them.getHighScores().at(i));
+               scoreline += QString::number(them->getHighScores().at(i));
 
        parsedScores.push_back(scoreline);
     }

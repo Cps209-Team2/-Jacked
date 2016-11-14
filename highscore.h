@@ -17,6 +17,7 @@ class highscore {
 
 public:
     highscore();
+    highscore(QString param);
     //highscore(QString saveFile);
 
     //getter methods

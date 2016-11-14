@@ -60,7 +60,7 @@ void gameWidget::loadLvl()
     std::vector<Enemy*> enemies = world.getEnemies();
 
     // assign labels for each enemy
-    for(int i = 0; i < world.getEnemies().size(); i++)
+    for(unsigned i = 0; i < world.getEnemies().size(); i++)
     {
         MovableLabel *lbl = new MovableLabel(this, enemies.at(i), new QPixmap(":/Images/Images/enemy_left (1).png"));
         elbls.push_back(lbl);
@@ -103,7 +103,7 @@ void gameWidget::frame()
         player->setGrounded(true);
     }
 
-    for(int i = 0; i < world.getEnemies().size(); i++)
+    for(unsigned i = 0; i < world.getEnemies().size(); i++)
     {
         this->enemyMove(dynamic_cast<Enemy*>(world.getEnemies().at(i)));
 
